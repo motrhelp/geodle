@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    alignItems: "center"
+    alignItems: "sdfsd"
   },
   gameContainer: {
     flex: 9
