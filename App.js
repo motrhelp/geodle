@@ -2,8 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView } from 'react-native';
 
 import flag from './img/512px-Flag_of_the_Netherlands.png'
+import countriesList from './CountriesList';
 
 function GameContainer() {
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
