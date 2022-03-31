@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView } from 'react-native';
 
+import flag from './img/512px-Flag_of_the_Netherlands.png'
+
 function GameContainer() {
   return (
     <KeyboardAvoidingView
@@ -9,7 +11,7 @@ function GameContainer() {
     >
       <Image
         style={styles.flag}
-        source={require('./img/512px-Flag_of_the_Netherlands.png')}
+        source={flag}
       />
       <View style={styles.guessesContainer}>
 
@@ -45,6 +47,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '80%',
+    maxWidth: 500,
+    alignSelf: 'center'
   },
 
   // Header
@@ -67,6 +72,9 @@ const styles = StyleSheet.create({
     flex: 9,
     alignSelf: 'center',
     borderWidth: 1,
+    width: undefined,
+    height: undefined,
+    aspectRatio: 512/341
   },
 
   // Guesses
@@ -89,7 +97,8 @@ const styles = StyleSheet.create({
   sendButtonContainer: {
     flex: 1,
     justifyContent: 'center',
-    minWidth: 30,
+    minWidth: 80,
+    padding: 10
   }
 
 });
