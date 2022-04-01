@@ -92,15 +92,15 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   input: {
-    flex: 10,
+    flex: 8,
     borderWidth: 1,
     fontSize: 25,
   },
+
+  //  Send
   sendButtonContainer: {
     flex: 1,
-    justifyContent: 'center',
     minWidth: 80,
-    padding: 10
   }
 
 });
