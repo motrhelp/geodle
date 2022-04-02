@@ -1,11 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList } from 'react-native';
 
 import flag from './img/512px-Flag_of_the_Netherlands.png'
 import countriesList from './CountriesList';
 
 function GameContainer() {
-
+  const data = [
+    { 
+      flag: '🇿🇦',
+      name: 'South Africa', 
+      direction: '↙️', 
+      distance: '1000'
+    },
+    { 
+      flag: '🇧🇾',
+      name: 'Belarus', 
+      direction: '✅', 
+      distance: '0'
+    }
+  ]
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
@@ -16,7 +29,10 @@ function GameContainer() {
         source={flag}
       />
       <View style={styles.guessesContainer}>
-
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <Text style={styles.item}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
+        />
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -76,7 +92,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: undefined,
     height: undefined,
-    aspectRatio: 512/341
+    aspectRatio: 512 / 341
   },
 
   // Guesses
@@ -89,7 +105,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     padding: 10,
-    paddingBottom: 20
+    paddingBottom: 20,
+    minHeight: 50
   },
   input: {
     flex: 8,
