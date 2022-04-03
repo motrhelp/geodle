@@ -5,20 +5,26 @@ import flag from './img/512px-Flag_of_the_Netherlands.png'
 import countriesList from './CountriesList';
 
 function GameContainer() {
-  const data = [
-    { 
+  const guessesData = [
+    {
       flag: '🇿🇦',
-      name: 'South Africa', 
-      direction: '↙️', 
+      name: 'South Africa',
+      direction: '↙️',
       distance: '1000'
     },
-    { 
+    {
       flag: '🇧🇾',
-      name: 'Belarus', 
-      direction: '✅', 
+      name: 'Belarus',
+      direction: '✅',
       distance: '0'
     }
   ]
+
+  const autocompleteData = [
+    'South Africa',
+    'Belarus',
+  ]
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
@@ -30,20 +36,28 @@ function GameContainer() {
       />
       <View style={styles.guessesContainer}>
         <FlatList
-          data={data}
+          data={guessesData}
           renderItem={({ item }) => <Text style={styles.item}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
         />
       </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder='Guess'
-        />
-        <View style={styles.sendButtonContainer}>
-          <Button
-            title='Send'
-            color={'#000000'}
+      <View style={styles.inputWithAutocompleteContainer}>
+        <View style={styles.autocompleteContainer}>
+          <FlatList
+            data={autocompleteData}
+            renderItem={({ item }) => <Text style={styles.autocompleteItem}>{item}</Text>}
           />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder='Guess'
+          />
+          <View style={styles.sendButtonContainer}>
+            <Button
+              title='Send'
+              color={'#000000'}
+            />
+          </View>
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -98,14 +112,27 @@ const styles = StyleSheet.create({
   // Guesses
   guessesContainer: {
     flex: 9,
+    paddingTop: 50
+  },
+
+  // Autocomplete
+  inputWithAutocompleteContainer: {
+    flex: 3,
+    padding: 10,
+    paddingBottom: 20,
+    minHeight: 50,
+    width: '100%',
+    justifyContent: 'flex-end'
+  },
+  autocompleteItem: {
+    fontSize: 30
   },
 
   // Input
   inputContainer: {
     flex: 1,
     flexDirection: 'row',
-    padding: 10,
-    paddingBottom: 20,
+    maxHeight: 50,
     minHeight: 50
   },
   input: {
@@ -117,7 +144,8 @@ const styles = StyleSheet.create({
   //  Send
   sendButtonContainer: {
     flex: 1,
-    minWidth: 80,
+    minWidth: 10,
+    alignSelf: 'center'
   }
 
 });
