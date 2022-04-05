@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList } from 'react-native';
 
 import flag from './img/512px-Flag_of_the_Netherlands.png'
 import countriesList from './CountriesList';
 
 function GameContainer() {
+
+  const [guess, setGuess] = useState("");
+  const [autocompleteData, setAutocompleteData] = useState();
+
   const guessesData = [
     {
       flag: '🇿🇦',
@@ -18,11 +23,6 @@ function GameContainer() {
       direction: '✅',
       distance: '0'
     }
-  ]
-
-  const autocompleteData = [
-    'South Africa',
-    'Belarus',
   ]
 
   return (
@@ -42,15 +42,28 @@ function GameContainer() {
       </View>
       <View style={styles.inputWithAutocompleteContainer}>
         <View style={styles.autocompleteContainer}>
-          <FlatList
-            data={autocompleteData}
-            renderItem={({ item }) => <Text style={styles.autocompleteItem}>{item}</Text>}
-          />
+          {autocompleteData?.length == 0 ?
+            null
+            :
+            <FlatList
+              data={autocompleteData}
+              renderItem={({ item }) => <Text style={styles.autocompleteItem}>{item.name}</Text>}
+            />
+          }
         </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
             placeholder='Guess'
+            value={guess}
+            onChangeText={(text) => {
+              setGuess(text);
+              if (text == "") {
+                setAutocompleteData();
+              } else {
+                setAutocompleteData(countriesList.filter((country) => country.name.startsWith(text)))
+              }
+            }}
           />
           <View style={styles.sendButtonContainer}>
             <Button
