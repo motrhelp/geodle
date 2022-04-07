@@ -38,6 +38,7 @@ function GameContainer() {
         <FlatList
           data={guessesData}
           renderItem={({ item }) => <Text style={styles.item}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
+          keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
         />
       </View>
       <View style={styles.inputWithAutocompleteContainer}>
@@ -48,6 +49,7 @@ function GameContainer() {
             <FlatList
               data={autocompleteData}
               renderItem={({ item }) => <Text style={styles.autocompleteItem}>{item.name}</Text>}
+              keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
             />
           }
         </View>
