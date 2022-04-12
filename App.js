@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
 import flag from './img/512px-Flag_of_the_Netherlands.png'
 import countriesList from './CountriesList';
@@ -25,6 +25,16 @@ function GameContainer() {
     }
   ]
 
+  // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
+  const enterGuess = (text) => {
+    setGuess(text);
+    if (text == "") {
+      setAutocompleteData();
+    } else {
+      setAutocompleteData(countriesList.filter((country) => country.name.startsWith(text)))
+    }
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
@@ -41,6 +51,8 @@ function GameContainer() {
           keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
         />
       </View>
+
+      {/* Autocomplete */}
       <View style={styles.inputWithAutocompleteContainer}>
         <View style={styles.autocompleteContainer}>
           {autocompleteData?.length == 0 ?
@@ -48,24 +60,26 @@ function GameContainer() {
             :
             <FlatList
               data={autocompleteData}
-              renderItem={({ item }) => <Text style={styles.autocompleteItem}>{item.name}</Text>}
+              renderItem={({ item }) =>
+                <TouchableOpacity
+                  onPress={() => enterGuess(item.name)}
+                >
+                  <Text style={styles.autocompleteItem}>{item.name}</Text>
+                </TouchableOpacity>
+              }
+              keyboardShouldPersistTaps={'handled'} // Avoid keyboard flickering up and down when a country is selected
               keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
             />
           }
         </View>
+
+        {/* Guess input */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
             placeholder='Guess'
             value={guess}
-            onChangeText={(text) => {
-              setGuess(text);
-              if (text == "") {
-                setAutocompleteData();
-              } else {
-                setAutocompleteData(countriesList.filter((country) => country.name.startsWith(text)))
-              }
-            }}
+            onChangeText={enterGuess}
           />
           <View style={styles.sendButtonContainer}>
             <Button
