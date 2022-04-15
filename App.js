@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView,
 
 import flag from './img/512px-Flag_of_the_Netherlands.png'
 import countriesList from './CountriesList';
+import getDistanceFromLatLonInKm from './DistanceCalculator';
 
 function GameContainer() {
 
