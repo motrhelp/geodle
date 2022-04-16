@@ -36,6 +36,18 @@ function GameContainer() {
     }
   }
 
+  const onPressGuess = () => {
+    if (guess) {
+      const currentGuess = countriesList.filter(country => country.name == guess)[0];
+      if (currentGuess.lat) {
+        alert(currentGuess.name + ": " + currentGuess.lat + ", " + currentGuess.lon)
+      } else {
+        alert(currentGuess.name + " does not have coordinates yet.")
+      }
+    }
+    enterGuess("");
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
@@ -86,6 +98,7 @@ function GameContainer() {
             <Button
               title='Send'
               color={'#000000'}
+              onPress={onPressGuess}
             />
           </View>
         </View>
