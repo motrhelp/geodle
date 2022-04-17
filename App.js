@@ -2,15 +2,22 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
-import flag from './img/512px-Flag_of_the_Netherlands.png'
-import countriesList from './CountriesList';
+import countryList from './CountryList';
 import getDistanceFromLatLonInKm from './DistanceCalculator';
+
+function countryToGuess() {
+  const countriesWithFlags = countryList.filter(country => country.flag != null);
+  console.log(countriesWithFlags);
+  var randomCountry = countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)];
+  return randomCountry;
+}
 
 function GameContainer() {
 
   const [guess, setGuess] = useState("");
   const [autocompleteData, setAutocompleteData] = useState();
-
+  const [country, setCountry] = useState(countryToGuess());
+  
   const guessesData = [
     {
       flag: '🇿🇦',
@@ -32,13 +39,13 @@ function GameContainer() {
     if (text == "") {
       setAutocompleteData();
     } else {
-      setAutocompleteData(countriesList.filter((country) => country.name.startsWith(text)))
+      setAutocompleteData(countryList.filter((country) => country.name.startsWith(text)))
     }
   }
 
   const onPressGuess = () => {
     if (guess) {
-      const currentGuess = countriesList.filter(country => country.name == guess)[0];
+      const currentGuess = countryList.filter(country => country.name == guess)[0];
       if (currentGuess.lat) {
         alert(currentGuess.name + ": " + currentGuess.lat + ", " + currentGuess.lon)
       } else {
@@ -53,10 +60,13 @@ function GameContainer() {
       style={styles.gameContainer}
       behavior='padding'
     >
-      <Image
-        style={styles.flag}
-        source={flag}
-      />
+      {country.flag ?
+        <Image
+          style={styles.flag}
+          source={country.flag}
+        />
+        : null
+      }
       <View style={styles.guessesContainer}>
         <FlatList
           data={guessesData}
