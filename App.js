@@ -18,7 +18,7 @@ function GameContainer() {
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
   
-  const guessesData = [
+  const [guesses, setGuesses] = useState([
     {
       flag: '🇿🇦',
       name: 'South Africa',
@@ -31,7 +31,7 @@ function GameContainer() {
       direction: '✅',
       distance: '0'
     }
-  ]
+  ]);
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
@@ -47,7 +47,14 @@ function GameContainer() {
     if (guess) {
       const currentGuess = countryList.filter(country => country.name == guess)[0];
       if (currentGuess.lat) {
-        alert(currentGuess.name + ": " + currentGuess.lat + ", " + currentGuess.lon)
+        const distance = Math.floor(getDistanceFromLatLonInKm(currentGuess.lat, currentGuess.lon, country.lat, country.lon));
+        guesses.push(
+          {
+            flag: currentGuess.emoji,
+            name: currentGuess.name,
+            direction: distance == 0 ? '✅' : '🤷‍♂️',
+            distance: distance
+          });
       } else {
         alert(currentGuess.name + " does not have coordinates yet.")
       }
@@ -63,14 +70,15 @@ function GameContainer() {
       {country.flag ?
         <Image
           style={styles.flag}
+          resizeMode='contain'
           source={country.flag}
         />
         : null
       }
       <View style={styles.guessesContainer}>
         <FlatList
-          data={guessesData}
-          renderItem={({ item }) => <Text style={styles.item}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
+          data={guesses}
+          renderItem={({ item }) => <Text style={styles.guessText}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
           keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
         />
       </View>
@@ -142,6 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 15
   },
   gameContainer: {
     flex: 9,
@@ -166,6 +175,9 @@ const styles = StyleSheet.create({
   guessesContainer: {
     flex: 9,
     paddingTop: 50
+  },
+  guessText: {
+    fontSize: 20,
   },
 
   // Autocomplete
