@@ -7,7 +7,6 @@ import getDistanceFromLatLonInKm from './DistanceCalculator';
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
-  console.log(countriesWithFlags);
   var randomCountry = countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)];
   return randomCountry;
 }
@@ -18,20 +17,7 @@ function GameContainer() {
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
   
-  const [guesses, setGuesses] = useState([
-    {
-      flag: '🇿🇦',
-      name: 'South Africa',
-      direction: '↙️',
-      distance: '1000'
-    },
-    {
-      flag: '🇧🇾',
-      name: 'Belarus',
-      direction: '✅',
-      distance: '0'
-    }
-  ]);
+  const [guesses, setGuesses] = useState([]);
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
