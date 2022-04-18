@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
 import countryList from './CountryList';
-import getDistanceFromLatLonInKm from './DistanceCalculator';
+import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -34,11 +34,12 @@ function GameContainer() {
       const currentGuess = countryList.filter(country => country.name == guess)[0];
       if (currentGuess.lat) {
         const distance = Math.floor(getDistanceFromLatLonInKm(currentGuess.lat, currentGuess.lon, country.lat, country.lon));
+        const bearing = getBearingFromLatLon(currentGuess.lat, currentGuess.lon, country.lat, country.lon);
         guesses.push(
           {
             flag: currentGuess.emoji,
             name: currentGuess.name,
-            direction: distance == 0 ? '✅' : '🤷‍♂️',
+            direction: distance == 0 ? '✅' : bearing,
             distance: distance
           });
       } else {
@@ -56,7 +57,7 @@ function GameContainer() {
       {country.flag ?
         <Image
           style={styles.flag}
-          resizeMode='contain'
+          resizeMode='stretch'
           source={country.flag}
         />
         : null
