@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   // Guesses
   guessesContainer: {
     flex: 9,
-    paddingTop: 50
+    paddingTop: 50,
   },
   guessText: {
     fontSize: 20,
