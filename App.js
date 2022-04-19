@@ -16,7 +16,7 @@ function GameContainer() {
   const [guess, setGuess] = useState("");
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
-  
+
   const [guesses, setGuesses] = useState([]);
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
@@ -99,13 +99,16 @@ function GameContainer() {
             value={guess}
             onChangeText={enterGuess}
           />
-          <View style={styles.sendButtonContainer}>
-            <Button
-              title='Send'
-              color={'#000000'}
-              onPress={onPressGuess}
-            />
-          </View>
+          {guess == "" ?
+            null :
+            <View style={styles.sendButtonContainer}>
+              <Button
+                title='Send'
+                color={'#000000'}
+                onPress={onPressGuess}
+              />
+            </View>
+          }
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -195,7 +198,7 @@ const styles = StyleSheet.create({
 
   //  Send
   sendButtonContainer: {
-    flex: 1,
+    flex: 2,
     minWidth: 10,
     alignSelf: 'center'
   }
