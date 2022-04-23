@@ -17,7 +17,7 @@ function GameContainer() {
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
   const [guesses, setGuesses] = useState([]);
-  const [hearts, setHearts] = useState([]);
+  const [hearts, setHearts] = useState(5);
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
@@ -44,23 +44,12 @@ function GameContainer() {
           });
 
         // Register a try
-        if (distance > 0) {
-          hearts.shift();
-          hearts.push(
-            <Text style={styles.heart}>♡</Text>
-          )
-        }
+        setHearts(hearts - 1);
       } else {
         alert(currentGuess.name + " does not have coordinates yet.")
       }
     }
     enterGuess("");
-  }
-
-  for (let i = 0; hearts.length < 5; i++) {
-    hearts.push(
-      <Text style={styles.heart}>♥</Text>
-    )
   }
 
   return (
@@ -81,7 +70,31 @@ function GameContainer() {
 
       {/* Hearts */}
       <View style={styles.heartsContainer}>
-        {hearts}
+        {hearts > 0 ?
+          <Text style={styles.heart}>♥</Text>
+          :
+          <Text style={styles.heart}>♡</Text>
+        }
+        {hearts > 1 ?
+          <Text style={styles.heart}>♥</Text>
+          :
+          <Text style={styles.heart}>♡</Text>
+        }
+        {hearts > 2 ?
+          <Text style={styles.heart}>♥</Text>
+          :
+          <Text style={styles.heart}>♡</Text>
+        }
+        {hearts > 3 ?
+          <Text style={styles.heart}>♥</Text>
+          :
+          <Text style={styles.heart}>♡</Text>
+        }
+        {hearts > 4 ?
+          <Text style={styles.heart}>♥</Text>
+          :
+          <Text style={styles.heart}>♡</Text>
+        }
       </View>
 
       {/* Guesses */}
@@ -115,24 +128,31 @@ function GameContainer() {
         </View>
 
         {/* Guess input */}
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder='Guess'
-            value={guess}
-            onChangeText={enterGuess}
-          />
-          {guess == "" ?
-            null :
-            <View style={styles.sendButtonContainer}>
-              <Button
-                title='Send'
-                color={'#000000'}
-                onPress={onPressGuess}
-              />
-            </View>
-          }
-        </View>
+
+        {hearts > 0 ?
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder='Guess'
+              value={guess}
+              onChangeText={enterGuess}
+            />
+            {guess == "" ?
+              null :
+              <View style={styles.sendButtonContainer}>
+                <Button
+                  title='Send'
+                  color={'#000000'}
+                  onPress={onPressGuess}
+                />
+              </View>
+            }
+          </View>
+          :
+          <Text style={styles.gameOver}>GAME OVER</Text>
+        }
+
+
       </View>
     </KeyboardAvoidingView>
   );
@@ -237,6 +257,13 @@ const styles = StyleSheet.create({
     flex: 2,
     minWidth: 10,
     alignSelf: 'center'
-  }
+  },
+
+  // Game over
+  gameOver: {
+    alignSelf: 'center',
+    fontSize: 25,
+    fontWeight: "bold",
+  },
 
 });
