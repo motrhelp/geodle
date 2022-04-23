@@ -215,8 +215,6 @@ const styles = StyleSheet.create({
     flex: 9,
     alignSelf: 'center',
     borderWidth: 1,
-    width: undefined,
-    height: undefined,
     aspectRatio: 512 / 341
   },
 
