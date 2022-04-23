@@ -19,6 +19,7 @@ function GameContainer() {
   const [country, setCountry] = useState(countryToGuess());
   const [guesses, setGuesses] = useState([]);
   const [hearts, setHearts] = useState(5);
+  const [victory, setVictory] = useState();
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
@@ -45,7 +46,11 @@ function GameContainer() {
           });
 
         // Register a try
-        setHearts(hearts - 1);
+        if (distance == 0) {
+          setVictory(true);
+        } else {
+          setHearts(hearts - 1);
+        }
       } else {
         alert(currentGuess.name + " does not have coordinates yet.")
       }
@@ -137,7 +142,7 @@ function GameContainer() {
 
         {/* Guess input */}
 
-        {hearts > 0 ?
+        {hearts > 0 && !victory ?
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
@@ -156,9 +161,12 @@ function GameContainer() {
               </View>
             }
           </View>
-          :
-          <Text style={styles.gameOver}>GAME OVER</Text>
+          : victory ?
+            <Text style={styles.gameOver}>VICTORY</Text>
+            :
+            <Text style={styles.gameOver}>GAME OVER</Text>
         }
+
 
 
       </View>
