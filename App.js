@@ -155,7 +155,7 @@ function GameContainer() {
               <View style={styles.sendButtonContainer}>
                 <Button
                   title='Send'
-                  color={'#000000'}
+                  color={'black'}
                   onPress={onPressGuess}
                 />
               </View>
@@ -230,29 +230,33 @@ const styles = StyleSheet.create({
   },
   guessFlag: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 15,
   },
   guessName: {
     flex: 5,
-    fontSize: 20,
+    fontSize: 15,
   },
   guessDirection: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 15,
   },
   guessDistance: {
-    flex: 2,
-    fontSize: 20,
+    flex: 3,
+    fontSize: 15,
   },
 
   // Autocomplete
   inputWithAutocompleteContainer: {
-    flex: 3,
+    flex: 4,
     padding: 10,
     paddingBottom: 20,
     minHeight: 50,
     width: '100%',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    maxHeight: 50
+  },
+  autocompleteContainer: {
+    maxHeight: 160
   },
   autocompleteItem: {
     fontSize: 30
@@ -277,19 +281,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     maxHeight: 50,
     minHeight: 50,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   input: {
     flex: 8,
     borderWidth: 1,
     fontSize: 25,
+    maxWidth: '90%'
   },
 
   //  Send
   sendButtonContainer: {
     flex: 2,
     minWidth: "60px",
-    alignSelf: 'center'
+    alignSelf: 'center',
+    paddingLeft: 5
   },
 
   // Game over

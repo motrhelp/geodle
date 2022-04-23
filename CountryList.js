@@ -25,7 +25,7 @@ const countryList = [
     { code: "BJ", name: "Benin", lat: 9.30769, lon: 2.315834 },
     { code: "BM", name: "Bermuda", lat: 32.321384, lon: -64.75737 },
     { code: "BT", name: "Bhutan", lat: 27.514162, lon: 90.433601 },
-    { code: "BO", name: "Bolivia, Plurinational State of", lat: -16.290154, lon: -63.588653 },
+    { code: "BO", name: "Bolivia", lat: -16.290154, lon: -63.588653 },
     // { code: "BQ", name: "Bonaire, Sint Eustatius and Saba" },
     { code: "BA", name: "Bosnia and Herzegovina", lat: 43.915886, lon: 17.679076 },
     { code: "BW", name: "Botswana", lat: -22.328474, lon: 24.684866 },
