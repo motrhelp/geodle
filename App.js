@@ -16,8 +16,8 @@ function GameContainer() {
   const [guess, setGuess] = useState("");
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
-
   const [guesses, setGuesses] = useState([]);
+  const [hearts, setHearts] = useState([]);
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
@@ -42,6 +42,14 @@ function GameContainer() {
             direction: distance == 0 ? '✅' : bearing,
             distance: distance
           });
+
+        // Register a try
+        if (distance > 0) {
+          hearts.shift();
+          hearts.push(
+            <Text style={styles.heart}>♡</Text>
+          )
+        }
       } else {
         alert(currentGuess.name + " does not have coordinates yet.")
       }
@@ -49,11 +57,19 @@ function GameContainer() {
     enterGuess("");
   }
 
+  for (let i = 0; hearts.length < 5; i++) {
+    hearts.push(
+      <Text style={styles.heart}>♥</Text>
+    )
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
       behavior='padding'
     >
+
+      {/* Flag */}
       {country.flag ?
         <Image
           style={styles.flag}
@@ -62,6 +78,13 @@ function GameContainer() {
         />
         : null
       }
+
+      {/* Hearts */}
+      <View style={styles.heartsContainer}>
+        {hearts}
+      </View>
+
+      {/* Guesses */}
       <View style={styles.guessesContainer}>
         <FlatList
           data={guesses}
@@ -180,6 +203,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   autocompleteItem: {
+    fontSize: 30
+  },
+
+  // Hearts
+  heartsContainer: {
+    flex: 1,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingTop: 20,
+    minWidth: 250
+  },
+  heart: {
     fontSize: 30
   },
 
