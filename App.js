@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView,
 
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
+import ramdomEmoji from './RandomEmoji';
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -37,7 +38,7 @@ function GameContainer() {
         const bearing = getBearingFromLatLon(currentGuess.lat, currentGuess.lon, country.lat, country.lon);
         guesses.push(
           {
-            flag: currentGuess.emoji,
+            emoji: currentGuess.emoji ? currentGuess.emoji : ramdomEmoji(),
             name: currentGuess.name,
             direction: distance == 0 ? '✅' : bearing,
             distance: distance
@@ -101,7 +102,14 @@ function GameContainer() {
       <View style={styles.guessesContainer}>
         <FlatList
           data={guesses}
-          renderItem={({ item }) => <Text style={styles.guessText}>{item.flag} {item.name}     {item.direction} {item.distance} km</Text>}
+          renderItem={({ item }) =>
+            <View style={styles.guessContainer}>
+              <Text style={styles.guessFlag}>{item.emoji}</Text>
+              <Text style={styles.guessName}>{item.name}</Text>
+              <Text style={styles.guessDirection}>{item.direction}</Text>
+              <Text style={styles.guessDistance}>{item.distance} km</Text>
+            </View>
+          }
           keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
         />
       </View>
@@ -208,8 +216,26 @@ const styles = StyleSheet.create({
   guessesContainer: {
     flex: 9,
     paddingTop: 50,
+    minWidth: '80%'
   },
-  guessText: {
+  guessContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  guessFlag: {
+    flex: 1,
+    fontSize: 20,
+  },
+  guessName: {
+    flex: 5,
+    fontSize: 20,
+  },
+  guessDirection: {
+    flex: 1,
+    fontSize: 20,
+  },
+  guessDistance: {
+    flex: 2,
     fontSize: 20,
   },
 
