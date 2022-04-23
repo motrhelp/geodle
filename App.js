@@ -46,7 +46,7 @@ function GameContainer() {
           });
 
         // Register a try
-        if (distance == 0) {
+        if (country.name == currentGuess.name) {
           setVictory(true);
         } else {
           setHearts(hearts - 1);
@@ -276,7 +276,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     maxHeight: 50,
-    minHeight: 50
+    minHeight: 50,
+    justifyContent: 'center'
   },
   input: {
     flex: 8,
@@ -287,7 +288,7 @@ const styles = StyleSheet.create({
   //  Send
   sendButtonContainer: {
     flex: 2,
-    minWidth: 10,
+    minWidth: "60px",
     alignSelf: 'center'
   },
 
