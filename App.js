@@ -27,7 +27,8 @@ function GameContainer() {
     if (text == "") {
       setAutocompleteData();
     } else {
-      setAutocompleteData(countryList.filter((country) => country.name.startsWith(text)))
+      console.log(autocompleteData);
+      setAutocompleteData(countryList.filter((country) => country.name.startsWith(text)));
     }
   }
 
@@ -75,6 +76,7 @@ function GameContainer() {
       }
 
       {/* Hearts */}
+      {hearts > 0 ?
       <View style={styles.heartsContainer}>
         {hearts > 0 ?
           <Text style={styles.heart}>♥</Text>
@@ -102,6 +104,9 @@ function GameContainer() {
           <Text style={styles.heart}>♡</Text>
         }
       </View>
+      : 
+        <Text style={styles.gameOver}>{country.name.toUpperCase()}</Text>
+      }
 
       {/* Guesses */}
       <View style={styles.guessesContainer}>
@@ -150,21 +155,20 @@ function GameContainer() {
               value={guess}
               onChangeText={enterGuess}
             />
-            {guess == "" ?
-              null :
-              <View style={styles.sendButtonContainer}>
-                <Button
-                  title='Send'
-                  color={'black'}
-                  onPress={onPressGuess}
-                />
-              </View>
-            }
+            <View style={styles.sendButtonContainer}>
+              <Button
+                title='Send'
+                color={'black'}
+                onPress={onPressGuess}
+              />
+            </View>
           </View>
           : victory ?
             <Text style={styles.gameOver}>VICTORY</Text>
             :
-            <Text style={styles.gameOver}>GAME OVER</Text>
+            <View>
+              <Text style={styles.gameOver}>GAME OVER</Text>
+            </View>
         }
 
 
@@ -189,7 +193,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '80%',
+    width: '100%',
     maxWidth: 500,
     alignSelf: 'center'
   },
@@ -221,7 +225,7 @@ const styles = StyleSheet.create({
   // Guesses
   guessesContainer: {
     flex: 9,
-    paddingTop: 50,
+    paddingTop: 30,
     minWidth: '80%'
   },
   guessContainer: {
@@ -280,14 +284,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     maxHeight: 50,
-    minHeight: 50,
-    justifyContent: 'center',
+    minHeight: 40,
+    justifyContent: 'center'
   },
   input: {
     flex: 8,
     borderWidth: 1,
     fontSize: 25,
-    maxWidth: '90%'
+    maxWidth: '90%',
   },
 
   //  Send
