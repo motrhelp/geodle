@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
+import Clipboard from '@react-native-clipboard/clipboard';
+
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
 import ramdomEmoji from './RandomEmoji';
@@ -43,7 +45,7 @@ function GameContainer() {
             emoji: currentGuess.emoji ? currentGuess.emoji : ramdomEmoji(),
             name: currentGuess.name,
             direction: distance == 0 ? '✅' : bearing,
-            distance: distance
+            distance: distance + " km"
           });
 
         // Register a try
@@ -57,6 +59,23 @@ function GameContainer() {
       }
     }
     enterGuess("");
+  }
+
+  const onPressShare = () => {
+    let shareString = "";
+    for (let i = 0; i < 5; i++) {
+      if (i < hearts) {
+        shareString += "♥ ";
+      } else {
+        shareString += "♡ ";
+      }
+    }
+    for (const guess of guesses) {
+      shareString += "\n" + guess.direction + " " + guess.distance;
+    }
+    shareString += "\n" + "http://motrhelp.github.io/geodle"
+    Clipboard.setString(shareString);
+    alert("Results copied to clipboard, share on!")
   }
 
   return (
@@ -77,34 +96,34 @@ function GameContainer() {
 
       {/* Hearts */}
       {hearts > 0 ?
-      <View style={styles.heartsContainer}>
-        {hearts > 0 ?
-          <Text style={styles.heart}>♥</Text>
-          :
-          <Text style={styles.heart}>♡</Text>
-        }
-        {hearts > 1 ?
-          <Text style={styles.heart}>♥</Text>
-          :
-          <Text style={styles.heart}>♡</Text>
-        }
-        {hearts > 2 ?
-          <Text style={styles.heart}>♥</Text>
-          :
-          <Text style={styles.heart}>♡</Text>
-        }
-        {hearts > 3 ?
-          <Text style={styles.heart}>♥</Text>
-          :
-          <Text style={styles.heart}>♡</Text>
-        }
-        {hearts > 4 ?
-          <Text style={styles.heart}>♥</Text>
-          :
-          <Text style={styles.heart}>♡</Text>
-        }
-      </View>
-      : 
+        <View style={styles.heartsContainer}>
+          {hearts > 0 ?
+            <Text style={styles.heart}>♥</Text>
+            :
+            <Text style={styles.heart}>♡</Text>
+          }
+          {hearts > 1 ?
+            <Text style={styles.heart}>♥</Text>
+            :
+            <Text style={styles.heart}>♡</Text>
+          }
+          {hearts > 2 ?
+            <Text style={styles.heart}>♥</Text>
+            :
+            <Text style={styles.heart}>♡</Text>
+          }
+          {hearts > 3 ?
+            <Text style={styles.heart}>♥</Text>
+            :
+            <Text style={styles.heart}>♡</Text>
+          }
+          {hearts > 4 ?
+            <Text style={styles.heart}>♥</Text>
+            :
+            <Text style={styles.heart}>♡</Text>
+          }
+        </View>
+        :
         <Text style={styles.gameOver}>{country.name.toUpperCase()}</Text>
       }
 
@@ -117,7 +136,7 @@ function GameContainer() {
               <Text style={styles.guessFlag}>{item.emoji}</Text>
               <Text style={styles.guessName}>{item.name}</Text>
               <Text style={styles.guessDirection}>{item.direction}</Text>
-              <Text style={styles.guessDistance}>{item.distance} km</Text>
+              <Text style={styles.guessDistance}>{item.distance}</Text>
             </View>
           }
           keyExtractor={(item, index) => index.toString()}  // This is just to remove keys warning
@@ -164,7 +183,14 @@ function GameContainer() {
             </View>
           </View>
           : victory ?
-            <Text style={styles.gameOver}>VICTORY</Text>
+            <View>
+              <TouchableOpacity
+                onPress={() => onPressShare()}
+              >
+                <Text style={styles.gameOver}>VICTORY</Text>
+                <Text style={styles.clickToShare}>(click to share)</Text>
+              </TouchableOpacity>
+            </View>
             :
             <View>
               <Text style={styles.gameOver}>GAME OVER</Text>
@@ -307,6 +333,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 25,
     fontWeight: "bold",
+  },
+  clickToShare: {
+    alignSelf: 'center'
   },
 
 });
