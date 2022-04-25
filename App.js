@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
 import Clipboard from '@react-native-clipboard/clipboard';
+import * as Linking from 'expo-linking'
 
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
@@ -79,6 +80,11 @@ function GameContainer() {
     alert("Results copied to clipboard, share on!")
   }
 
+  const onPressGoogleMaps = () => {
+    var googleMapsUrl = "https://www.google.com/maps/place/";
+    Linking.openURL(googleMapsUrl + country.name);
+  }
+
   const onPressGEODLE = () => {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
     setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
@@ -135,6 +141,19 @@ function GameContainer() {
         </View>
         :
         <Text style={styles.gameOver}>{country.name.toUpperCase()}</Text>
+      }
+
+      {/* Google Maps link*/}
+      {victory || hearts == 0 ?
+        <TouchableOpacity
+          onPress={() => onPressGoogleMaps()}
+        >
+          <View style={styles.linksContainer}>
+            <Text style={styles.clickToShare}>press to see on maps</Text>
+          </View>
+        </TouchableOpacity>
+        :
+        null
       }
 
       {/* Guesses */}
@@ -198,7 +217,9 @@ function GameContainer() {
                 onPress={() => onPressShare()}
               >
                 <Text style={styles.gameOver}>VICTORY</Text>
-                <Text style={styles.clickToShare}>(click to share)</Text>
+                <View style={styles.linksContainer}>
+                  <Text style={styles.clickToShare}>press to share</Text>
+                </View>
               </TouchableOpacity>
             </View>
             :
@@ -344,8 +365,12 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
   },
-  clickToShare: {
-    alignSelf: 'center'
-  },
+
+  // Share etc links
+  linksContainer: {
+    // flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 15
+  }
 
 });
