@@ -30,7 +30,7 @@ function GameContainer() {
       setAutocompleteData();
     } else {
       console.log(autocompleteData);
-      setAutocompleteData(countryList.filter((country) => country.name.startsWith(text)));
+      setAutocompleteData(countryList.filter((country) => country.name.toLowerCase().startsWith(text.toLowerCase())));
     }
   }
 
