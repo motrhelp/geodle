@@ -12,7 +12,6 @@ function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
   const today = new Date();
   const todayCountryIndex = ((today.getDate() + today.getMonth()) * 11) % countriesWithFlags.length;
-  // var randomCountry = countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)];
   return countriesWithFlags[todayCountryIndex];
 }
 
@@ -40,8 +39,6 @@ function GameContainer() {
     if (guess) {
       const currentGuess = countryList.filter(country => country.name == guess)[0];
       if (currentGuess.lat) {
-        alert(currentGuess.lat + " " + currentGuess.lon);
-        alert(country.lat + " " + country.lon);
         const distance = Math.floor(getDistanceFromLatLonInKm(currentGuess.lat, currentGuess.lon, country.lat, country.lon));
         const bearing = getBearingFromLatLon(currentGuess.lat, currentGuess.lon, country.lat, country.lon);
         guesses.push(
@@ -82,6 +79,11 @@ function GameContainer() {
     alert("Results copied to clipboard, share on!")
   }
 
+  const onPressGEODLE = () => {
+    const countriesWithFlags = countryList.filter(country => country.flag != null);
+    setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.gameContainer}
@@ -102,7 +104,11 @@ function GameContainer() {
       {hearts > 0 ?
         <View style={styles.heartsContainer}>
           {hearts > 0 ?
-            <Text style={styles.heart}>♥</Text>
+            <TouchableOpacity
+              onPress={() => onPressGEODLE()}
+            >
+              <Text style={styles.heart}>♥</Text>
+            </TouchableOpacity>
             :
             <Text style={styles.heart}>♡</Text>
           }
