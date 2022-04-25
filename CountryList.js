@@ -83,7 +83,7 @@ const countryList = [
     { code: "GE", name: "Georgia", lat: 42.315407, lon: 43.356892, flag: require("./img/Flag_of_Georgia.png")},
     { code: "DE", name: "Germany", lat: 51.165691, lon: 10.451526, flag: require("./img/320px-Flag_of_Germany.png")},
     { code: "GH", name: "Ghana", lat: 7.946527, lon: -1.023194 },
-    { code: "GI", name: "Gibraltar", lat: 36.137741, lon: -5.345374, flag: require("./img/640px-Flag_of_Estonia.png")},
+    { code: "GI", name: "Gibraltar", lat: 36.137741, lon: -5.345374, flag: require("./img/640px-Flag_of_Gibraltar.png")},
     { code: "GR", name: "Greece", lat: 39.074208, lon: 21.824312, flag: require("./img/Flag_of_Greece.png")},
     { code: "GL", name: "Greenland", lat: 71.706936, lon: -42.604303 },
     { code: "GD", name: "Grenada", lat: 12.262776, lon: -61.604171 },

@@ -10,8 +10,10 @@ import ramdomEmoji from './RandomEmoji';
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
-  var randomCountry = countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)];
-  return randomCountry;
+  const today = new Date();
+  const todayCountryIndex = ((today.getDate() + today.getMonth()) * 11) % countriesWithFlags.length;
+  // var randomCountry = countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)];
+  return countriesWithFlags[todayCountryIndex];
 }
 
 function GameContainer() {
@@ -38,6 +40,8 @@ function GameContainer() {
     if (guess) {
       const currentGuess = countryList.filter(country => country.name == guess)[0];
       if (currentGuess.lat) {
+        alert(currentGuess.lat + " " + currentGuess.lon);
+        alert(country.lat + " " + country.lon);
         const distance = Math.floor(getDistanceFromLatLonInKm(currentGuess.lat, currentGuess.lon, country.lat, country.lon));
         const bearing = getBearingFromLatLon(currentGuess.lat, currentGuess.lon, country.lat, country.lon);
         guesses.push(
