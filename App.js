@@ -9,8 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
 import ramdomEmoji from './RandomEmoji';
-import shareButton from './img/share.png'
-import globeButton from './img/globe.png'
+import shareButton from './img/send.png'
+import globeButton from './img/world.png'
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
