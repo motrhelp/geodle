@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.65f241e4.chunk.js",
-    "app.js.map": "/geodle/static/js/app.65f241e4.chunk.js.map",
+    "app.js": "/geodle/static/js/app.130ff5ab.chunk.js",
+    "app.js.map": "/geodle/static/js/app.130ff5ab.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.0c11f326.chunk.js": "/geodle/static/js/2.0c11f326.chunk.js",
-    "static/js/2.0c11f326.chunk.js.map": "/geodle/static/js/2.0c11f326.chunk.js.map",
+    "static/js/2.d8005262.chunk.js": "/geodle/static/js/2.d8005262.chunk.js",
+    "static/js/2.d8005262.chunk.js.map": "/geodle/static/js/2.d8005262.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.0c11f326.chunk.js.LICENSE.txt": "/geodle/static/js/2.0c11f326.chunk.js.LICENSE.txt",
+    "static/js/2.d8005262.chunk.js.LICENSE.txt": "/geodle/static/js/2.d8005262.chunk.js.LICENSE.txt",
     "static/media/512px-Flag_of_Albania.png": "/geodle/static/media/512px-Flag_of_Albania.b2da79b9.png",
     "static/media/640px-Flag_of_Brazil.png": "/geodle/static/media/640px-Flag_of_Brazil.2f12aeed.png",
     "static/media/640px-Flag_of_Canada_(Pantone).png": "/geodle/static/media/640px-Flag_of_Canada_(Pantone).61747787.png",
@@ -30,12 +30,14 @@
     "static/media/Flag_of_the_Antarctic_Treaty.png": "/geodle/static/media/Flag_of_the_Antarctic_Treaty.e6c1cf22.png",
     "static/media/Flag_of_the_Czech_Republic.png": "/geodle/static/media/Flag_of_the_Czech_Republic.ee228b9e.png",
     "static/media/Flag_of_the_People's_Republic_of_China.png": "/geodle/static/media/Flag_of_the_People's_Republic_of_China.b16dfbeb.png",
-    "static/media/globe.png": "/geodle/static/media/globe.a024a9df.png",
-    "static/media/share.png": "/geodle/static/media/share.59037f90.png"
+    "static/media/heart.png": "/geodle/static/media/heart.f38014fe.png",
+    "static/media/lostHeart.png": "/geodle/static/media/lostHeart.f0273620.png",
+    "static/media/send.png": "/geodle/static/media/send.59037f90.png",
+    "static/media/world.png": "/geodle/static/media/world.a024a9df.png"
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.0c11f326.chunk.js",
-    "static/js/app.65f241e4.chunk.js"
+    "static/js/2.d8005262.chunk.js",
+    "static/js/app.130ff5ab.chunk.js"
   ]
 }
