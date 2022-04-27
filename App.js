@@ -8,6 +8,8 @@ import * as Linking from 'expo-linking'
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
 import ramdomEmoji from './RandomEmoji';
+import shareButton from './img/share.png'
+import globeButton from './img/globe.png'
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -143,19 +145,6 @@ function GameContainer() {
         <Text style={styles.gameOver}>{country.name.toUpperCase()}</Text>
       }
 
-      {/* Google Maps link*/}
-      {victory || hearts == 0 ?
-        <TouchableOpacity
-          onPress={() => onPressGoogleMaps()}
-        >
-          <View style={styles.linksContainer}>
-            <Text style={styles.clickToShare}>press to see on maps</Text>
-          </View>
-        </TouchableOpacity>
-        :
-        null
-      }
-
       {/* Guesses */}
       <View style={styles.guessesContainer}>
         <FlatList
@@ -192,46 +181,61 @@ function GameContainer() {
             />
           }
         </View>
-
-        {/* Guess input */}
-
-        {hearts > 0 && !victory ?
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.input}
-              placeholder='Guess'
-              value={guess}
-              onChangeText={enterGuess}
-            />
-            <View style={styles.sendButtonContainer}>
-              <Button
-                title='Send'
-                color={'black'}
-                onPress={onPressGuess}
-              />
-            </View>
-          </View>
-          : victory ?
-            <View>
-              <TouchableOpacity
-                onPress={() => onPressShare()}
-              >
-                <Text style={styles.gameOver}>VICTORY</Text>
-                <View style={styles.linksContainer}>
-                  <Text style={styles.clickToShare}>press to share</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            :
-            <View>
-              <Text style={styles.gameOver}>GAME OVER</Text>
-            </View>
-        }
-
-
-
       </View>
-    </KeyboardAvoidingView>
+
+      {/* Guess input */}
+      {hearts > 0 && !victory ?
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder='Guess'
+            value={guess}
+            onChangeText={enterGuess}
+          />
+          <View style={styles.sendButtonContainer}>
+            <Button
+              title='Send'
+              color={'black'}
+              onPress={onPressGuess}
+            />
+          </View>
+        </View>
+        : victory ?
+          <View>
+            <Text style={styles.gameOver}>VICTORY</Text>
+          </View>
+          :
+          <View>
+            <Text style={styles.gameOver}>GAME OVER</Text>
+          </View>
+      }
+
+      {/* End game links */}
+      {hearts == 0 || victory ?
+        <View style={styles.linksContainer}>
+          <TouchableOpacity
+            onPress={() => onPressGoogleMaps()}
+          >
+            <Image
+              style={styles.shareButton}
+              source={globeButton}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => onPressShare()}
+          >
+            <Image
+              style={styles.shareButton}
+              source={shareButton}
+            />
+          </TouchableOpacity>
+        </View>
+        :
+        null
+      }
+
+
+    </KeyboardAvoidingView >
   );
 }
 
@@ -342,8 +346,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     maxHeight: 50,
     minHeight: 40,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 20
   },
+  
   input: {
     flex: 8,
     borderWidth: 1,
@@ -368,9 +374,16 @@ const styles = StyleSheet.create({
 
   // Share etc links
   linksContainer: {
-    // flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: 15
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    margin: 20
+  },
+
+  shareButton: {
+    minHeight: 30,
+    aspectRatio: 512 / 512,
+    marginHorizontal: 20,
   }
 
 });

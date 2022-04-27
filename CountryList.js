@@ -181,7 +181,7 @@ const countryList = [
     { code: "QA", name: "Qatar", lat: 25.354826, lon: 51.183884 },
     { code: "RE", name: "R\u00e9union", lat: -21.115141, lon: 55.536384 },
     { code: "RO", name: "Romania", lat: 45.943161, lon: 24.96676 },
-    { code: "RU", name: "Russian Federation", lat: 61.52401, lon: 105.318756 },
+    { code: "RU", name: "Russian Federation", lat: 61.52401, lon: 105.318756, emoji: '💩' },
     { code: "RW", name: "Rwanda", lat: -1.940278, lon: 29.873888 },
     // { code: "BL", name: "Saint Barth\u00e9lemy" },
     { code: "SH", name: "Saint Helena, Ascension and Tristan da Cunha", lat: -24.143474, lon: -10.030696 },
