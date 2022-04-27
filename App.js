@@ -27,10 +27,10 @@ function GameContainer() {
   const [guesses, setGuesses] = useState([]);
   const [hearts, setHearts] = useState(5);
   const [victory, setVictory] = useState(false);
-  
+
   useEffect(() => {
-    // loadData();
-  });
+    loadData();
+  }, []);
 
   const loadData = async () => {
     try {
@@ -40,7 +40,7 @@ function GameContainer() {
       setHearts(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "hearts")));
       setVictory(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "victory")));
     } catch (e) {
-      alert(e);
+      // alert(e);
     }
   }
 
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
   //  Send
   sendButtonContainer: {
     flex: 2,
-    minWidth: "60px",
+    minWidth: 60,
     alignSelf: 'center',
     paddingLeft: 5
   },
