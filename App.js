@@ -11,6 +11,8 @@ import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalcu
 import ramdomEmoji from './RandomEmoji';
 import shareButton from './img/send.png'
 import globeButton from './img/world.png'
+import heart from './img/heart.png'
+import lostHeart from './img/lostHeart.png'
 
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -151,37 +153,29 @@ function GameContainer() {
 
       {/* Hearts */}
       {hearts > 0 ?
-        <View style={styles.heartsContainer}>
-          {hearts > 0 ?
-            <TouchableOpacity
-              onPress={() => onPressGEODLE()}
-            >
-              <Text style={styles.heart}>♥</Text>
-            </TouchableOpacity>
-            :
-            <Text style={styles.heart}>♡</Text>
-          }
-          {hearts > 1 ?
-            <Text style={styles.heart}>♥</Text>
-            :
-            <Text style={styles.heart}>♡</Text>
-          }
-          {hearts > 2 ?
-            <Text style={styles.heart}>♥</Text>
-            :
-            <Text style={styles.heart}>♡</Text>
-          }
-          {hearts > 3 ?
-            <Text style={styles.heart}>♥</Text>
-            :
-            <Text style={styles.heart}>♡</Text>
-          }
-          {hearts > 4 ?
-            <Text style={styles.heart}>♥</Text>
-            :
-            <Text style={styles.heart}>♡</Text>
-          }
-        </View>
+        <TouchableOpacity onPress={onPressGEODLE}
+        style={styles.heartsContainer}>
+          <Image
+            style={styles.heartImage}
+            source={heart}
+          />
+          <Image
+            style={styles.heartImage}
+            source={hearts > 1 ? heart : lostHeart}
+          />
+          <Image
+            style={styles.heartImage}
+            source={hearts > 2 ? heart : lostHeart}
+          />
+          <Image
+            style={styles.heartImage}
+            source={hearts > 3 ? heart : lostHeart}
+          />
+          <Image
+            style={styles.heartImage}
+            source={hearts > 4 ? heart : lostHeart}
+          />
+        </TouchableOpacity>
         :
         <Text style={styles.gameOver}>{country.name.toUpperCase()}</Text>
       }
@@ -275,7 +269,6 @@ function GameContainer() {
         null
       }
 
-
     </KeyboardAvoidingView >
   );
 }
@@ -322,6 +315,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 1,
     aspectRatio: 512 / 341
+  },
+
+  // Hearts
+  heartImage: {
+    flex: 1,
+    maxHeight: 25,
+    maxWidth: 25,
+    aspectRatio: 512 / 512
   },
 
   // Guesses
