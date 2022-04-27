@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
 
-import Clipboard from '@react-native-clipboard/clipboard';
+import * as Clipboard from 'expo-clipboard';
 import * as Linking from 'expo-linking'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import countryList from './CountryList';
 import { getDistanceFromLatLonInKm, getBearingFromLatLon } from './DistanceCalculator';
@@ -25,7 +26,35 @@ function GameContainer() {
   const [country, setCountry] = useState(countryToGuess());
   const [guesses, setGuesses] = useState([]);
   const [hearts, setHearts] = useState(5);
-  const [victory, setVictory] = useState();
+  const [victory, setVictory] = useState(false);
+  
+  useEffect(() => {
+    // loadData();
+  });
+
+  const loadData = async () => {
+    try {
+      const today = new Date();
+      const datePrefix = today.getDate() + "" + today.getMonth();
+      setGuesses(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "guesses")));
+      setHearts(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "hearts")));
+      setVictory(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "victory")));
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  const storeData = async (guesses, hearts, victory) => {
+    try {
+      const today = new Date();
+      const datePrefix = today.getDate() + "" + today.getMonth();
+      await AsyncStorage.setItem('@' + datePrefix + "guesses", JSON.stringify(guesses));
+      await AsyncStorage.setItem('@' + datePrefix + "hearts", JSON.stringify(hearts));
+      await AsyncStorage.setItem('@' + datePrefix + "victory", JSON.stringify(victory));
+    } catch (e) {
+      alert(e);
+    }
+  }
 
   // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
   const enterGuess = (text) => {
@@ -53,11 +82,13 @@ function GameContainer() {
           });
 
         // Register a try
-        if (country.name == currentGuess.name) {
-          setVictory(true);
-        } else {
-          setHearts(hearts - 1);
-        }
+        const newHearts = hearts - 1;
+        const newVictory = country.name == currentGuess.name;
+        setVictory(newVictory);
+        setHearts(newHearts);
+
+        // Store the session data
+        storeData(guesses, newHearts, newVictory);
       } else {
         alert(currentGuess.name + " does not have coordinates yet.")
       }
@@ -349,7 +380,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20
   },
-  
+
   input: {
     flex: 8,
     borderWidth: 1,
