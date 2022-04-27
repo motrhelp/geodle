@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.03b1255d.chunk.js",
-    "app.js.map": "/geodle/static/js/app.03b1255d.chunk.js.map",
+    "app.js": "/geodle/static/js/app.65f241e4.chunk.js",
+    "app.js.map": "/geodle/static/js/app.65f241e4.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.2a4bb547.chunk.js": "/geodle/static/js/2.2a4bb547.chunk.js",
-    "static/js/2.2a4bb547.chunk.js.map": "/geodle/static/js/2.2a4bb547.chunk.js.map",
+    "static/js/2.0c11f326.chunk.js": "/geodle/static/js/2.0c11f326.chunk.js",
+    "static/js/2.0c11f326.chunk.js.map": "/geodle/static/js/2.0c11f326.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.2a4bb547.chunk.js.LICENSE.txt": "/geodle/static/js/2.2a4bb547.chunk.js.LICENSE.txt",
+    "static/js/2.0c11f326.chunk.js.LICENSE.txt": "/geodle/static/js/2.0c11f326.chunk.js.LICENSE.txt",
     "static/media/512px-Flag_of_Albania.png": "/geodle/static/media/512px-Flag_of_Albania.b2da79b9.png",
     "static/media/640px-Flag_of_Brazil.png": "/geodle/static/media/640px-Flag_of_Brazil.2f12aeed.png",
     "static/media/640px-Flag_of_Canada_(Pantone).png": "/geodle/static/media/640px-Flag_of_Canada_(Pantone).61747787.png",
@@ -35,7 +35,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.2a4bb547.chunk.js",
-    "static/js/app.03b1255d.chunk.js"
+    "static/js/2.0c11f326.chunk.js",
+    "static/js/app.65f241e4.chunk.js"
   ]
 }
