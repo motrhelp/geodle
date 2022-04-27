@@ -154,7 +154,8 @@ function GameContainer() {
       {/* Hearts */}
       {hearts > 0 ?
         <TouchableOpacity onPress={onPressGEODLE}
-        style={styles.heartsContainer}>
+          style={styles.heartsContainer}>
+
           <Image
             style={styles.heartImage}
             source={heart}
@@ -375,8 +376,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    paddingTop: 20,
-    minWidth: 250
+    marginTop: 20,
+    minWidth: 250,
+    minHeight: 50,
   },
   heart: {
     fontSize: 30
