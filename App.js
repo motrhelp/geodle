@@ -24,9 +24,9 @@ function GameContainer() {
   const [guess, setGuess] = useState("");
   const [autocompleteData, setAutocompleteData] = useState();
   const [country, setCountry] = useState(countryToGuess());
-  const [guesses, setGuesses] = useState([]);
-  const [hearts, setHearts] = useState(5);
-  const [victory, setVictory] = useState(false);
+  const [guesses, setGuesses] = useState();
+  const [hearts, setHearts] = useState();
+  const [victory, setVictory] = useState();
 
   useEffect(() => {
     loadData();
@@ -36,11 +36,20 @@ function GameContainer() {
     try {
       const today = new Date();
       const datePrefix = today.getDate() + "" + today.getMonth();
-      setGuesses(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "guesses")));
-      setHearts(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "hearts")));
-      setVictory(JSON.parse(await AsyncStorage.getItem('@' + datePrefix + "victory")));
+      loadItem(datePrefix, "guesses", setGuesses, []);
+      loadItem(datePrefix, "victory", setVictory, false);
+      loadItem(datePrefix, "hearts", setHearts, 5);
     } catch (e) {
-      // alert(e);
+      console.log(e);
+    }
+  }
+
+  const loadItem = async (datePrefix, item, setterToCall, alternative) => {
+    const itemFromStorage = await AsyncStorage.getItem('@' + datePrefix + item);
+    if (itemFromStorage != null) {
+      setterToCall(JSON.parse(itemFromStorage));
+    } else {
+      setterToCall(alternative);
     }
   }
 
@@ -52,7 +61,7 @@ function GameContainer() {
       await AsyncStorage.setItem('@' + datePrefix + "hearts", JSON.stringify(hearts));
       await AsyncStorage.setItem('@' + datePrefix + "victory", JSON.stringify(victory));
     } catch (e) {
-      alert(e);
+      console.log(e);
     }
   }
 
@@ -62,7 +71,6 @@ function GameContainer() {
     if (text == "") {
       setAutocompleteData();
     } else {
-      console.log(autocompleteData);
       setAutocompleteData(countryList.filter((country) => country.name.toLowerCase().startsWith(text.toLowerCase())));
     }
   }
@@ -119,6 +127,8 @@ function GameContainer() {
   }
 
   const onPressGEODLE = () => {
+    AsyncStorage.clear();
+    loadData();
     const countriesWithFlags = countryList.filter(country => country.flag != null);
     setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
   }
@@ -410,8 +420,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 20
   },
-
   shareButton: {
+    flex: 1,
     minHeight: 30,
     aspectRatio: 512 / 512,
     marginHorizontal: 20,
