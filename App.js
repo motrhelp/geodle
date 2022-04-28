@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 15
   },
-  gameContainer: {
-    flex: 9,
-    alignItems: 'center',
-  },
   headerText: {
     fontSize: 25,
     fontWeight: "bold",

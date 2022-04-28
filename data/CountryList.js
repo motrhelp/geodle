@@ -10,7 +10,7 @@ const countryList = [
     { code: "AQ", name: "Antarctica", lat: -75.250973, lon: -0.071389, flag: require("../img/Flag_of_the_Antarctic_Treaty.png"), emoji: "🇦🇶" },
     { code: "AG", name: "Antigua and Barbuda", lat: 17.060816, lon: -61.796428 },
     { code: "AR", name: "Argentina", lat: 38.416097, lon: -63.616672, flag: require("../img/Flag_of_Argentina.png") },
-    { code: "AM", name: "Armenia", lat: 40.069099, lon: 45.038189 },
+    { code: "AM", name: "Armenia", lat: 40.069099, lon: 45.038189, flag: require("../img/Flag_of_Armenia.png") },
     { code: "AW", name: "Aruba", lat: 12.52111, lon: -69.968338 },
     { code: "AU", name: "Australia", lat: -25.274398, lon: 133.775136, flag: require("../img/Flag_of_Australia_(converted).png") },
     { code: "AT", name: "Austria", lat: 47.516231, lon: 14.550072, flag: require("../img/Flag_of_Austria.png") },
