@@ -17,7 +17,7 @@ import lostHeart from './img/lostHeart.png'
 function countryToGuess() {
   const countriesWithFlags = countryList.filter(country => country.flag != null);
   const today = new Date();
-  const todayCountryIndex = ((today.getDate() + today.getMonth()) * 11) % countriesWithFlags.length;
+  const todayCountryIndex = (today.getDate() + today.getMonth() * 13) % countriesWithFlags.length;
   return countriesWithFlags[todayCountryIndex];
 }
 
