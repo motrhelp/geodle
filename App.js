@@ -1,38 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import GameContainer from './components/GameContainer';
+import GuessCapital from './screens/GuessCapital';
+import GuessFlag from './screens/GuessFlag';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>GEODLE</Text>
-      </View>
-      <GameContainer />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='GuessFlag'
+        screenOptions={{
+          headerShown: false
+        }}>
+        <Stack.Screen
+          name="GuessFlag"
+          component={GuessFlag}
+        />
+        <Stack.Screen
+          name="GuessCapital"
+          component={GuessCapital} 
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    maxWidth: 500,
-    alignSelf: 'center'
-  },
-
-  // Header
-  headerContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 15
-  },
-  headerText: {
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-
-});
