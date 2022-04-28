@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.6b7856a6.chunk.js",
-    "app.js.map": "/geodle/static/js/app.6b7856a6.chunk.js.map",
+    "app.js": "/geodle/static/js/app.926914cf.chunk.js",
+    "app.js.map": "/geodle/static/js/app.926914cf.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.9940795a.chunk.js": "/geodle/static/js/2.9940795a.chunk.js",
-    "static/js/2.9940795a.chunk.js.map": "/geodle/static/js/2.9940795a.chunk.js.map",
+    "static/js/2.07af2984.chunk.js": "/geodle/static/js/2.07af2984.chunk.js",
+    "static/js/2.07af2984.chunk.js.map": "/geodle/static/js/2.07af2984.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.9940795a.chunk.js.LICENSE.txt": "/geodle/static/js/2.9940795a.chunk.js.LICENSE.txt",
+    "static/js/2.07af2984.chunk.js.LICENSE.txt": "/geodle/static/js/2.07af2984.chunk.js.LICENSE.txt",
     "static/media/320px-Flag_of_Liechtenstein.png": "/geodle/static/media/320px-Flag_of_Liechtenstein.9e11e432.png",
     "static/media/512px-Flag_of_Albania.png": "/geodle/static/media/512px-Flag_of_Albania.b2da79b9.png",
     "static/media/640px-Flag_of_Brazil.png": "/geodle/static/media/640px-Flag_of_Brazil.2f12aeed.png",
@@ -53,13 +53,15 @@
     "static/media/Flag_of_the_Isle_of_Mann.png": "/geodle/static/media/Flag_of_the_Isle_of_Mann.5445619f.png",
     "static/media/Flag_of_the_People's_Republic_of_China.png": "/geodle/static/media/Flag_of_the_People's_Republic_of_China.b16dfbeb.png",
     "static/media/heart.png": "/geodle/static/media/heart.f38014fe.png",
+    "static/media/left-arrow.png": "/geodle/static/media/left-arrow.8f3ba363.png",
     "static/media/lostHeart.png": "/geodle/static/media/lostHeart.f0273620.png",
+    "static/media/right-arrow.png": "/geodle/static/media/right-arrow.14c6ca05.png",
     "static/media/send.png": "/geodle/static/media/send.59037f90.png",
     "static/media/world.png": "/geodle/static/media/world.a024a9df.png"
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.9940795a.chunk.js",
-    "static/js/app.6b7856a6.chunk.js"
+    "static/js/2.07af2984.chunk.js",
+    "static/js/app.926914cf.chunk.js"
   ]
 }
