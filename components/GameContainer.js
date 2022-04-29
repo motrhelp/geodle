@@ -166,7 +166,7 @@ export default function GameContainer({ navigation }) {
                 <GameOverLinks
                     guesses={guesses}
                     hearts={hearts}
-                    countryName={country.name}
+                    country={country}
                     navigation={navigation}
                 />
                 :

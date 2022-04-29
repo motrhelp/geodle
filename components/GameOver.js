@@ -56,15 +56,15 @@ const onPressGoogleMaps = (countryName) => {
     Linking.openURL(googleMapsUrl + countryName);
 }
 
-const onPressNextLevel = (navigation) => {
-    navigation.navigate("GuessCapital")
+const onPressNextLevel = (navigation, country, hearts) => {
+    navigation.navigate("GuessCapital", { country, hearts })
 }
 
-export function GameOverLinks({ guesses, hearts, countryName, navigation }) {
+export function GameOverLinks({ guesses, hearts, country, navigation }) {
     return (
         <View style={styles.linksContainer}>
             <TouchableOpacity
-                onPress={() => onPressGoogleMaps(countryName)}
+                onPress={() => onPressGoogleMaps(country.name)}
             >
                 <Image
                     style={styles.pictogram}
@@ -80,7 +80,7 @@ export function GameOverLinks({ guesses, hearts, countryName, navigation }) {
                 />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => onPressNextLevel(navigation)}
+                onPress={() => onPressNextLevel(navigation, country, hearts)}
             >
                 <Image
                     style={styles.nextLevelArrow}
