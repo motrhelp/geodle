@@ -10,6 +10,7 @@ import { getDistanceFromLatLonInKm, getBearingFromLatLon } from '../util/Distanc
 import ramdomEmoji from '../util/RandomEmoji';
 import shareButton from '../img/send.png'
 import globeButton from '../img/world.png'
+import rightArrow from '../img/right-arrow.png'
 
 import Flag from './Flag';
 import Hearts from './Hearts';
@@ -55,7 +56,11 @@ const onPressGoogleMaps = (countryName) => {
     Linking.openURL(googleMapsUrl + countryName);
 }
 
-export function GameOverLinks({ guesses, hearts, countryName }) {
+const onPressNextLevel = (navigation) => {
+    navigation.navigate("GuessCapital")
+}
+
+export function GameOverLinks({ guesses, hearts, countryName, navigation }) {
     return (
         <View style={styles.linksContainer}>
             <TouchableOpacity
@@ -72,6 +77,14 @@ export function GameOverLinks({ guesses, hearts, countryName }) {
                 <Image
                     style={styles.pictogram}
                     source={shareButton}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => onPressNextLevel(navigation)}
+            >
+                <Image
+                    style={styles.nextLevelArrow}
+                    source={rightArrow}
                 />
             </TouchableOpacity>
         </View>
@@ -100,6 +113,13 @@ const styles = StyleSheet.create({
         minHeight: 30,
         aspectRatio: 512 / 512,
         marginHorizontal: 20,
+    },
+    nextLevelArrow: {
+        flex: 1,
+        minHeight: 30,
+        aspectRatio: 512 / 512,
+        marginHorizontal: 20,
+        alignSelf: 'flex-end',
     }
 
 });
