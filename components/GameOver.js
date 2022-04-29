@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        margin: 20
+        margin: 30
     },
     pictogram: {
         flex: 1,

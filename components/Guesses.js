@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   guessesContainer: {
     flex: 9,
     paddingTop: 30,
-    minWidth: '80%'
+    minWidth: '80%',
+    marginLeft: 10
   },
   guessContainer: {
     flexDirection: 'row',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   guessName: {
-    flex: 5,
+    flex: 7,
     fontSize: 15,
   },
   guessDirection: {

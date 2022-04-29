@@ -6,11 +6,10 @@ import Header from '../components/Header';
 
 export default function GuessFlag({ navigation }) {
   return (
-      <View style={styles.container}>
-        <Header />
-        <GameContainer navigation={navigation} />
-        <StatusBar style="auto" />
-      </View>
+    <View style={styles.container}>
+      <GameContainer navigation={navigation} />
+      <StatusBar style="auto" />
+    </View>
   );
 }
 

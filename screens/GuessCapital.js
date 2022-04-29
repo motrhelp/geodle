@@ -9,8 +9,6 @@ export default function GuessCapital({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Header />
-
 
       {/* Icon */}
       <Image
@@ -161,13 +159,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   icon: {
-    flex: 1
+    flex: 1,
+    marginTop: 20
   },
   wordContainer: {
     flex: 1,
     alignSelf: 'center',
     flexDirection: 'row',
-    maxHeight: 40
+    maxHeight: 40,
   },
   wordCharacterContainer: {
     flex: 1,

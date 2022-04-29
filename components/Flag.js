@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
         flex: 9,
         alignSelf: 'center',
         borderWidth: 1,
-        aspectRatio: 512 / 341
+        aspectRatio: 512 / 341,
+        marginTop: 20
     }
 
 });
