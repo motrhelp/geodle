@@ -20,7 +20,7 @@ function countryToGuess() {
     return countriesWithFlags[todayCountryIndex];
 }
 
-export default function GameContainer() {
+export default function GameContainer({ navigation }) {
 
     const [guess, setGuess] = useState("");
     const [autocompleteData, setAutocompleteData] = useState();
@@ -159,7 +159,12 @@ export default function GameContainer() {
 
             {/* End game links */}
             {hearts == 0 || victory ?
-                <GameOverLinks guesses={guesses} hearts={hearts} country={country.name} />
+                <GameOverLinks
+                    guesses={guesses}
+                    hearts={hearts}
+                    country={country.name}
+                    navigation={navigation}
+                />
                 :
                 null
             }
