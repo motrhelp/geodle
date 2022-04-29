@@ -6,6 +6,7 @@ import Hearts from '../components/Hearts';
 import leftArrow from '../img/left-arrow.png';
 
 export default function GuessCapital({ navigation }) {
+
   return (
     <View style={styles.container}>
       <Header />
@@ -54,90 +55,93 @@ export default function GuessCapital({ navigation }) {
       {/* Keyboard */}
       <View style={styles.keyboardContainer}>
         <View style={styles.keyboardRowContainer}>
-          <View style={styles.keyboardCharacterContainer}>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>Q</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>W</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer, styles.almost]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.almost]}>
             <Text style={styles.keyboardCharacter}>E</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer, styles.correct]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}>
             <Text style={styles.keyboardCharacter}>R</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer, styles.correct]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}>
             <Text style={styles.keyboardCharacter}>T</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>Y</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>U</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>I</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>O</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>P</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.keyboardRowContainer}>
-          <View style={[styles.keyboardCharacterContainer, styles.correct]}>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}>
             <Text style={styles.keyboardCharacter}>A</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer, styles.correct]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}>
             <Text style={styles.keyboardCharacter}>S</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>D</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>F</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>G</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>H</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>J</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>K</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>L</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.keyboardRowContainer}>
-          <View style={styles.keyboardCharacterContainer}>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>Z</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>X</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer, styles.wrong]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.wrong]}>
             <Text style={styles.keyboardCharacter}>C</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>V</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>B</Text>
-          </View>
-          <View style={styles.keyboardCharacterContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.keyboardCharacterContainer}>
             <Text style={styles.keyboardCharacter}>N</Text>
-          </View>
-          <View style={[styles.keyboardCharacterContainer]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer]}>
             <Text style={styles.keyboardCharacter}>M</Text>
-          </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.wideCharacter]}>
+            <Text style={styles.keyboardCharacter}>←</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -185,16 +189,26 @@ const styles = StyleSheet.create({
   },
   keyboardCharacterContainer: {
     flex: 1,
-    margin: 5,
-    borderWidth: 1,
+    marginHorizontal: 3,
     borderWidth: 2,
-    width: 30,
+    maxWidth: 30,
+    minWidth: 30,
+    height: 40,
+    justifyContent: 'center',
+  },
+  keyboardSpaceContainer: {
+    flex: 1,
+    marginHorizontal: 3,
+    width: 60,
     height: 40,
     justifyContent: 'center',
   },
   keyboardCharacter: {
     fontSize: 20,
     alignSelf: 'center'
+  },
+  wideCharacter: {
+    minWidth: 60
   },
   correct: {
     backgroundColor: '#7fd672'
