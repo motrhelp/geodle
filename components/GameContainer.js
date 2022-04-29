@@ -91,10 +91,13 @@ export default function GameContainer({ navigation }) {
                     });
 
                 // Register a try
-                const newHearts = hearts - 1;
                 const newVictory = country.name == currentGuess.name;
+                let newHearts = hearts;
+                if (!newVictory) {
+                    newHearts = hearts - 1;
+                    setHearts(newHearts);
+                }
                 setVictory(newVictory);
-                setHearts(newHearts);
 
                 // Store the session data
                 storeData(guesses, newHearts, newVictory);
@@ -124,10 +127,11 @@ export default function GameContainer({ navigation }) {
             }
 
             {/* Hearts */}
-            {hearts > 0 ?
-                <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />
-                :
+            <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />
+            {hearts == 0 ?
                 <GameOverCountryName countryName={country.name} />
+                :
+                null
             }
 
             {/* Guesses */}
