@@ -10,7 +10,7 @@ export default function Hearts({ hearts, onPressHearts }) {
 
             <Image
                 style={styles.heartImage}
-                source={heart}
+                source={hearts > 0 ? heart : lostHeart}
             />
             <Image
                 style={styles.heartImage}
