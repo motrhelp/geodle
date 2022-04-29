@@ -52,6 +52,8 @@ export default function GuessCapital({ navigation }) {
         </View>
       </View>
 
+      <View style={{flex: 1}}> </View>
+
       {/* Keyboard */}
       <View style={styles.keyboardContainer}>
         <View style={styles.keyboardRowContainer}>
@@ -164,7 +166,8 @@ const styles = StyleSheet.create({
   wordContainer: {
     flex: 1,
     alignSelf: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    maxHeight: 40
   },
   wordCharacterContainer: {
     flex: 1,
@@ -180,7 +183,9 @@ const styles = StyleSheet.create({
   },
   keyboardContainer: {
     flex: 2,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    maxHeight: 175,
+    paddingBottom: 10
   },
   keyboardRowContainer: {
     flex: 1,
