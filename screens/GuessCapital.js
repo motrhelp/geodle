@@ -30,7 +30,7 @@ export default function GuessCapital({ navigation, route }) {
   const [char9Guessed, setChar9Guessed] = useState(false);
   const [char10Guessed, setChar10Guessed] = useState(false);
 
-  const capitalName = country.capital.name;
+  const capitalName = country.capital.name.toUpperCase();
 
   useEffect(() => {
   }, []);
@@ -40,24 +40,82 @@ export default function GuessCapital({ navigation, route }) {
       setChar1(char)
     } else if (char2 == '' && capitalName.length > 1 && !char2Guessed) {
       setChar2(char)
-    }  else if (char3 == ''  && capitalName.length > 2 && !char3Guessed) {
+    } else if (char3 == '' && capitalName.length > 2 && !char3Guessed) {
       setChar3(char)
-    }  else if (char4 == '' && capitalName.length > 3 && !char4Guessed) {
+    } else if (char4 == '' && capitalName.length > 3 && !char4Guessed) {
       setChar4(char)
-    }  else if (char5 == '' && capitalName.length > 4 && !char5Guessed) {
+    } else if (char5 == '' && capitalName.length > 4 && !char5Guessed) {
       setChar5(char)
-    }  else if (char6 == '' && capitalName.length > 5 && !char6Guessed) {
+    } else if (char6 == '' && capitalName.length > 5 && !char6Guessed) {
       setChar6(char)
-    }  else if (char7 == '' && capitalName.length > 6 && !char7Guessed) {
+    } else if (char7 == '' && capitalName.length > 6 && !char7Guessed) {
       setChar7(char)
-    }  else if (char8 == '' && capitalName.length > 7 && !char8Guessed) {
+    } else if (char8 == '' && capitalName.length > 7 && !char8Guessed) {
       setChar8(char)
-    }  else if (char9 == '' && capitalName.length > 8 && !char9Guessed) {
+    } else if (char9 == '' && capitalName.length > 8 && !char9Guessed) {
       setChar9(char)
-    }  else if (char10 == '' && capitalName.length > 9 && !char10Guessed) {
+    } else if (char10 == '' && capitalName.length > 9 && !char10Guessed) {
       setChar10(char)
-    } 
+    }
   }
+
+  const onKeyboardPressBack = () => {
+    if (char10 != '' && capitalName.length > 9 && !char10Guessed) {
+      setChar10('')
+    } else if (char9 != '' && capitalName.length > 8 && !char9Guessed) {
+      setChar9('')
+    } else if (char8 != '' && capitalName.length > 7 && !char8Guessed) {
+      setChar8('')
+    } else if (char7 != '' && capitalName.length > 6 && !char7Guessed) {
+      setChar7('')
+    } else if (char6 != '' && capitalName.length > 5 && !char6Guessed) {
+      setChar6('')
+    } else if (char5 != '' && capitalName.length > 4 && !char5Guessed) {
+      setChar5('')
+    } else if (char4 != '' && capitalName.length > 3 && !char4Guessed) {
+      setChar4('')
+    } else if (char3 != '' && capitalName.length > 2 && !char3Guessed) {
+      setChar3('')
+    } else if (char2 != '' && capitalName.length > 1 && !char2Guessed) {
+      setChar2('')
+    } else if (char1 != '' && capitalName.length > 0 && !char1Guessed) {
+      setChar1('')
+    }
+  }
+
+  const onPressGuess = () => {
+    if (char1 == capitalName.charAt(0) && capitalName.length > 0 && !char1Guessed) {
+      setChar1Guessed(true)
+    } 
+    if (char2 == capitalName.charAt(1) && capitalName.length > 1 && !char2Guessed) {
+      setChar2Guessed(true)
+    }
+    if (char3 == capitalName.charAt(2) && capitalName.length > 2 && !char3Guessed) {
+      setChar3Guessed(true)
+    }
+    if (char4 == capitalName.charAt(3) && capitalName.length > 3 && !char3Guessed) {
+      setChar4Guessed(true)
+    }
+    if (char5 == capitalName.charAt(4) && capitalName.length > 4 && !char4Guessed) {
+      setChar5Guessed(true)
+    }
+    if (char6 == capitalName.charAt(5) && capitalName.length > 5 && !char5Guessed) {
+      setChar6Guessed(true)
+    }
+    if (char7 == capitalName.charAt(6) && capitalName.length > 6 && !char6Guessed) {
+      setChar7Guessed(true)
+    }
+    if (char8 == capitalName.charAt(7) && capitalName.length > 7 && !char7Guessed) {
+      setChar8Guessed(true)
+    }
+    if (char9 == capitalName.charAt(8) && capitalName.length > 8 && !char8Guessed) {
+      setChar9Guessed(true)
+    }
+    if (char10 == capitalName.charAt(9) && capitalName.length > 9 && !char9Guessed) {
+      setChar10Guessed(true)
+    }
+  }
+
   return (
     <View style={styles.container}>
 
@@ -256,10 +314,19 @@ export default function GuessCapital({ navigation, route }) {
             onPress={() => onKeyboardPress("M")}>
             <Text style={styles.keyboardCharacter}>M</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.wideCharacter]}>
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.wideCharacter]}
+            onPress={() => onKeyboardPressBack()}>
             <Text style={styles.keyboardCharacter}>←</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={styles.keyboardRowContainer}>
+          <TouchableOpacity style={styles.guessButtonContainer}
+            onPress={() => onPressGuess()}>
+            <Text style={styles.guessButton}>GUESS</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
 
       <StatusBar style="auto" />
@@ -301,7 +368,7 @@ const styles = StyleSheet.create({
   keyboardContainer: {
     flex: 2,
     alignSelf: 'center',
-    maxHeight: 175,
+    maxHeight: 225,
     paddingBottom: 10
   },
   keyboardRowContainer: {
@@ -340,5 +407,17 @@ const styles = StyleSheet.create({
   },
   wrong: {
     backgroundColor: '#aaa6ad'
-  }
+  },
+  guessButtonContainer: {
+    alignSelf: 'center',
+    minWidth: 275,
+    minHeight: 40,
+    maxHeight: 40,
+    borderWidth: 2,
+    justifyContent: 'center'
+  },
+  guessButton: {
+    fontSize: 20,
+    alignSelf: 'center'
+  },
 });
