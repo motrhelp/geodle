@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
   // Guesses
   guessesContainer: {
     flex: 9,
-    paddingTop: 30,
     minWidth: '80%',
-    marginLeft: 10
+    minHeight: 100,
+    marginLeft: 10,
+    marginTop: 10,
   },
   guessContainer: {
     flexDirection: 'row',
@@ -37,19 +38,19 @@ const styles = StyleSheet.create({
   },
   guessFlag: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 16,
   },
   guessName: {
     flex: 7,
-    fontSize: 15,
+    fontSize: 16,
   },
   guessDirection: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 16,
   },
   guessDistance: {
     flex: 3,
-    fontSize: 15,
+    fontSize: 16,
   }
 
 });

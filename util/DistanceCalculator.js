@@ -1,3 +1,6 @@
+
+const coordNames = ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️", "⬆️"];
+
 export function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1);  // deg2rad below
@@ -16,7 +19,6 @@ export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
     var radians = Math.atan2((lon2 - lon1), (lat2 - lat1));
     var compassReading = radians * (180 / Math.PI);
 
-    var coordNames = ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️", "⬆️"];
     var coordIndex = Math.round(compassReading / 45);
     if (coordIndex < 0) {
         coordIndex = coordIndex + 8
@@ -26,14 +28,35 @@ export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
 
 }
 
-// export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
-//     const y = Math.sin(lat2 - lat1) * Math.cos(lon2);
-//     const x = Math.cos(lon1) * Math.sin(lon2) -
-//         Math.sin(lon1) * Math.cos(lon2) * Math.cos(lat2 - lat1);
-//     const θ = Math.atan2(y, x);
-//     const brng = (θ * 180 / Math.PI + 360) % 360; // in degrees
-//     return Math.floor(brng);
-// }
+export function bearingToString(bearing) {
+    if (bearing == coordNames[0]) {
+        return "north (" + coordNames[0] + ")"
+    }
+    if (bearing == coordNames[1]) {
+        return "northeast (" + coordNames[1] + ")"
+    }
+    if (bearing == coordNames[2]) {
+        return "east (" + coordNames[2] + ")"
+    }
+    if (bearing == coordNames[3]) {
+        return "southeast (" + coordNames[3] + ")"
+    }
+    if (bearing == coordNames[4]) {
+        return "south (" + coordNames[4] + ")"
+    }
+    if (bearing == coordNames[5]) {
+        return "southwest (" + coordNames[5] + ")"
+    }
+    if (bearing == coordNames[6]) {
+        return "west (" + coordNames[6] + ")"
+    }
+    if (bearing == coordNames[7]) {
+        return "northwest (" + coordNames[7] + ")"
+    }
+    if (bearing == coordNames[8]) {
+        return "north (" + coordNames[8] + ")"
+    }
+}
 
 function deg2rad(deg) {
     return deg * (Math.PI / 180)

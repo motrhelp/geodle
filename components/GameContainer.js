@@ -1,11 +1,11 @@
 
 import { useEffect, useState } from 'react';
-import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native';
+import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import countryList from '../data/CountryList';
-import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
+import { getBearingFromLatLon, getDistanceFromLatLonInKm, bearingToString } from '../util/DistanceCalculator';
 import ramdomEmoji from '../util/RandomEmoji';
 import Flag from './Flag';
 import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
@@ -16,7 +16,7 @@ import Autocomplete from './Autocomplete';
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
     const today = new Date();
-    const todayCountryIndex = (today.getDate() + today.getMonth() * 13) % countriesWithFlags.length;
+    const todayCountryIndex = (today.getDate() + today.getMonth() * 13 + 1) % countriesWithFlags.length;
     return countriesWithFlags[todayCountryIndex];
 }
 
@@ -134,8 +134,27 @@ export default function GameContainer({ navigation }) {
                 null
             }
 
+            {/* Hint */}
+            {guesses == null || guesses.length == 0 ?
+                <View style={styles.hintContainer}>
+                    <Text style={styles.hintText}>Can you guess the country by its flag?</Text>
+                </View>
+                :
+                guesses.length < 3 && !victory ?
+                    <View style={styles.hintContainer}>
+                        <Text style={styles.hintText}>The country is {guesses[guesses.length - 1].distance} from {guesses[guesses.length - 1].name}</Text>
+                        <Text style={styles.hintText}>It lays to the {bearingToString(guesses[guesses.length - 1].direction)} from it.</Text>
+                    </View>
+                    :
+                    null
+            }
+
             {/* Guesses */}
-            <Guesses guesses={guesses} />
+            {guesses != null && guesses.length != 0 ?
+                <Guesses guesses={guesses} />
+                :
+                null
+            }
 
             {/* Autocomplete */}
             <Autocomplete autocompleteData={autocompleteData} enterGuess={enterGuess} />
@@ -199,6 +218,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         fontSize: 25,
         maxWidth: '90%',
+    },
+
+    // Hint
+    hintContainer: {
+        flex: 9,
+        alignItems: 'center',
+    },
+    hintText: {
+        fontSize: 20
     },
 
     //  Send
