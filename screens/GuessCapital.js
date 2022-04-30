@@ -170,6 +170,11 @@ export default function GuessCapital({ navigation, route }) {
 
       <Hearts hearts={hearts} />
 
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', maxHeight: 30, marginBottom: 10 }}>
+        <Text>Can you guess the capital of {country.name}?</Text>
+        <Text>You have {hearts} tries left.</Text>
+      </View>
+
       {/* The word */}
       {/* <View style={styles.wordContainer}>
         {word.map((prop, key) => {
@@ -403,6 +408,7 @@ const styles = StyleSheet.create({
     flex: 2,
     alignSelf: 'center',
     maxHeight: 225,
+    minHeight: 225,
     paddingBottom: 10,
     marginTop: 50,
   },
