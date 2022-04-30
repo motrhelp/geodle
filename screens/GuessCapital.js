@@ -4,11 +4,26 @@ import { useEffect, useState } from 'react';
 
 import Hearts from '../components/Hearts';
 
+import defaultIcon from '../img/government.png';
+
 export default function GuessCapital({ navigation, route }) {
 
-  const [country, setCountry] = useState(route.params.country);
-  const [hearts, setHearts] = useState(route.params.hearts);
-  const [victory, setVictory] = useState(false);
+  const defaultCountry = {
+    name: "Default Country",
+    capital: {
+      name: "Capital",
+      icon: defaultIcon
+    }
+  }
+
+  const [country, setCountry] = useState(route?.params?.country != null ? route.params.country : defaultCountry);
+  const [hearts, setHearts] = useState(route?.params?.hearts != null ? route.params.hearts : 5)
+  const [icon, setIcon] = useState(country.capital?.icon != null ? country.capital.icon : defaultCountry.capital.icon);
+  const [correctCharacters, setCorrectCharacters] = useState([]);
+  const [almostCharacters, setAlmostCharacters] = useState([]);
+  const [wrongCharacters, setWrongCharacters] = useState([]);
+  const [victory, setVictory] = useState(false)
+
   const [char1, setChar1] = useState('');
   const [char2, setChar2] = useState('');
   const [char3, setChar3] = useState('');
@@ -30,32 +45,44 @@ export default function GuessCapital({ navigation, route }) {
   const [char9Guessed, setChar9Guessed] = useState(false);
   const [char10Guessed, setChar10Guessed] = useState(false);
 
-  const capitalName = country.capital.name.toUpperCase();
+
+  const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
 
   useEffect(() => {
   }, []);
 
+  function isKeyEnabled(char) {
+    if (wrongCharacters.includes(char)) {
+      return false;
+    } else if (correctCharacters.includes(char) && isCharacterGuessedInAllOccurrences(char)) {
+      return false;
+    }
+    return true;
+  }
+
   const onKeyboardPress = (char) => {
-    if (char1 == '' && capitalName.length > 0 && !char1Guessed) {
-      setChar1(char)
-    } else if (char2 == '' && capitalName.length > 1 && !char2Guessed) {
-      setChar2(char)
-    } else if (char3 == '' && capitalName.length > 2 && !char3Guessed) {
-      setChar3(char)
-    } else if (char4 == '' && capitalName.length > 3 && !char4Guessed) {
-      setChar4(char)
-    } else if (char5 == '' && capitalName.length > 4 && !char5Guessed) {
-      setChar5(char)
-    } else if (char6 == '' && capitalName.length > 5 && !char6Guessed) {
-      setChar6(char)
-    } else if (char7 == '' && capitalName.length > 6 && !char7Guessed) {
-      setChar7(char)
-    } else if (char8 == '' && capitalName.length > 7 && !char8Guessed) {
-      setChar8(char)
-    } else if (char9 == '' && capitalName.length > 8 && !char9Guessed) {
-      setChar9(char)
-    } else if (char10 == '' && capitalName.length > 9 && !char10Guessed) {
-      setChar10(char)
+    if (isKeyEnabled(char)) {
+      if (char1 == '' && capitalName.length > 0 && !char1Guessed) {
+        setChar1(char)
+      } else if (char2 == '' && capitalName.length > 1 && !char2Guessed) {
+        setChar2(char)
+      } else if (char3 == '' && capitalName.length > 2 && !char3Guessed) {
+        setChar3(char)
+      } else if (char4 == '' && capitalName.length > 3 && !char4Guessed) {
+        setChar4(char)
+      } else if (char5 == '' && capitalName.length > 4 && !char5Guessed) {
+        setChar5(char)
+      } else if (char6 == '' && capitalName.length > 5 && !char6Guessed) {
+        setChar6(char)
+      } else if (char7 == '' && capitalName.length > 6 && !char7Guessed) {
+        setChar7(char)
+      } else if (char8 == '' && capitalName.length > 7 && !char8Guessed) {
+        setChar8(char)
+      } else if (char9 == '' && capitalName.length > 8 && !char9Guessed) {
+        setChar9(char)
+      } else if (char10 == '' && capitalName.length > 9 && !char10Guessed) {
+        setChar10(char)
+      }
     }
   }
 
@@ -83,36 +110,47 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
+  function processCharacterGuess(charIndex, char, charSetter, charGuessed, charGuessedSetter) {
+    if (capitalName.length > charIndex && !charGuessed) {
+      if (char == capitalName.charAt(charIndex)) {
+        charGuessedSetter(true);
+        correctCharacters.push(char);
+      } else {
+        if (capitalName.indexOf(char) > -1) {
+          almostCharacters.push(char);
+        } else {
+          wrongCharacters.push(char);
+        }
+        charSetter('');
+      }
+    }
+  }
+
   const onPressGuess = () => {
-    if (char1 == capitalName.charAt(0) && capitalName.length > 0 && !char1Guessed) {
-      setChar1Guessed(true)
-    } 
-    if (char2 == capitalName.charAt(1) && capitalName.length > 1 && !char2Guessed) {
-      setChar2Guessed(true)
-    }
-    if (char3 == capitalName.charAt(2) && capitalName.length > 2 && !char3Guessed) {
-      setChar3Guessed(true)
-    }
-    if (char4 == capitalName.charAt(3) && capitalName.length > 3 && !char3Guessed) {
-      setChar4Guessed(true)
-    }
-    if (char5 == capitalName.charAt(4) && capitalName.length > 4 && !char4Guessed) {
-      setChar5Guessed(true)
-    }
-    if (char6 == capitalName.charAt(5) && capitalName.length > 5 && !char5Guessed) {
-      setChar6Guessed(true)
-    }
-    if (char7 == capitalName.charAt(6) && capitalName.length > 6 && !char6Guessed) {
-      setChar7Guessed(true)
-    }
-    if (char8 == capitalName.charAt(7) && capitalName.length > 7 && !char7Guessed) {
-      setChar8Guessed(true)
-    }
-    if (char9 == capitalName.charAt(8) && capitalName.length > 8 && !char8Guessed) {
-      setChar9Guessed(true)
-    }
-    if (char10 == capitalName.charAt(9) && capitalName.length > 9 && !char9Guessed) {
-      setChar10Guessed(true)
+    processCharacterGuess(0, char1, setChar1, char1Guessed, setChar1Guessed);
+    processCharacterGuess(1, char2, setChar2, char2Guessed, setChar2Guessed);
+    processCharacterGuess(2, char3, setChar3, char3Guessed, setChar3Guessed);
+    processCharacterGuess(3, char4, setChar4, char4Guessed, setChar4Guessed);
+    processCharacterGuess(4, char5, setChar5, char5Guessed, setChar5Guessed);
+    processCharacterGuess(5, char6, setChar6, char6Guessed, setChar6Guessed);
+    processCharacterGuess(6, char7, setChar7, char7Guessed, setChar7Guessed);
+    processCharacterGuess(7, char8, setChar8, char8Guessed, setChar8Guessed);
+    processCharacterGuess(8, char9, setChar9, char9Guessed, setChar9Guessed);
+    processCharacterGuess(9, char10, setChar10, char10Guessed, setChar10Guessed);
+    console.log("Correct: " + correctCharacters);
+  }
+
+  function isCharacterGuessedInAllOccurrences(char) {
+    return capitalName.split(char).length - 1 == correctCharacters.filter(correct => correct === char).length;
+  }
+
+  function getConditionalKeyboardStyles(char) {
+    if (correctCharacters.includes(char)) {
+      return isCharacterGuessedInAllOccurrences(char) ? styles.correct : styles.almost;
+    } else if (almostCharacters.includes(char)) {
+      return styles.almost;
+    } else if (wrongCharacters.includes(char)) {
+      return styles.wrong;
     }
   }
 
@@ -120,11 +158,11 @@ export default function GuessCapital({ navigation, route }) {
     <View style={styles.container}>
 
       {/* Icon */}
-      {country.capital.icon != null ?
+      {icon != null ?
         <Image
           style={styles.icon}
           resizeMode='center'
-          source={country.capital.icon}
+          source={icon}
         />
         :
         null
@@ -197,120 +235,116 @@ export default function GuessCapital({ navigation, route }) {
           : null}
       </View>
 
-      {/* Spacer */}
-      <View style={{ flex: 1 }}></View>
-
       {/* Keyboard */}
       <View style={styles.keyboardContainer}>
         <View style={styles.keyboardRowContainer}>
-          <TouchableOpacity
-            style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("Q")]}
             onPress={() => onKeyboardPress("Q")}>
             <Text style={styles.keyboardCharacter}>Q</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("W")]}
             onPress={() => onKeyboardPress("W")}>
             <Text style={styles.keyboardCharacter}>W</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.almost]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("E")]}
             onPress={() => onKeyboardPress("E")}>
             <Text style={styles.keyboardCharacter}>E</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("R")]}
             onPress={() => onKeyboardPress("R")}>
             <Text style={styles.keyboardCharacter}>R</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("T")]}
             onPress={() => onKeyboardPress("T")}>
             <Text style={styles.keyboardCharacter}>T</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("Y")]}
             onPress={() => onKeyboardPress("Y")}>
             <Text style={styles.keyboardCharacter}>Y</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("U")]}
             onPress={() => onKeyboardPress("U")}>
             <Text style={styles.keyboardCharacter}>U</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("I")]}
             onPress={() => onKeyboardPress("I")}>
             <Text style={styles.keyboardCharacter}>I</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("O")]}
             onPress={() => onKeyboardPress("O")}>
             <Text style={styles.keyboardCharacter}>O</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("P")]}
             onPress={() => onKeyboardPress("P")}>
             <Text style={styles.keyboardCharacter}>P</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.keyboardRowContainer}>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("A")]}
             onPress={() => onKeyboardPress("A")}>
             <Text style={styles.keyboardCharacter}>A</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.correct]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("S")]}
             onPress={() => onKeyboardPress("S")}>
             <Text style={styles.keyboardCharacter}>S</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("D")]}
             onPress={() => onKeyboardPress("D")}>
             <Text style={styles.keyboardCharacter}>D</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("F")]}
             onPress={() => onKeyboardPress("F")}>
             <Text style={styles.keyboardCharacter}>F</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("G")]}
             onPress={() => onKeyboardPress("G")}>
             <Text style={styles.keyboardCharacter}>G</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("H")]}
             onPress={() => onKeyboardPress("H")}>
             <Text style={styles.keyboardCharacter}>H</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("J")]}
             onPress={() => onKeyboardPress("J")}>
             <Text style={styles.keyboardCharacter}>J</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("K")]}
             onPress={() => onKeyboardPress("K")}>
             <Text style={styles.keyboardCharacter}>K</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("L")]}
             onPress={() => onKeyboardPress("L")}>
             <Text style={styles.keyboardCharacter}>L</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.keyboardRowContainer}>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("Z")]}
             onPress={() => onKeyboardPress("Z")}>
             <Text style={styles.keyboardCharacter}>Z</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("X")]}
             onPress={() => onKeyboardPress("X")}>
             <Text style={styles.keyboardCharacter}>X</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer, styles.wrong]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("C")]}
             onPress={() => onKeyboardPress("C")}>
             <Text style={styles.keyboardCharacter}>C</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("V")]}
             onPress={() => onKeyboardPress("V")}>
             <Text style={styles.keyboardCharacter}>V</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("B")]}
             onPress={() => onKeyboardPress("B")}>
             <Text style={styles.keyboardCharacter}>B</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.keyboardCharacterContainer}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("N")]}
             onPress={() => onKeyboardPress("N")}>
             <Text style={styles.keyboardCharacter}>N</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.keyboardCharacterContainer]}
+          <TouchableOpacity style={[styles.keyboardCharacterContainer, getConditionalKeyboardStyles("M")]}
             onPress={() => onKeyboardPress("M")}>
             <Text style={styles.keyboardCharacter}>M</Text>
           </TouchableOpacity>
@@ -347,7 +381,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   wordContainer: {
-    flex: 1,
+    flex: 2,
     alignSelf: 'center',
     flexDirection: 'row',
     maxHeight: 40,
@@ -369,7 +403,8 @@ const styles = StyleSheet.create({
     flex: 2,
     alignSelf: 'center',
     maxHeight: 225,
-    paddingBottom: 10
+    paddingBottom: 10,
+    marginTop: 50,
   },
   keyboardRowContainer: {
     flex: 1,
