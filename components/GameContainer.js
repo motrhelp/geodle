@@ -140,10 +140,9 @@ export default function GameContainer({ navigation }) {
                     <Text style={styles.hintText}>Can you guess the country by its flag?</Text>
                 </View>
                 :
-                guesses.length < 3 && !victory ?
+                guesses.length < 2 && !victory ?
                     <View style={styles.hintContainer}>
-                        <Text style={styles.hintText}>The country is {guesses[guesses.length - 1].distance} from {guesses[guesses.length - 1].name}</Text>
-                        <Text style={styles.hintText}>It lays to the {bearingToString(guesses[guesses.length - 1].direction)} from it.</Text>
+                        <Text style={styles.hintText}>The country is {guesses[guesses.length - 1].distance} {bearingToString(guesses[guesses.length - 1].direction)} from {guesses[guesses.length - 1].name}</Text>
                     </View>
                     :
                     null
@@ -226,7 +225,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     hintText: {
-        fontSize: 20
+        fontSize: 18
     },
 
     //  Send

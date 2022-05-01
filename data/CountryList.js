@@ -66,7 +66,7 @@ const countryList = [
     { code: "EC", name: "Ecuador", lat: -1.831239, lon: -78.183406, flag: require("../img/640px-Flag_of_Ecuador.svg.png") },
     { code: "EG", name: "Egypt", lat: 26.820553, lon: 30.802498, flag: require("../img/Flag_of_Egypt.png") },
     { code: "SV", name: "El Salvador", lat: 13.794185, lon: -88.89653, flag: require("../img/Flag_of_El_Salvador.svg.png") },
-    { code: "GQ", name: "Equatorial Guinea", lat: 1.650801, lon: 10.267895, flag: require("../img/Flag_of_Equatorial_Guinea.svg.png") },
+    { code: "GQ", name: "Equatorial Guinea", lat: 1.650801, lon: 10.267895, flag: require("../img/Flag_of_Equatorial_Guinea.svg.png"), capital: { name: "Malabo" } },
     { code: "ER", name: "Eritrea", lat: 15.179384, lon: 39.782334, flag: require("../img/Flag_of_Eritrea.svg.png") },
     { code: "EE", name: "Estonia", lat: 58.595272, lon: 25.013607, flag: require("../img/640px-Flag_of_Estonia.png") },
     { code: "ET", name: "Ethiopia", lat: 9.145, lon: 40.489673, flag: require("../img/Flag_of_Ethiopia.svg.png") },
