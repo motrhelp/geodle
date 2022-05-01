@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Hearts from '../components/Hearts';
 
 import defaultIcon from '../img/government.png';
+import { GameOverLinks, GameOverMessage } from '../components/GameOver';
 
 export default function GuessCapital({ navigation, route }) {
 
@@ -63,6 +64,7 @@ export default function GuessCapital({ navigation, route }) {
   useEffect(() => {
   }, []);
 
+  // Verify if the corresponding character keyboard key is not already guessed
   function isKeyEnabled(char) {
     if (wrongCharacters.includes(char)) {
       return false;
@@ -72,6 +74,7 @@ export default function GuessCapital({ navigation, route }) {
     return true;
   }
 
+  // Keyboard press
   const onKeyboardPress = (char) => {
     if (isKeyEnabled(char)) {
       for (let i = 0; i < capitalName.length; i++) {
@@ -80,7 +83,7 @@ export default function GuessCapital({ navigation, route }) {
           break;
         }
       }
-    }    
+    }
   }
 
   // Keyboard "<-" back button
@@ -106,6 +109,9 @@ export default function GuessCapital({ navigation, route }) {
         }
         charSetter('');
       }
+    }
+    if (correctCharacters.length == capitalName.length) {
+      setVictory(true);
     }
   }
 
@@ -322,11 +328,16 @@ export default function GuessCapital({ navigation, route }) {
           </TouchableOpacity>
         </View>
 
+        {/* Guess button, Victory or Game Over Message  */}
         <View style={styles.keyboardRowContainer}>
-          <TouchableOpacity style={styles.guessButtonContainer}
-            onPress={() => onPressGuess()}>
-            <Text style={styles.guessButton}>GUESS</Text>
-          </TouchableOpacity>
+          {victory ?
+            <GameOverMessage />
+            :
+            <TouchableOpacity style={styles.guessButtonContainer}
+              onPress={() => onPressGuess()}>
+              <Text style={styles.guessButton}>GUESS</Text>
+            </TouchableOpacity>
+          }
         </View>
 
       </View>
