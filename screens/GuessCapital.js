@@ -115,9 +115,14 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
-  const onPressGuess = () => {
+  function onPressGuess() {
     for (let i = 0; i < capitalName.length; i++) {
       processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
+    }
+    if (correctCharacters.length == capitalName.length) {
+      setVictory(true);
+    } else {
+      setHearts(hearts - 1);
     }
   }
 
@@ -330,8 +335,8 @@ export default function GuessCapital({ navigation, route }) {
 
         {/* Guess button, Victory or Game Over Message  */}
         <View style={styles.keyboardRowContainer}>
-          {victory ?
-            <GameOverMessage />
+          {victory || hearts == 0 ?
+            <GameOverMessage victory={victory} />
             :
             <TouchableOpacity style={styles.guessButtonContainer}
               onPress={() => onPressGuess()}>
