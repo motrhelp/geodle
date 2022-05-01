@@ -45,6 +45,18 @@ export default function GuessCapital({ navigation, route }) {
   const [char9Guessed, setChar9Guessed] = useState(false);
   const [char10Guessed, setChar10Guessed] = useState(false);
 
+  const charGuessedArray = [
+    { char: char1, setChar: setChar1, charGuessed: char1Guessed, setCharGuessed: setChar1Guessed},
+    { char: char2, setChar: setChar2, charGuessed: char2Guessed, setCharGuessed: setChar2Guessed},
+    { char: char3, setChar: setChar3, charGuessed: char3Guessed, setCharGuessed: setChar3Guessed},
+    { char: char4, setChar: setChar4, charGuessed: char4Guessed, setCharGuessed: setChar4Guessed},
+    { char: char5, setChar: setChar5, charGuessed: char5Guessed, setCharGuessed: setChar5Guessed},
+    { char: char6, setChar: setChar6, charGuessed: char6Guessed, setCharGuessed: setChar6Guessed},
+    { char: char7, setChar: setChar7, charGuessed: char7Guessed, setCharGuessed: setChar7Guessed},
+    { char: char8, setChar: setChar8, charGuessed: char8Guessed, setCharGuessed: setChar8Guessed},
+    { char: char9, setChar: setChar9, charGuessed: char9Guessed, setCharGuessed: setChar9Guessed},
+    { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed},
+  ]
 
   const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
 
