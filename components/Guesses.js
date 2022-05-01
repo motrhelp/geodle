@@ -9,7 +9,7 @@ export default function Guesses({ guesses }) {
         data={guesses}
         renderItem={({ item }) =>
           <View style={styles.guessContainer}>
-            <Text style={styles.guessFlag}>{item.emoji}</Text>
+            {/* <Text style={styles.guessFlag}>{item.emoji}</Text> */}
             <Text style={styles.guessName}>{item.name}</Text>
             <Text style={styles.guessDirection}>{item.direction}</Text>
             <Text style={styles.guessDistance}>{item.distance}</Text>
@@ -42,15 +42,15 @@ const styles = StyleSheet.create({
   },
   guessName: {
     flex: 7,
-    fontSize: 16,
+    fontSize: 18,
   },
   guessDirection: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 18,
   },
   guessDistance: {
     flex: 3,
-    fontSize: 16,
+    fontSize: 18,
   }
 
 });

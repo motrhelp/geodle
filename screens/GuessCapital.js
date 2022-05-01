@@ -45,17 +45,17 @@ export default function GuessCapital({ navigation, route }) {
   const [char9Guessed, setChar9Guessed] = useState(false);
   const [char10Guessed, setChar10Guessed] = useState(false);
 
-  const charGuessedArray = [
-    { char: char1, setChar: setChar1, charGuessed: char1Guessed, setCharGuessed: setChar1Guessed},
-    { char: char2, setChar: setChar2, charGuessed: char2Guessed, setCharGuessed: setChar2Guessed},
-    { char: char3, setChar: setChar3, charGuessed: char3Guessed, setCharGuessed: setChar3Guessed},
-    { char: char4, setChar: setChar4, charGuessed: char4Guessed, setCharGuessed: setChar4Guessed},
-    { char: char5, setChar: setChar5, charGuessed: char5Guessed, setCharGuessed: setChar5Guessed},
-    { char: char6, setChar: setChar6, charGuessed: char6Guessed, setCharGuessed: setChar6Guessed},
-    { char: char7, setChar: setChar7, charGuessed: char7Guessed, setCharGuessed: setChar7Guessed},
-    { char: char8, setChar: setChar8, charGuessed: char8Guessed, setCharGuessed: setChar8Guessed},
-    { char: char9, setChar: setChar9, charGuessed: char9Guessed, setCharGuessed: setChar9Guessed},
-    { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed},
+  const charArray = [
+    { char: char1, setChar: setChar1, charGuessed: char1Guessed, setCharGuessed: setChar1Guessed },
+    { char: char2, setChar: setChar2, charGuessed: char2Guessed, setCharGuessed: setChar2Guessed },
+    { char: char3, setChar: setChar3, charGuessed: char3Guessed, setCharGuessed: setChar3Guessed },
+    { char: char4, setChar: setChar4, charGuessed: char4Guessed, setCharGuessed: setChar4Guessed },
+    { char: char5, setChar: setChar5, charGuessed: char5Guessed, setCharGuessed: setChar5Guessed },
+    { char: char6, setChar: setChar6, charGuessed: char6Guessed, setCharGuessed: setChar6Guessed },
+    { char: char7, setChar: setChar7, charGuessed: char7Guessed, setCharGuessed: setChar7Guessed },
+    { char: char8, setChar: setChar8, charGuessed: char8Guessed, setCharGuessed: setChar8Guessed },
+    { char: char9, setChar: setChar9, charGuessed: char9Guessed, setCharGuessed: setChar9Guessed },
+    { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed },
   ]
 
   const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
@@ -74,51 +74,22 @@ export default function GuessCapital({ navigation, route }) {
 
   const onKeyboardPress = (char) => {
     if (isKeyEnabled(char)) {
-      if (char1 == '' && capitalName.length > 0 && !char1Guessed) {
-        setChar1(char)
-      } else if (char2 == '' && capitalName.length > 1 && !char2Guessed) {
-        setChar2(char)
-      } else if (char3 == '' && capitalName.length > 2 && !char3Guessed) {
-        setChar3(char)
-      } else if (char4 == '' && capitalName.length > 3 && !char4Guessed) {
-        setChar4(char)
-      } else if (char5 == '' && capitalName.length > 4 && !char5Guessed) {
-        setChar5(char)
-      } else if (char6 == '' && capitalName.length > 5 && !char6Guessed) {
-        setChar6(char)
-      } else if (char7 == '' && capitalName.length > 6 && !char7Guessed) {
-        setChar7(char)
-      } else if (char8 == '' && capitalName.length > 7 && !char8Guessed) {
-        setChar8(char)
-      } else if (char9 == '' && capitalName.length > 8 && !char9Guessed) {
-        setChar9(char)
-      } else if (char10 == '' && capitalName.length > 9 && !char10Guessed) {
-        setChar10(char)
+      for (let i = 0; i < capitalName.length; i++) {
+        if (charArray[i].char == '' && capitalName.length > i && !charArray[i].charGuessed) {
+          charArray[i].setChar(char);
+          break;
+        }
       }
-    }
+    }    
   }
 
+  // Keyboard "<-" back button
   const onKeyboardPressBack = () => {
-    if (char10 != '' && capitalName.length > 9 && !char10Guessed) {
-      setChar10('')
-    } else if (char9 != '' && capitalName.length > 8 && !char9Guessed) {
-      setChar9('')
-    } else if (char8 != '' && capitalName.length > 7 && !char8Guessed) {
-      setChar8('')
-    } else if (char7 != '' && capitalName.length > 6 && !char7Guessed) {
-      setChar7('')
-    } else if (char6 != '' && capitalName.length > 5 && !char6Guessed) {
-      setChar6('')
-    } else if (char5 != '' && capitalName.length > 4 && !char5Guessed) {
-      setChar5('')
-    } else if (char4 != '' && capitalName.length > 3 && !char4Guessed) {
-      setChar4('')
-    } else if (char3 != '' && capitalName.length > 2 && !char3Guessed) {
-      setChar3('')
-    } else if (char2 != '' && capitalName.length > 1 && !char2Guessed) {
-      setChar2('')
-    } else if (char1 != '' && capitalName.length > 0 && !char1Guessed) {
-      setChar1('')
+    for (let i = charArray.length - 1; i >= 0; i--) {
+      if (charArray[i].char != '' && capitalName.length > i - 1 && !charArray[i].charGuessed) {
+        charArray[i].setChar('');
+        break;
+      }
     }
   }
 
@@ -139,17 +110,9 @@ export default function GuessCapital({ navigation, route }) {
   }
 
   const onPressGuess = () => {
-    processCharacterGuess(0, char1, setChar1, char1Guessed, setChar1Guessed);
-    processCharacterGuess(1, char2, setChar2, char2Guessed, setChar2Guessed);
-    processCharacterGuess(2, char3, setChar3, char3Guessed, setChar3Guessed);
-    processCharacterGuess(3, char4, setChar4, char4Guessed, setChar4Guessed);
-    processCharacterGuess(4, char5, setChar5, char5Guessed, setChar5Guessed);
-    processCharacterGuess(5, char6, setChar6, char6Guessed, setChar6Guessed);
-    processCharacterGuess(6, char7, setChar7, char7Guessed, setChar7Guessed);
-    processCharacterGuess(7, char8, setChar8, char8Guessed, setChar8Guessed);
-    processCharacterGuess(8, char9, setChar9, char9Guessed, setChar9Guessed);
-    processCharacterGuess(9, char10, setChar10, char10Guessed, setChar10Guessed);
-    console.log("Correct: " + correctCharacters);
+    for (let i = 0; i < capitalName.length; i++) {
+      processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
+    }
   }
 
   function isCharacterGuessedInAllOccurrences(char) {
@@ -387,10 +350,10 @@ const styles = StyleSheet.create({
   },
 
   hintContainer: {
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    maxHeight: 30, 
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: 30,
     marginBottom: 10,
   },
   hintText: {
