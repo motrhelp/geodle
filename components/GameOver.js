@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 import * as Clipboard from 'expo-clipboard';
 import * as Linking from 'expo-linking'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import countryList from '../data/CountryList';
-import { getDistanceFromLatLonInKm, getBearingFromLatLon } from '../util/DistanceCalculator';
-import ramdomEmoji from '../util/RandomEmoji';
 import shareButton from '../img/send.png'
 import globeButton from '../img/world.png'
 import rightArrow from '../img/right-arrow.png'
-
-import Flag from './Flag';
-import Hearts from './Hearts';
-import Guesses from './Guesses';
 
 export function GameOverCountryName({ countryName }) {
     return (

@@ -5,19 +5,18 @@ import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import countryList from '../data/CountryList';
-import { getBearingFromLatLon, getDistanceFromLatLonInKm, bearingToString } from '../util/DistanceCalculator';
-import ramdomEmoji from '../util/RandomEmoji';
+import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 import Flag from './Flag';
 import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
 import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
+import { loadItem, storeItem } from '../util/DataStorage';
+import { gameNumber } from '../util/GameNumber';
 
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
-    const today = new Date();
-    const todayCountryIndex = (today.getDate() + today.getMonth() * 11) % countriesWithFlags.length;
-    return countriesWithFlags[todayCountryIndex];
+    return countriesWithFlags[gameNumber];
 }
 
 export default function GameContainer({ navigation }) {
@@ -34,36 +33,15 @@ export default function GameContainer({ navigation }) {
     }, []);
 
     const loadData = async () => {
-        try {
-            const today = new Date();
-            const datePrefix = "b" + today.getDate() + "" + today.getMonth();
-            loadItem(datePrefix, "guesses", setGuesses, []);
-            loadItem(datePrefix, "victory", setVictory, false);
-            loadItem(datePrefix, "hearts", setHearts, 5);
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    const loadItem = async (datePrefix, item, setterToCall, alternative) => {
-        const itemFromStorage = await AsyncStorage.getItem('@' + datePrefix + item);
-        if (itemFromStorage != null) {
-            setterToCall(JSON.parse(itemFromStorage));
-        } else {
-            setterToCall(alternative);
-        }
+        loadItem("guesses", [], setGuesses);
+        loadItem("level1Victory", false, setVictory);
+        loadItem("hearts", 5, setHearts);
     }
 
     const storeData = async (guesses, hearts, victory) => {
-        try {
-            const today = new Date();
-            const datePrefix = "b" + today.getDate() + "" + today.getMonth();
-            await AsyncStorage.setItem('@' + datePrefix + "guesses", JSON.stringify(guesses));
-            await AsyncStorage.setItem('@' + datePrefix + "hearts", JSON.stringify(hearts));
-            await AsyncStorage.setItem('@' + datePrefix + "victory", JSON.stringify(victory));
-        } catch (e) {
-            console.log(e);
-        }
+        storeItem("guesses", guesses);
+        storeItem("hearts", hearts);
+        storeItem("level1Victory", victory);
     }
 
     // Put a character or country name in the guess container, updating both guess and autocompleteData variables.
@@ -84,7 +62,6 @@ export default function GameContainer({ navigation }) {
                 const bearing = getBearingFromLatLon(currentGuess.lat, currentGuess.lon, country.lat, country.lon);
                 guesses.push(
                     {
-                        emoji: currentGuess.emoji ? currentGuess.emoji : ramdomEmoji(),
                         name: currentGuess.name,
                         direction: distance == 0 ? '✅' : bearing,
                         distance: distance + " km"

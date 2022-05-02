@@ -9,7 +9,6 @@ export default function Guesses({ guesses }) {
         data={guesses}
         renderItem={({ item }) =>
           <View style={styles.guessContainer}>
-            {/* <Text style={styles.guessFlag}>{item.emoji}</Text> */}
             <Text style={styles.guessName}>{item.name}</Text>
             <Text style={styles.guessDirection}>{item.direction}</Text>
             <Text style={styles.guessDistance}>{item.distance}</Text>

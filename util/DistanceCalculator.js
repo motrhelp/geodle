@@ -1,5 +1,5 @@
 
-const coordNames = ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️", "⬆️"];
+const coordNames = ["↑", "↗", "➡️", "↘", "↓", "↙", "←", "↖", "↑"];
 
 export function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
@@ -26,36 +26,6 @@ export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
 
     return coordNames[coordIndex];
 
-}
-
-export function bearingToString(bearing) {
-    if (bearing == coordNames[0]) {
-        return "north (" + coordNames[0] + ")"
-    }
-    if (bearing == coordNames[1]) {
-        return "northeast (" + coordNames[1] + ")"
-    }
-    if (bearing == coordNames[2]) {
-        return "east (" + coordNames[2] + ")"
-    }
-    if (bearing == coordNames[3]) {
-        return "southeast (" + coordNames[3] + ")"
-    }
-    if (bearing == coordNames[4]) {
-        return "south (" + coordNames[4] + ")"
-    }
-    if (bearing == coordNames[5]) {
-        return "southwest (" + coordNames[5] + ")"
-    }
-    if (bearing == coordNames[6]) {
-        return "west (" + coordNames[6] + ")"
-    }
-    if (bearing == coordNames[7]) {
-        return "northwest (" + coordNames[7] + ")"
-    }
-    if (bearing == coordNames[8]) {
-        return "north (" + coordNames[8] + ")"
-    }
 }
 
 function deg2rad(deg) {

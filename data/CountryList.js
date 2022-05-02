@@ -94,7 +94,7 @@ const countryList = [
     { code: "GN", name: "Guinea", lat: 9.945587, lon: -9.696645, flag: require("../img/640px-Flag_of_Guinea.svg.png"), capital: { name: "Conakry" } },
     { code: "GW", name: "Guinea-Bissau", lat: 11.803749, lon: -15.180413 },
     { code: "GY", name: "Guyana", lat: 4.860416, lon: -58.93018, flag: require("../img/320px-Flag_of_Guyana.svg.png"), capital: { name: "Georgetown" } },
-    { code: "HT", name: "Haiti", lat: 18.971187 - 72.285215, flag: require("../img/Flag_of_Haiti.svg.png"), capital: { name: "Port au Prince" } },
+    { code: "HT", name: "Haiti", lat: 18.971187, lon: - 72.285215, flag: require("../img/Flag_of_Haiti.svg.png"), capital: { name: "Port au Prince" } },
     { code: "HM", name: "Heard Island and McDonald Islands", lat: -53.08181, lon: 73.504158 },
     // { code: "VA", name: "Vatican (Holy See)", lat: 41.902916, lon: 12.453389, flag: require("../img/Flag_of_the_Vatican_City.svg.png"), capital: { name: "Vatican" }  },
     { code: "HN", name: "Honduras", lat: 15.199999, lon: -86.241905, flag: require("../img/Flag_of_Honduras.svg.png"), capital: { name: "Tegucigalpa" } },
