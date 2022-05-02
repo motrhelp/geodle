@@ -74,7 +74,7 @@ export default function GuessCapital({ navigation, route }) {
     loadItem("correctCharacters", [], setCorrectCharacters);
     loadItem("almostCharacters", [], setAlmostCharacters);
     loadItem("wrongCharacters", [], setWrongCharacters);
-    loadItem("hearts", 5, setHearts);
+    loadItem("hearts", 6, setHearts);
     loadItem("level2Victory", false, setVictory)
   }, []);
 

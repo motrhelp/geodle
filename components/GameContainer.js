@@ -35,7 +35,7 @@ export default function GameContainer({ navigation }) {
     const loadData = async () => {
         loadItem("guesses", [], setGuesses);
         loadItem("level1Victory", false, setVictory);
-        loadItem("hearts", 5, setHearts);
+        loadItem("hearts", 6, setHearts);
     }
 
     const storeData = async (guesses, hearts, victory) => {

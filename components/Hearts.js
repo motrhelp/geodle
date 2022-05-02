@@ -28,6 +28,10 @@ export default function Hearts({ hearts, onPressHearts }) {
                 style={styles.heartImage}
                 source={hearts > 4 ? heart : lostHeart}
             />
+            <Image
+                style={styles.heartImage}
+                source={hearts > 5 ? heart : lostHeart}
+            />
         </TouchableOpacity>
     );
 }
