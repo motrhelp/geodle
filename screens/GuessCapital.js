@@ -6,6 +6,7 @@ import Hearts from '../components/Hearts';
 
 import defaultIcon from '../img/government.png';
 import { GameOverLinks, GameOverMessage } from '../components/GameOver';
+import { loadItem, storeItem } from '../util/DataStorage';
 
 export default function GuessCapital({ navigation, route }) {
 
@@ -18,7 +19,7 @@ export default function GuessCapital({ navigation, route }) {
   }
 
   const [country, setCountry] = useState(route?.params?.country != null ? route.params.country : defaultCountry);
-  const [hearts, setHearts] = useState(route?.params?.hearts != null ? route.params.hearts : 5)
+  const [hearts, setHearts] = useState();
   const [icon, setIcon] = useState(country.capital?.icon != null ? country.capital.icon : defaultCountry.capital.icon);
   const [correctCharacters, setCorrectCharacters] = useState([]);
   const [almostCharacters, setAlmostCharacters] = useState([]);
@@ -59,14 +60,36 @@ export default function GuessCapital({ navigation, route }) {
     { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed },
   ]
 
+  function setCharArray(newCharArray) {
+    for (let i = 0; i < charArray.length; i++) {
+      charArray[i].setChar(newCharArray[i].char);
+      charArray[i].setCharGuessed(newCharArray[i].charGuessed);
+    }
+  }
+
   const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
 
   useEffect(() => {
+    loadItem("charArray", charArray, setCharArray);
+    loadItem("correctCharacters", [], setCorrectCharacters);
+    loadItem("almostCharacters", [], setAlmostCharacters);
+    loadItem("wrongCharacters", [], setWrongCharacters);
+    loadItem("hearts", 5, setHearts);
+    loadItem("level2Victory", false, setVictory)
   }, []);
+
+  useEffect(() => {
+    storeItem("charArray", charArray);
+    storeItem("correctCharacters", correctCharacters);
+    storeItem("almostCharacters", almostCharacters);
+    storeItem("wrongCharacters", wrongCharacters);
+    storeItem("hearts", hearts);
+    storeItem("level2Victory", victory);
+  }, [victory, hearts]);
 
   // Verify if the corresponding character keyboard key is not already guessed
   function isKeyEnabled(char) {
-    if (wrongCharacters.includes(char)) {
+    if (victory || hearts == 0 || wrongCharacters.includes(char)) {
       return false;
     } else if (correctCharacters.includes(char) && isCharacterGuessedInAllOccurrences(char)) {
       return false;

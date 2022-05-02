@@ -36,7 +36,7 @@ export default function GameContainer({ navigation }) {
     const loadData = async () => {
         try {
             const today = new Date();
-            const datePrefix = "a" + today.getDate() + "" + today.getMonth();
+            const datePrefix = "b" + today.getDate() + "" + today.getMonth();
             loadItem(datePrefix, "guesses", setGuesses, []);
             loadItem(datePrefix, "victory", setVictory, false);
             loadItem(datePrefix, "hearts", setHearts, 5);
@@ -57,7 +57,7 @@ export default function GameContainer({ navigation }) {
     const storeData = async (guesses, hearts, victory) => {
         try {
             const today = new Date();
-            const datePrefix = "a" + today.getDate() + "" + today.getMonth();
+            const datePrefix = "b" + today.getDate() + "" + today.getMonth();
             await AsyncStorage.setItem('@' + datePrefix + "guesses", JSON.stringify(guesses));
             await AsyncStorage.setItem('@' + datePrefix + "hearts", JSON.stringify(hearts));
             await AsyncStorage.setItem('@' + datePrefix + "victory", JSON.stringify(victory));
