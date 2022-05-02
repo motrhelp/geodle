@@ -16,7 +16,7 @@ import Autocomplete from './Autocomplete';
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
     const today = new Date();
-    const todayCountryIndex = (today.getDate() + today.getMonth() * 13 + 1) % countriesWithFlags.length;
+    const todayCountryIndex = (today.getDate() + today.getMonth() * 11) % countriesWithFlags.length;
     return countriesWithFlags[todayCountryIndex];
 }
 
@@ -36,7 +36,7 @@ export default function GameContainer({ navigation }) {
     const loadData = async () => {
         try {
             const today = new Date();
-            const datePrefix = today.getDate() + "" + today.getMonth();
+            const datePrefix = "a" + today.getDate() + "" + today.getMonth();
             loadItem(datePrefix, "guesses", setGuesses, []);
             loadItem(datePrefix, "victory", setVictory, false);
             loadItem(datePrefix, "hearts", setHearts, 5);
@@ -57,7 +57,7 @@ export default function GameContainer({ navigation }) {
     const storeData = async (guesses, hearts, victory) => {
         try {
             const today = new Date();
-            const datePrefix = today.getDate() + "" + today.getMonth();
+            const datePrefix = "a" + today.getDate() + "" + today.getMonth();
             await AsyncStorage.setItem('@' + datePrefix + "guesses", JSON.stringify(guesses));
             await AsyncStorage.setItem('@' + datePrefix + "hearts", JSON.stringify(hearts));
             await AsyncStorage.setItem('@' + datePrefix + "victory", JSON.stringify(victory));
@@ -140,12 +140,7 @@ export default function GameContainer({ navigation }) {
                     <Text style={styles.hintText}>Can you guess the country by its flag?</Text>
                 </View>
                 :
-                guesses.length < 2 && !victory ?
-                    <View style={styles.hintContainer}>
-                        <Text style={styles.hintText}>The country is {guesses[guesses.length - 1].distance} {bearingToString(guesses[guesses.length - 1].direction)} from {guesses[guesses.length - 1].name}</Text>
-                    </View>
-                    :
-                    null
+                null
             }
 
             {/* Guesses */}
