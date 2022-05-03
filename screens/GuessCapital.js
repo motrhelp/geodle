@@ -454,13 +454,13 @@ const styles = StyleSheet.create({
   hintText: {
     fontSize: 20
   },
-
-
+  
   wordContainer: {
     flex: 2,
     alignSelf: 'center',
     flexDirection: 'row',
     maxHeight: 40,
+    flexWrap: 'wrap'
   },
   wordCharacterSpace: {
     flex: 1,

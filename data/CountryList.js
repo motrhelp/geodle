@@ -22,7 +22,7 @@ const countryList = [
     { code: "BY", name: "Belarus", lat: 53.709807, lon: 27.953389, flag: require("../img/Flag_of_Belarus.png"), capital: { name: "Minsk"}  },
     { code: "BE", name: "Belgium", lat: 50.503887, lon: 4.469936, flag: require("../img/Flag_of_Belgium.png"), capital: { name: "Brussels"}  },
     { code: "BZ", name: "Belize", lat: 17.189877, lon: -88.49765, flag: require("../img/Flag_of_Belize.svg.png"), capital: { name: "Belmopan"}  },
-    { code: "BJ", name: "Benin", lat: 9.30769, lon: 2.315834, flag: require("../img/Flag_of_Benin.svg.png"), capital: { name: "Porto-Novo"}  },
+    { code: "BJ", name: "Benin", lat: 9.30769, lon: 2.315834, flag: require("../img/Flag_of_Benin.svg.png"), capital: { name: "Porto Novo"}  },
     { code: "BM", name: "Bermuda", lat: 32.321384, lon: -64.75737, flag: require("../img/Flag_of_Bermuda.svg.png"), capital: { name: "Hamilton"}  },
     { code: "BT", name: "Bhutan", lat: 27.514162, lon: 90.433601, flag: require("../img/Flag_of_Bhutan.svg.png"), capital: { name: "Thimphu"}  },
     { code: "BO", name: "Bolivia", lat: -16.290154, lon: -63.588653, flag: require("../img/Flag_of_Bolivia.svg.png"), capital: { name: "Sucre"}  },
