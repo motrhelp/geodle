@@ -163,6 +163,13 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
+  // Remove the character pressed in the word
+  function onPressWordChar(index) {
+    if (!charArray[index].charGuessed) {
+      charArray[index].setChar('');
+    }
+  }
+
   function isCharacterGuessedInAllOccurrences(char) {
     return capitalName.split(char).length - 1 == correctCharacters.filter(correct => correct === char).length;
   }
@@ -213,64 +220,76 @@ export default function GuessCapital({ navigation, route }) {
       {/* The word */}
       <View style={styles.wordContainer}>
         {capitalName.length > 0 ?
-          <View style={getConditionalWordStyles(0)}>
+          <TouchableOpacity style={getConditionalWordStyles(0)}
+            onPress={() => onPressWordChar(0)}>
             <Text style={styles.wordCharacter}>{char1}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 1 ?
-          <View style={getConditionalWordStyles(1)}>
+          <TouchableOpacity style={getConditionalWordStyles(1)}
+            onPress={() => onPressWordChar(1)}>
             <Text style={styles.wordCharacter}>{char2}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 2 ?
-          <View style={getConditionalWordStyles(2)}>
+          <TouchableOpacity style={getConditionalWordStyles(2)}
+            onPress={() => onPressWordChar(2)}>
             <Text style={styles.wordCharacter}>{char3}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 3 ?
-          <View style={getConditionalWordStyles(3)}>
+          <TouchableOpacity style={getConditionalWordStyles(3)}
+            onPress={() => onPressWordChar(3)}>
             <Text style={styles.wordCharacter}>{char4}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 4 ?
-          <View style={getConditionalWordStyles(4)}>
+          <TouchableOpacity style={getConditionalWordStyles(4)}
+            onPress={() => onPressWordChar(4)}>
             <Text style={styles.wordCharacter}>{char5}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 5 ?
-          <View style={getConditionalWordStyles(5)}>
+          <TouchableOpacity style={getConditionalWordStyles(5)}
+            onPress={() => onPressWordChar(5)}>
             <Text style={styles.wordCharacter}>{char6}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 6 ?
-          <View style={getConditionalWordStyles(6)}>
+          <TouchableOpacity style={getConditionalWordStyles(6)}
+            onPress={() => onPressWordChar(6)}>
             <Text style={styles.wordCharacter}>{char7}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 7 ?
-          <View style={getConditionalWordStyles(7)}>
+          <TouchableOpacity style={getConditionalWordStyles(7)}
+            onPress={() => onPressWordChar(7)}>
             <Text style={styles.wordCharacter}>{char8}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 8 ?
-          <View style={getConditionalWordStyles(8)}>
+          <TouchableOpacity style={getConditionalWordStyles(8)}
+            onPress={() => onPressWordChar(8)}>
             <Text style={styles.wordCharacter}>{char9}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 9 ?
-          <View style={getConditionalWordStyles(9)}>
+          <TouchableOpacity style={getConditionalWordStyles(9)}
+            onPress={() => onPressWordChar(9)}>
             <Text style={styles.wordCharacter}>{char10}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 10 ?
-          <View style={getConditionalWordStyles(10)}>
+          <TouchableOpacity style={getConditionalWordStyles(10)}
+            onPress={() => onPressWordChar(10)}>
             <Text style={styles.wordCharacter}>{char11}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
         {capitalName.length > 11 ?
-          <View style={getConditionalWordStyles(11)}>
+          <TouchableOpacity style={getConditionalWordStyles(11)}
+            onPress={() => onPressWordChar(11)}>
             <Text style={styles.wordCharacter}>{char12}</Text>
-          </View>
+          </TouchableOpacity>
           : null}
       </View>
 
