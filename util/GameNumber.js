@@ -8,7 +8,7 @@ function generateConsistentRandomGameNumber() {
 
     // First hash, based on the date
     const today = new Date();
-    const firstHash = (today.getDate() + today.getMonth() * 11) % countriesWithFlags.length;
+    const firstHash = (today.getDate() + today.getMonth() * 13) % countriesWithFlags.length;
 
     // Second hash, based on a country's name
     var secondHash = 0;

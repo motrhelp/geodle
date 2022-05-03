@@ -36,6 +36,8 @@ export default function GuessCapital({ navigation, route }) {
   const [char8, setChar8] = useState('');
   const [char9, setChar9] = useState('');
   const [char10, setChar10] = useState('');
+  const [char11, setChar11] = useState('');
+  const [char12, setChar12] = useState('');
   const [char1Guessed, setChar1Guessed] = useState(false);
   const [char2Guessed, setChar2Guessed] = useState(false);
   const [char3Guessed, setChar3Guessed] = useState(false);
@@ -46,6 +48,8 @@ export default function GuessCapital({ navigation, route }) {
   const [char8Guessed, setChar8Guessed] = useState(false);
   const [char9Guessed, setChar9Guessed] = useState(false);
   const [char10Guessed, setChar10Guessed] = useState(false);
+  const [char11Guessed, setChar11Guessed] = useState(false);
+  const [char12Guessed, setChar12Guessed] = useState(false);
 
   const charArray = [
     { char: char1, setChar: setChar1, charGuessed: char1Guessed, setCharGuessed: setChar1Guessed },
@@ -58,12 +62,22 @@ export default function GuessCapital({ navigation, route }) {
     { char: char8, setChar: setChar8, charGuessed: char8Guessed, setCharGuessed: setChar8Guessed },
     { char: char9, setChar: setChar9, charGuessed: char9Guessed, setCharGuessed: setChar9Guessed },
     { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed },
+    { char: char11, setChar: setChar11, charGuessed: char11Guessed, setCharGuessed: setChar11Guessed },
+    { char: char12, setChar: setChar12, charGuessed: char12Guessed, setCharGuessed: setChar12Guessed },
   ]
 
   function setCharArray(newCharArray) {
     for (let i = 0; i < charArray.length; i++) {
-      charArray[i].setChar(newCharArray[i].char);
-      charArray[i].setCharGuessed(newCharArray[i].charGuessed);
+      if (capitalName.charAt(i) == " ") {
+        charArray[i].setChar(" ");
+        charArray[i].setCharGuessed(true);
+      } else if (capitalName.charAt(i) == "'") {
+        charArray[i].setChar("'");
+        charArray[i].setCharGuessed(true);
+      } else {
+        charArray[i].setChar(newCharArray[i].char);
+        charArray[i].setCharGuessed(newCharArray[i].charGuessed);
+      }
     }
   }
 
@@ -75,7 +89,7 @@ export default function GuessCapital({ navigation, route }) {
     loadItem("almostCharacters", [], setAlmostCharacters);
     loadItem("wrongCharacters", [], setWrongCharacters);
     loadItem("hearts", 6, setHearts);
-    loadItem("level2Victory", false, setVictory)
+    loadItem("level2Victory", false, setVictory);
   }, []);
 
   useEffect(() => {
@@ -163,6 +177,19 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
+  function getConditionalWordStyles(index) {
+    var conditionalWordStyles = [];
+    if (capitalName.charAt(index) == " " || capitalName.charAt(index) == "'") {
+      conditionalWordStyles.push(styles.wordCharacterSpace);
+    } else {
+      conditionalWordStyles.push(styles.wordCharacterContainer);
+      if (charArray[index].charGuessed) {
+        conditionalWordStyles.push(styles.correct);
+      }
+    }
+    return conditionalWordStyles;
+  }
+
   return (
     <View style={styles.container}>
 
@@ -186,53 +213,63 @@ export default function GuessCapital({ navigation, route }) {
       {/* The word */}
       <View style={styles.wordContainer}>
         {capitalName.length > 0 ?
-          <View style={[styles.wordCharacterContainer, char1Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(0)}>
             <Text style={styles.wordCharacter}>{char1}</Text>
           </View>
           : null}
         {capitalName.length > 1 ?
-          <View style={[styles.wordCharacterContainer, char2Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(1)}>
             <Text style={styles.wordCharacter}>{char2}</Text>
           </View>
           : null}
         {capitalName.length > 2 ?
-          <View style={[styles.wordCharacterContainer, char3Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(2)}>
             <Text style={styles.wordCharacter}>{char3}</Text>
           </View>
           : null}
         {capitalName.length > 3 ?
-          <View style={[styles.wordCharacterContainer, char4Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(3)}>
             <Text style={styles.wordCharacter}>{char4}</Text>
           </View>
           : null}
         {capitalName.length > 4 ?
-          <View style={[styles.wordCharacterContainer, char5Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(4)}>
             <Text style={styles.wordCharacter}>{char5}</Text>
           </View>
           : null}
         {capitalName.length > 5 ?
-          <View style={[styles.wordCharacterContainer, char6Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(5)}>
             <Text style={styles.wordCharacter}>{char6}</Text>
           </View>
           : null}
         {capitalName.length > 6 ?
-          <View style={[styles.wordCharacterContainer, char7Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(6)}>
             <Text style={styles.wordCharacter}>{char7}</Text>
           </View>
           : null}
         {capitalName.length > 7 ?
-          <View style={[styles.wordCharacterContainer, char8Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(7)}>
             <Text style={styles.wordCharacter}>{char8}</Text>
           </View>
           : null}
         {capitalName.length > 8 ?
-          <View style={[styles.wordCharacterContainer, char9Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(8)}>
             <Text style={styles.wordCharacter}>{char9}</Text>
           </View>
           : null}
         {capitalName.length > 9 ?
-          <View style={[styles.wordCharacterContainer, char10Guessed ? styles.correct : styles.none]}>
+          <View style={getConditionalWordStyles(9)}>
             <Text style={styles.wordCharacter}>{char10}</Text>
+          </View>
+          : null}
+        {capitalName.length > 10 ?
+          <View style={getConditionalWordStyles(10)}>
+            <Text style={styles.wordCharacter}>{char11}</Text>
+          </View>
+          : null}
+        {capitalName.length > 11 ?
+          <View style={getConditionalWordStyles(11)}>
+            <Text style={styles.wordCharacter}>{char12}</Text>
           </View>
           : null}
       </View>
@@ -405,6 +442,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     maxHeight: 40,
+  },
+  wordCharacterSpace: {
+    flex: 1,
+    margin: 5,
+    width: 30,
+    maxWidth: 30,
+    height: 30
   },
   wordCharacterContainer: {
     flex: 1,
