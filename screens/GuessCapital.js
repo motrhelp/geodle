@@ -133,6 +133,10 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
+  function areAllCharactersGuessed() {
+    return correctCharacters.length == capitalName.replaceAll(" ", "").replaceAll("'","").length
+  }
+
   function processCharacterGuess(charIndex, char, charSetter, charGuessed, charGuessedSetter) {
     if (capitalName.length > charIndex && !charGuessed) {
       if (char == capitalName.charAt(charIndex)) {
@@ -147,7 +151,7 @@ export default function GuessCapital({ navigation, route }) {
         charSetter('');
       }
     }
-    if (correctCharacters.length == capitalName.length) {
+    if (areAllCharactersGuessed()) {
       setVictory(true);
     }
   }
@@ -156,9 +160,7 @@ export default function GuessCapital({ navigation, route }) {
     for (let i = 0; i < capitalName.length; i++) {
       processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
     }
-    if (correctCharacters.length == capitalName.length) {
-      setVictory(true);
-    } else {
+    if (!areAllCharactersGuessed()) {
       setHearts(hearts - 1);
     }
   }
@@ -454,7 +456,7 @@ const styles = StyleSheet.create({
   hintText: {
     fontSize: 20
   },
-  
+
   wordContainer: {
     flex: 2,
     alignSelf: 'center',
