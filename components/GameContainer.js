@@ -4,7 +4,7 @@ import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import countryList from '../data/CountryList';
+import countryList, { searchCountry } from '../data/CountryList';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 import Flag from './Flag';
 import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
@@ -50,7 +50,7 @@ export default function GameContainer({ navigation }) {
         if (text == "") {
             setAutocompleteData();
         } else {
-            setAutocompleteData(countryList.filter((country) => country.name.toLowerCase().startsWith(text.toLowerCase())));
+            setAutocompleteData(searchCountry(text));
         }
     }
 
