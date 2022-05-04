@@ -1,5 +1,5 @@
 
-const coordNames = ["↑", "↗", "➡️", "↘", "↓", "↙", "←", "↖", "↑"];
+const coordNames = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖", "↑"];
 
 export function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km

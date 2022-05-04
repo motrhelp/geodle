@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   guessDirection: {
     flex: 1,
     fontSize: 18,
+    fontWeight: 'bold'
   },
   guessDistance: {
     flex: 3,

@@ -63,7 +63,7 @@ export default function GameContainer({ navigation }) {
                 guesses.push(
                     {
                         name: currentGuess.name,
-                        direction: distance == 0 ? '✅' : bearing,
+                        direction: distance == 0 ? '✓' : bearing,
                         distance: distance + " km"
                     });
 
