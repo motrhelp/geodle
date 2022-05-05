@@ -12,7 +12,7 @@ async function refreshVersion() {
     if (lastRefreshed != null) {
         var minutesSinceRefresh = Math.ceil((now - new Date(lastRefreshed)) / 1000 / 60);
     }
-    if (lastRefreshed == null || minutesSinceRefresh > 30) {
+    if (lastRefreshed == null || minutesSinceRefresh > 60) {
         storeItem("lastRefreshed", new Date());
         window.location.reload(false);
     }
