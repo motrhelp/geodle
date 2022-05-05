@@ -13,6 +13,7 @@ import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
 import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
+import refreshVersion from '../util/AppVersion';
 
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -27,6 +28,10 @@ export default function GameContainer({ navigation }) {
     const [guesses, setGuesses] = useState();
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
+
+    useEffect(() => {
+        refreshVersion();
+    })
 
     useEffect(() => {
         loadData();

@@ -260,7 +260,6 @@ export function searchCountry(text) {
             return -1;
         }
         for (const word of right.name.split(" ")) {
-            console.log(word);
             if (word.startsWith(text)) {
                 return 1;
             }

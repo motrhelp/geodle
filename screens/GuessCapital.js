@@ -7,6 +7,7 @@ import Hearts from '../components/Hearts';
 import defaultIcon from '../img/government.png';
 import { GameOverLinks, GameOverMessage } from '../components/GameOver';
 import { loadItem, storeItem } from '../util/DataStorage';
+import refreshVersion from '../util/AppVersion';
 
 export default function GuessCapital({ navigation, route }) {
 
@@ -82,6 +83,10 @@ export default function GuessCapital({ navigation, route }) {
   }
 
   const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
+
+  useEffect(() => {
+    refreshVersion();
+  })
 
   useEffect(() => {
     loadItem("charArray", charArray, setCharArray);
