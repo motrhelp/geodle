@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 
 import Hearts from '../components/Hearts';
 
@@ -10,6 +10,7 @@ import { loadItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
 import countryList from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
+import rightArrow from '../img/right-arrow.png'
 
 export default function GuessCapitalScreen({ navigation, route }) {
 
@@ -26,7 +27,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
   const [icon, setIcon] = useState(defaultIcon);
   const [correctCharacters, setCorrectCharacters] = useState([]);
   const [almostCharacters, setAlmostCharacters] = useState([]);
-  const [wrongCharacters, setWrongCharacters] = useState([]);  
+  const [wrongCharacters, setWrongCharacters] = useState([]);
   const [victory, setVictory] = useState(false)
 
   const [char1, setChar1] = useState('');
@@ -86,6 +87,34 @@ export default function GuessCapitalScreen({ navigation, route }) {
 
   const capitalName = (country.capital?.name != null ? country.capital.name : defaultCountry.capital.name).toUpperCase();
 
+  function Header() {
+    return (
+      <Text style={styles.headerTitle}>GEODLE{'\n'} Level 2</Text>
+    )
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => <Header />,
+      headerRight: () => (
+        0 > 0 ?
+          <TouchableOpacity
+            style={styles.nextLevelArrowContainer}
+            onPress={() => navigation.navigate("GuessCapitalScreen")}
+          >
+            <Text style={styles.nextLevelText}>
+              NEXT{'\n'} LEVEL
+            </Text>
+            <Image
+              style={styles.nextLevelArrow}
+              source={rightArrow}
+            />
+          </TouchableOpacity>
+          : null
+      )
+    }, [navigation]);
+  })
+
   useEffect(() => {
     refreshVersion();
   })
@@ -141,7 +170,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
   }
 
   function areAllCharactersGuessed() {
-    return correctCharacters.length == capitalName.replaceAll(" ", "").replaceAll("'","").length
+    return correctCharacters.length == capitalName.replaceAll(" ", "").replaceAll("'", "").length
   }
 
   function processCharacterGuess(charIndex, char, charSetter, charGuessed, charGuessedSetter) {
@@ -442,6 +471,25 @@ export default function GuessCapitalScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+  // Navigation header
+  headerTitle: {
+      fontWeight: 'bold',
+      fontSize: 18
+  },
+  nextLevelArrowContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+  },
+  nextLevelText: {
+      fontWeight: 'bold'
+  },
+  nextLevelArrow: {
+      flex: 1,
+      minHeight: 25,
+      aspectRatio: 512 / 512,
+      marginRight: 20,
+  },
+
   container: {
     flex: 1,
     width: '100%',

@@ -21,6 +21,7 @@ function countryToGuess() {
     return countriesWithFlags[gameNumber];
 }
 
+
 export default function GuessFlag({ navigation }) {
 
     const [guess, setGuess] = useState("");
@@ -30,12 +31,15 @@ export default function GuessFlag({ navigation }) {
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
 
+    function Header() {
+        return (
+            <Text style={styles.headerTitle}>GEODLE{'\n'} Level 1</Text>
+        )
+    }
+
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'GEODLE\n Level 1',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
+            headerTitle: () => <Header />,
             headerRight: () => (
                 victory && hearts > 0 ?
                     <TouchableOpacity
@@ -43,7 +47,7 @@ export default function GuessFlag({ navigation }) {
                         onPress={() => navigation.navigate("GuessCapitalScreen")}
                     >
                         <Text style={styles.nextLevelText}>
-                            NEXT LEVEL
+                            NEXT{'\n'}LEVEL
                         </Text>
                         <Image
                             style={styles.nextLevelArrow}
@@ -200,17 +204,21 @@ export default function GuessFlag({ navigation }) {
 
 const styles = StyleSheet.create({
     // Navigation header
+    headerTitle: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginHorizontal: 50
+    },
     nextLevelArrowContainer: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     nextLevelText: {
-        fontWeight: 'bold',
-        marginLeft: 10
+        fontWeight: 'bold'
     },
     nextLevelArrow: {
         flex: 1,
-        minHeight: 30,
+        minHeight: 25,
         aspectRatio: 512 / 512,
         marginRight: 20,
     },
