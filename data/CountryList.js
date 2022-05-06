@@ -1,4 +1,4 @@
-const countryList = [
+export const countryList = [
     { code: "AF", name: "Afghanistan", lat: 33.93911, lon: 67.709953, emoji: "🇦🇫" },
     // { code: "AX", name: "\u00c5land Islands" },
     { code: "AL", name: "Albania", lat: 41.153332, lon: 20.168331, flag: require("../img/512px-Flag_of_Albania.png"), emoji: "🇦🇱", capital: { name: "Tirana" } },
@@ -275,4 +275,6 @@ export function searchCountry(text) {
     return countryList.filter(filterByText).sort(compareByText);
 }
 
-export default countryList;
+const countriesWithFlags = countryList.filter(country => country.flag != null);
+
+export default countriesWithFlags;

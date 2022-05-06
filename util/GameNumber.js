@@ -1,11 +1,9 @@
 
-import countryList from "../data/CountryList";
+import countriesWithFlags from "../data/CountryList";
 
 export const gameNumber = generateConsistentRandomGameNumber();
 
 function generateConsistentRandomGameNumber() {
-    const countriesWithFlags = countryList.filter(country => country.flag != null);
-
     // First hash, based on the date
     const today = new Date();
     const firstHash = (today.getDate() + today.getMonth() * 13) % countriesWithFlags.length;

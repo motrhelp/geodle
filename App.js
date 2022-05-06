@@ -7,7 +7,7 @@ import GuessCapitalScreen from './screens/GuessCapitalScreen';
 import GuessFlagScreen from './screens/GuessFlagScreen';
 
 import { loadItem } from './util/DataStorage';
-import { level1Name, level2Name } from './screens/Navigation';
+import { level1Name, level2Name } from './util/Navigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ export default function App() {
         setInitialRoute(level1Name);
       }
     }
-    loadItem("level1Victory", false, determineInitialRoute)
+    loadItem("level1Victory", false, determineInitialRoute);
   }, []);
 
   return initialRoute != null ? (
@@ -41,13 +41,6 @@ export default function App() {
         <Stack.Screen
           name={level2Name}
           component={GuessCapitalScreen}
-          options={{
-            title: 'GEODLE\n Level 2',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerBackButtonMenuEnabled: false
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

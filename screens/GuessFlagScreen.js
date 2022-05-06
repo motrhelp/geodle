@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 
 import GuessFlag from '../components/GuessFlag';
-import Header from '../components/Header';
 
 export default function GuessFlagScreen({ navigation }) {
   return (

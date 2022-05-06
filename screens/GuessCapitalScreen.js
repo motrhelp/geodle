@@ -12,7 +12,7 @@ import countryList from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
 import rightArrow from '../img/right-arrow.png'
 import leftArrow from '../img/left-arrow.png'
-import { navigateToLevel1, navigateToLevel2 } from './Navigation';
+import { navigateToLevel1, navigateToLevel2 } from '../util/Navigation';
 
 export default function GuessCapitalScreen({ navigation, route }) {
 
@@ -97,6 +97,11 @@ export default function GuessCapitalScreen({ navigation, route }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      title: 'GEODLE\n Level 2',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerBackButtonMenuEnabled: false,
       headerTitle: () => <Header />,
       headerRight: () => (
         0 > 0 ?
@@ -105,7 +110,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
             onPress={() => navigateToLevel2(navigation)}
           >
             <Text style={styles.nextLevelText}>
-              NEXT{'\n'} LEVEL
+              NEXT{'\n'}LEVEL
             </Text>
             <Image
               style={styles.nextLevelArrow}

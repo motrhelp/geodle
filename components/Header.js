@@ -1,24 +1,51 @@
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
-import { StyleSheet, Text, View } from 'react-native';
+import rightArrow from '../img/right-arrow.png'
 
-export default function Header() {
+export function HeaderTitle({ levelName }) {
     return (
-        <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>GEODLE</Text>
+        <Text style={styles.headerTitle}>GEODLE{'\n'} {levelName}</Text>
+    )
+}
+
+export function NextLevelArrow({ navigation, navigateToNextLevel }) {
+    return (
+        <View>
+            <TouchableOpacity
+                style={styles.nextLevelArrowContainer}
+                onPress={() => navigateToNextLevel(navigation)}
+            >
+                <Text style={styles.nextLevelText}>
+                    NEXT{'\n'}LEVEL
+                </Text>
+                <Image
+                    style={styles.nextLevelArrow}
+                    source={rightArrow}
+                />
+            </TouchableOpacity>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
-    headerContainer: {
+    // Navigation header
+    headerTitle: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginHorizontal: 50
+    },
+    nextLevelArrowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    nextLevelText: {
+        fontWeight: 'bold'
+    },
+    nextLevelArrow: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        paddingTop: 15
+        minHeight: 25,
+        aspectRatio: 512 / 512,
+        marginRight: 20,
     },
-    headerText: {
-        fontSize: 25,
-        fontWeight: "bold",
-    },
+})
 
-});

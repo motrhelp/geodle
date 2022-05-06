@@ -4,7 +4,7 @@ import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text, Toucha
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import countryList, { searchCountry } from '../data/CountryList';
+import countriesWithFlags, { countryList, searchCountry } from '../data/CountryList';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 import Flag from './Flag';
 import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
@@ -14,49 +14,27 @@ import Autocomplete from './Autocomplete';
 import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
-import rightArrow from '../img/right-arrow.png'
-import { navigateToLevel2 } from '../screens/Navigation';
-
-function countryToGuess() {
-    const countriesWithFlags = countryList.filter(country => country.flag != null);
-    return countriesWithFlags[gameNumber];
-}
-
+import { HeaderTitle, NextLevelArrow } from '../components/Header';
+import { navigateToLevel2 } from '../util/Navigation';
 
 export default function GuessFlag({ navigation }) {
 
     const [guess, setGuess] = useState("");
     const [autocompleteData, setAutocompleteData] = useState();
-    const [country, setCountry] = useState(countryToGuess());
+    const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [guesses, setGuesses] = useState();
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
 
-    function Header() {
-        return (
-            <Text style={styles.headerTitle}>GEODLE{'\n'} Level 1</Text>
-        )
-    }
-
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerTitle: () => <Header />,
+            headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
             headerRight: () => (
                 victory && hearts > 0 ?
-                    <View>
-                        <TouchableOpacity
-                            style={styles.nextLevelArrowContainer}
-                            onPress={() => navigateToLevel2(navigation)}
-                        >
-                            <Text style={styles.nextLevelText}>
-                                NEXT{'\n'}LEVEL
-                            </Text>
-                            <Image
-                                style={styles.nextLevelArrow}
-                                source={rightArrow}
-                            />
-                        </TouchableOpacity>
-                    </View>
+                    <NextLevelArrow
+                        navigation={navigation}
+                        navigateToNextLevel={navigateToLevel2}
+                    />
                     : null
             ),
             headerLeft: null
@@ -212,25 +190,6 @@ export default function GuessFlag({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    // Navigation header
-    headerTitle: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginHorizontal: 50
-    },
-    nextLevelArrowContainer: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    nextLevelText: {
-        fontWeight: 'bold'
-    },
-    nextLevelArrow: {
-        flex: 1,
-        minHeight: 25,
-        aspectRatio: 512 / 512,
-        marginRight: 20,
-    },
 
     gameContainer: {
         flex: 9,
