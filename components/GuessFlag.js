@@ -15,6 +15,7 @@ import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import rightArrow from '../img/right-arrow.png'
+import { navigateToLevel2 } from '../screens/Navigation';
 
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
@@ -42,20 +43,23 @@ export default function GuessFlag({ navigation }) {
             headerTitle: () => <Header />,
             headerRight: () => (
                 victory && hearts > 0 ?
-                    <TouchableOpacity
-                        style={styles.nextLevelArrowContainer}
-                        onPress={() => navigation.navigate("GuessCapitalScreen")}
-                    >
-                        <Text style={styles.nextLevelText}>
-                            NEXT{'\n'}LEVEL
-                        </Text>
-                        <Image
-                            style={styles.nextLevelArrow}
-                            source={rightArrow}
-                        />
-                    </TouchableOpacity>
+                    <View>
+                        <TouchableOpacity
+                            style={styles.nextLevelArrowContainer}
+                            onPress={() => navigateToLevel2(navigation)}
+                        >
+                            <Text style={styles.nextLevelText}>
+                                NEXT{'\n'}LEVEL
+                            </Text>
+                            <Image
+                                style={styles.nextLevelArrow}
+                                source={rightArrow}
+                            />
+                        </TouchableOpacity>
+                    </View>
                     : null
-            )
+            ),
+            headerLeft: null
         }, [navigation]);
     })
 
@@ -109,7 +113,12 @@ export default function GuessFlag({ navigation }) {
                     newHearts = hearts - 1;
                     setHearts(newHearts);
                 }
-                setVictory(newVictory);
+                if (newVictory) {
+                    setVictory(newVictory);
+                    setTimeout(() => {
+                        navigateToLevel2(navigation);
+                    }, 2000)
+                }
 
                 // Store the session data
                 storeData(guesses, newHearts, newVictory);

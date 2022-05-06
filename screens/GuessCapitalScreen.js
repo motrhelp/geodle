@@ -11,6 +11,8 @@ import refreshVersion from '../util/AppVersion';
 import countryList from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
 import rightArrow from '../img/right-arrow.png'
+import leftArrow from '../img/left-arrow.png'
+import { navigateToLevel1, navigateToLevel2 } from './Navigation';
 
 export default function GuessCapitalScreen({ navigation, route }) {
 
@@ -100,7 +102,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
         0 > 0 ?
           <TouchableOpacity
             style={styles.nextLevelArrowContainer}
-            onPress={() => navigation.navigate("GuessCapitalScreen")}
+            onPress={() => navigateToLevel2(navigation)}
           >
             <Text style={styles.nextLevelText}>
               NEXT{'\n'} LEVEL
@@ -111,6 +113,17 @@ export default function GuessCapitalScreen({ navigation, route }) {
             />
           </TouchableOpacity>
           : null
+      ),
+      headerLeft: () => (
+        <TouchableOpacity
+          style={styles.nextLevelArrowContainer}
+          onPress={() => navigateToLevel1(navigation)}
+        >
+          <Image
+            style={styles.previousLevelArrow}
+            source={leftArrow}
+          />
+        </TouchableOpacity>
       )
     }, [navigation]);
   })
@@ -473,21 +486,27 @@ export default function GuessCapitalScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   // Navigation header
   headerTitle: {
-      fontWeight: 'bold',
-      fontSize: 18
+    fontWeight: 'bold',
+    fontSize: 18
   },
   nextLevelArrowContainer: {
-      flexDirection: 'row',
-      alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   nextLevelText: {
-      fontWeight: 'bold'
+    fontWeight: 'bold'
   },
   nextLevelArrow: {
-      flex: 1,
-      minHeight: 25,
-      aspectRatio: 512 / 512,
-      marginRight: 20,
+    flex: 1,
+    minHeight: 25,
+    aspectRatio: 512 / 512,
+    marginRight: 20,
+  },
+  previousLevelArrow: {
+    flex: 1,
+    minHeight: 25,
+    aspectRatio: 512 / 512,
+    marginLeft: 20,
   },
 
   container: {
