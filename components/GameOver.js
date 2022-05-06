@@ -5,7 +5,6 @@ import * as Linking from 'expo-linking'
 
 import shareButton from '../img/send.png'
 import globeButton from '../img/world.png'
-import rightArrow from '../img/right-arrow.png'
 
 export function GameOverCountryName({ countryName }) {
     return (
@@ -68,14 +67,6 @@ export function GameOverLinks({ guesses, hearts, country, navigation }) {
                 <Image
                     style={styles.pictogram}
                     source={shareButton}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => onPressNextLevel(navigation, country, hearts)}
-            >
-                <Image
-                    style={styles.nextLevelArrow}
-                    source={rightArrow}
                 />
             </TouchableOpacity>
         </View>

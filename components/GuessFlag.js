@@ -1,6 +1,6 @@
 
-import { useEffect, useState } from 'react';
-import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 'react-native';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text, TouchableOpacity, Image } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,13 +14,14 @@ import Autocomplete from './Autocomplete';
 import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
+import rightArrow from '../img/right-arrow.png'
 
 function countryToGuess() {
     const countriesWithFlags = countryList.filter(country => country.flag != null);
     return countriesWithFlags[gameNumber];
 }
 
-export default function GameContainer({ navigation }) {
+export default function GuessFlag({ navigation }) {
 
     const [guess, setGuess] = useState("");
     const [autocompleteData, setAutocompleteData] = useState();
@@ -28,6 +29,31 @@ export default function GameContainer({ navigation }) {
     const [guesses, setGuesses] = useState();
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'GEODLE\n Level 1',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            headerRight: () => (
+                victory && hearts > 0 ?
+                    <TouchableOpacity
+                        style={styles.nextLevelArrowContainer}
+                        onPress={() => navigation.navigate("GuessCapitalScreen")}
+                    >
+                        <Text style={styles.nextLevelText}>
+                            NEXT LEVEL
+                        </Text>
+                        <Image
+                            style={styles.nextLevelArrow}
+                            source={rightArrow}
+                        />
+                    </TouchableOpacity>
+                    : null
+            )
+        }, [navigation]);
+    })
 
     useEffect(() => {
         refreshVersion();
@@ -173,6 +199,21 @@ export default function GameContainer({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    // Navigation header
+    nextLevelArrowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    nextLevelText: {
+        fontWeight: 'bold',
+        marginLeft: 10
+    },
+    nextLevelArrow: {
+        flex: 1,
+        minHeight: 30,
+        aspectRatio: 512 / 512,
+        marginRight: 20,
+    },
 
     gameContainer: {
         flex: 9,

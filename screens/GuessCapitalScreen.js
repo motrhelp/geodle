@@ -8,8 +8,10 @@ import defaultIcon from '../img/government.png';
 import { GameOverLinks, GameOverMessage } from '../components/GameOver';
 import { loadItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
+import countryList from '../data/CountryList';
+import { gameNumber } from '../util/GameNumber';
 
-export default function GuessCapital({ navigation, route }) {
+export default function GuessCapitalScreen({ navigation, route }) {
 
   const defaultCountry = {
     name: "Default Country",
@@ -19,12 +21,12 @@ export default function GuessCapital({ navigation, route }) {
     }
   }
 
-  const [country, setCountry] = useState(route?.params?.country != null ? route.params.country : defaultCountry);
+  const [country, setCountry] = useState(countryList.filter(country => country.flag != null)[gameNumber]);
   const [hearts, setHearts] = useState();
-  const [icon, setIcon] = useState(country.capital?.icon != null ? country.capital.icon : defaultCountry.capital.icon);
+  const [icon, setIcon] = useState(defaultIcon);
   const [correctCharacters, setCorrectCharacters] = useState([]);
   const [almostCharacters, setAlmostCharacters] = useState([]);
-  const [wrongCharacters, setWrongCharacters] = useState([]);
+  const [wrongCharacters, setWrongCharacters] = useState([]);  
   const [victory, setVictory] = useState(false)
 
   const [char1, setChar1] = useState('');

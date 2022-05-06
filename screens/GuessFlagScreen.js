@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 
-import GameContainer from '../components/GameContainer';
+import GuessFlag from '../components/GuessFlag';
 import Header from '../components/Header';
 
-export default function GuessFlag({ navigation }) {
+export default function GuessFlagScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <GameContainer navigation={navigation} />
+      <GuessFlag navigation={navigation} />
       <StatusBar style="auto" />
     </View>
   );

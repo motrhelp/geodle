@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import GuessCapital from './screens/GuessCapital';
-import GuessFlag from './screens/GuessFlag';
-import refreshVersion from './util/AppVersion';
+import GuessCapitalScreen from './screens/GuessCapitalScreen';
+import GuessFlagScreen from './screens/GuessFlagScreen';
+
+import leftArrow from './img/left-arrow.png'
 
 const Stack = createNativeStackNavigator();
 
@@ -14,30 +15,25 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='GuessFlag'
+        initialRouteName='GuessFlagScreen'
         screenOptions={{
           // headerShown: false
           headerTitleAlign: 'center'
         }}
       >
         <Stack.Screen
-          name="GuessFlag"
-          component={GuessFlag}
-          options={{
-            title: 'GEODLE\n Level 1',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }
-          }}
+          name="GuessFlagScreen"
+          component={GuessFlagScreen}
         />
         <Stack.Screen
-          name="GuessCapital"
-          component={GuessCapital}
+          name="GuessCapitalScreen"
+          component={GuessCapitalScreen}
           options={{
             title: 'GEODLE\n Level 2',
             headerTitleStyle: {
               fontWeight: 'bold',
             },
+            headerBackImageSource: leftArrow
           }}
         />
       </Stack.Navigator>
