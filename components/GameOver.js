@@ -50,7 +50,7 @@ const onPressNextLevel = (navigation, country, hearts) => {
     navigation.navigate("GuessCapital", { country, hearts })
 }
 
-export function GameOverLinks({ guesses, hearts, country, navigation }) {
+export function GameOverLinks({ guesses, hearts, country }) {
     return (
         <View style={styles.linksContainer}>
             <TouchableOpacity
@@ -96,12 +96,5 @@ const styles = StyleSheet.create({
         aspectRatio: 512 / 512,
         marginHorizontal: 20,
     },
-    nextLevelArrow: {
-        flex: 1,
-        minHeight: 30,
-        aspectRatio: 512 / 512,
-        marginHorizontal: 20,
-        alignSelf: 'flex-end',
-    }
 
 });

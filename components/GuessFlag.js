@@ -1,21 +1,23 @@
 
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text, TouchableOpacity, Image } from 'react-native';
+import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import countriesWithFlags, { countryList, searchCountry } from '../data/CountryList';
-import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
+
+import { HeaderTitle, NextLevelArrow } from '../components/Header';
 import Flag from './Flag';
 import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
 import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
+
 import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
-import { HeaderTitle, NextLevelArrow } from '../components/Header';
 import { navigateToLevel2 } from '../util/Navigation';
+import { getBearingFromLatLon, haversineFormulaForBearing, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 
 export default function GuessFlag({ navigation }) {
 
@@ -26,6 +28,7 @@ export default function GuessFlag({ navigation }) {
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
 
+    // Set up the level navigation header: title, next and previous level arrows
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
@@ -41,10 +44,12 @@ export default function GuessFlag({ navigation }) {
         }, [navigation]);
     })
 
+    // Force app refresh every now and then to retire outdated code
     useEffect(() => {
         refreshVersion();
     })
 
+    // Load guesses, hearts and such from device storage
     useEffect(() => {
         loadData();
     }, []);
@@ -55,6 +60,15 @@ export default function GuessFlag({ navigation }) {
         loadItem("hearts", 6, setHearts);
     }
 
+    // Tester's "refresh" cheat
+    const onPressGEODLE = () => {
+        AsyncStorage.clear();
+        loadData();
+        const countriesWithFlags = countryList.filter(country => country.flag != null);
+        setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
+    }
+
+    // Store guesses, hearts and such on device
     const storeData = async (guesses, hearts, victory) => {
         storeItem("guesses", guesses);
         storeItem("hearts", hearts);
@@ -71,8 +85,10 @@ export default function GuessFlag({ navigation }) {
         }
     }
 
+    // Process "Guess" button press
     const onPressGuess = () => {
         if (guess) {
+            // Calculate distance and direction to the sought country
             const currentGuess = countryList.filter(country => country.name == guess)[0];
             if (currentGuess.lat) {
                 const distance = Math.floor(getDistanceFromLatLonInKm(currentGuess.lat, currentGuess.lon, country.lat, country.lon));
@@ -91,8 +107,12 @@ export default function GuessFlag({ navigation }) {
                     newHearts = hearts - 1;
                     setHearts(newHearts);
                 }
+
+                // Process victory
                 if (newVictory) {
                     setVictory(newVictory);
+
+                    // Redirect to the next level
                     setTimeout(() => {
                         navigateToLevel2(navigation);
                     }, 2000)
@@ -104,14 +124,9 @@ export default function GuessFlag({ navigation }) {
                 alert(currentGuess.name + " does not have coordinates yet.")
             }
         }
-        enterGuess("");
-    }
 
-    const onPressGEODLE = () => {
-        AsyncStorage.clear();
-        loadData();
-        const countriesWithFlags = countryList.filter(country => country.flag != null);
-        setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
+        // Clear Guess field after the attempt
+        enterGuess("");
     }
 
     return (
@@ -179,7 +194,6 @@ export default function GuessFlag({ navigation }) {
                     guesses={guesses}
                     hearts={hearts}
                     country={country}
-                    navigation={navigation}
                 />
                 :
                 null
@@ -190,13 +204,12 @@ export default function GuessFlag({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-
     gameContainer: {
         flex: 9,
         alignItems: 'center',
     },
 
-    // Input
+    // "Guess" input
     inputContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -205,7 +218,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20
     },
-
     input: {
         flex: 8,
         borderWidth: 1,
@@ -229,5 +241,4 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingLeft: 5
     },
-
 });

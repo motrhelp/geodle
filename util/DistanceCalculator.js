@@ -18,6 +18,7 @@ export function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
     var radians = Math.atan2((lon2 - lon1), (lat2 - lat1));
     var compassReading = radians * (180 / Math.PI);
+    console.log("Compass reading is " + compassReading);
 
     var coordIndex = Math.round(compassReading / 45);
     if (coordIndex < 0) {
@@ -25,7 +26,6 @@ export function getBearingFromLatLon(lat1, lon1, lat2, lon2) {
     };
 
     return coordNames[coordIndex];
-
 }
 
 function deg2rad(deg) {
