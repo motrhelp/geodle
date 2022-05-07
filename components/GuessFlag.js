@@ -17,7 +17,7 @@ import { loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import { navigateToLevel2 } from '../util/Navigation';
-import { getBearingFromLatLon, haversineFormulaForBearing, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
+import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 
 export default function GuessFlag({ navigation }) {
 
