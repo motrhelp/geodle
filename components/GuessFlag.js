@@ -13,7 +13,7 @@ import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
 
-import { loadItem, storeItem } from '../util/DataStorage';
+import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import { navigateToLevel2 } from '../util/Navigation';
@@ -62,10 +62,8 @@ export default function GuessFlag({ navigation }) {
 
     // Tester's "refresh" cheat
     const onPressGEODLE = () => {
-        AsyncStorage.clear();
-        loadData();
-        const countriesWithFlags = countryList.filter(country => country.flag != null);
-        setCountry(countriesWithFlags[Math.floor(Math.random() * countriesWithFlags.length)]);
+        flushStorage();
+        window.location.reload(false);
     }
 
     // Store guesses, hearts and such on device

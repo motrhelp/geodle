@@ -22,3 +22,7 @@ export async function storeItem(name, value) {
         console.log(e);
     }
 }
+
+export async function flushStorage() {
+    AsyncStorage.clear();        
+}

@@ -144,7 +144,7 @@ export const countryList = [
     { code: "MX", name: "Mexico", lat: 23.634501, lon: -102.552784, flag: require("../img/Flag_of_Mexico.png"), capital: { name: "Mexico City" } },
     { code: "FM", name: "Micronesia", lat: 7.425554, lon: 150.550812 },
     { code: "MD", name: "Moldova", lat: 47.411631, lon: 28.369885, flag: require("../img/Flag_of_Moldova.png"), capital: { name: "Chisinau" } },
-    { code: "MC", name: "Monaco", lat: 43.750298, lon: 7.41284, flag: require("../img/Flag_of_Mongolia.png"), capital: { name: "Luxembourg" } },
+    { code: "MC", name: "Monaco", lat: 43.750298, lon: 7.41284, flag: require("../img/Flag_of_Monaco.png"), capital: { name: "Monaco" } },
     { code: "MN", name: "Mongolia", lat: 46.862496, lon: 103.846656, flag: require("../img/Flag_of_Mongolia.png"), capital: { name: "Ulaanbaatar" } },
     { code: "ME", name: "Montenegro", lat: 42.708678, lon: 19.37439, flag: require("../img/Flag_of_Montenegro.png"), capital: { name: "Podgorica" } },
     { code: "MS", name: "Montserrat", lat: 16.742498, lon: -62.187366 },
