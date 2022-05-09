@@ -31,6 +31,7 @@ export default function GuessFlag({ navigation }) {
     // Set up the level navigation header: title, next and previous level arrows
     useLayoutEffect(() => {
         navigation.setOptions({
+            title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
             headerRight: () => (
                 victory && hearts > 0 ?
