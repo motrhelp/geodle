@@ -5,6 +5,20 @@ import * as Linking from 'expo-linking'
 
 import shareButton from '../img/send.png'
 import globeButton from '../img/world.png'
+import { loadItem } from '../util/DataStorage';
+import { maxHearts } from './Hearts';
+
+const coordNamesToSmileys = [
+    { coord: "→", smiley: "➡️" },
+    { coord: "↘", smiley: "↘️" },
+    { coord: "↓", smiley: "⬇️" },
+    { coord: "↙", smiley: "↙️" },
+    { coord: "←", smiley: "⬅️" },
+    { coord: "↖", smiley: "↖" },
+    { coord: "↑", smiley: "⬆️" },
+    { coord: "↗", smiley: "↗️" },
+    { coord: "✓", smiley: "✅" },
+];
 
 export function GameOverCountryName({ countryName }) {
     return (
@@ -24,20 +38,28 @@ export function GameOverMessage({ victory }) {
     );
 }
 
-const onPressShare = (guesses, hearts) => {
-    let shareString = "";
-    for (let i = 0; i < 5; i++) {
+const onPressShare = async () => {
+    let shareString = "http://motrhelp.github.io/geodle\n\n";
+
+    var hearts;
+    await loadItem("hearts", maxHearts, (heartsFromStorage) => hearts = heartsFromStorage);
+    for (let i = 0; i < maxHearts; i++) {
         if (i < hearts) {
-            shareString += "♥ ";
+            shareString += "🖤";
         } else {
-            shareString += "♡ ";
+            shareString += "🤍";
         }
     }
+
+    shareString += "\n\nLevel 1: ";
+    var guesses;
+    await loadItem("guesses", [], (guessesFromStorage) => guesses = guessesFromStorage)
     for (const guess of guesses) {
-        shareString += "\n" + guess.direction + " " + guess.distance;
+        shareString += coordNamesToSmileys.filter((entry) => entry.coord == guess.direction)[0].smiley;
     }
-    shareString += "\n" + "http://motrhelp.github.io/geodle"
-    Clipboard.setString(shareString);
+    shareString += "\n";
+
+    Clipboard.setStringAsync(shareString);
     alert("Results copied to clipboard, share on!")
 }
 
@@ -62,7 +84,7 @@ export function GameOverLinks({ guesses, hearts, country }) {
                 />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => onPressShare(guesses, hearts)}
+                onPress={() => onPressShare()}
             >
                 <Image
                     style={styles.pictogram}

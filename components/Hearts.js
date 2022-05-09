@@ -3,6 +3,8 @@ import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import heart from '../img/heart.png';
 import lostHeart from '../img/lostHeart.png';
 
+export const maxHearts = 6;
+
 export default function Hearts({ hearts, onPressHearts }) {
     return (
         <TouchableOpacity onPress={onPressHearts}
