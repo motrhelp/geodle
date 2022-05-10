@@ -156,7 +156,7 @@ export const countryList = [
     { code: "NP", name: "Nepal", lat: 28.394857, lon: 84.124008, flag: require("../img/Flag_of_Nepal.png"), capital: { name: "Kathmandu" } },
     { code: "NL", name: "Netherlands", lat: 52.132633, lon: 5.291266, flag: require("../img/512px-Flag_of_the_Netherlands.png"), emoji: "🇳🇱", capital: { name: "Amsterdam", icon: "../img/amsterdam.png" } },
     { code: "NC", name: "New Caledonia", lat: -20.904305, lon: 165.618042 },
-    { code: "NZ", name: "New Zealand", lat: -40.900557, lon: 174.885971 },
+    { code: "NZ", name: "New Zealand", lat: -40.900557, lon: 174.885971, flag: require("../img/Flag_of_New_Zealand.png"), capital: {name: "Wellington"} },
     { code: "NI", name: "Nicaragua", lat: 12.865416, lon: -85.207229 },
     { code: "NE", name: "Niger", lat: 17.607789, lon: 8.081666 },
     { code: "NG", name: "Nigeria", lat: 9.081999, lon: 8.675277 },

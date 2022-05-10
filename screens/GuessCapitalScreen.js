@@ -5,7 +5,7 @@ import { useEffect, useState, useLayoutEffect } from 'react';
 import Hearts from '../components/Hearts';
 
 import defaultIcon from '../img/government.png';
-import { GameOverLinks, GameOverMessage } from '../components/GameOver';
+import { GameOverLinks, GameOverMessage, GlobeLink, ShareButton } from '../components/GameOver';
 import { loadItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
 import countryList from '../data/CountryList';
@@ -14,7 +14,7 @@ import rightArrow from '../img/right-arrow.png'
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel1, navigateToLevel2 } from '../util/Navigation';
 
-export default function GuessCapitalScreen({ navigation, route }) {
+export default function GuessCapitalScreen({ navigation }) {
 
   const defaultCountry = {
     name: "Default Country",
@@ -30,7 +30,8 @@ export default function GuessCapitalScreen({ navigation, route }) {
   const [correctCharacters, setCorrectCharacters] = useState([]);
   const [almostCharacters, setAlmostCharacters] = useState([]);
   const [wrongCharacters, setWrongCharacters] = useState([]);
-  const [victory, setVictory] = useState(false)
+  const [victory, setVictory] = useState(false);
+  const [level2Guesses, setLevel2Guesses] = useState([]);
 
   const [char1, setChar1] = useState('');
   const [char2, setChar2] = useState('');
@@ -104,31 +105,26 @@ export default function GuessCapitalScreen({ navigation, route }) {
       headerBackButtonMenuEnabled: false,
       headerTitle: () => <Header />,
       headerRight: () => (
-        0 > 0 ?
-          <TouchableOpacity
-            style={styles.nextLevelArrowContainer}
-            onPress={() => navigateToLevel2(navigation)}
-          >
-            <Text style={styles.nextLevelText}>
-              NEXT{'\n'}LEVEL
-            </Text>
-            <Image
-              style={styles.nextLevelArrow}
-              source={rightArrow}
-            />
-          </TouchableOpacity>
-          : null
+        <View style={styles.rowContainer}>
+          {hearts == 0 || victory ?
+            <GlobeLink country={country} />
+            : null
+          }
+          <ShareButton />
+        </View>
       ),
       headerLeft: () => (
-        <TouchableOpacity
-          style={styles.nextLevelArrowContainer}
-          onPress={() => navigateToLevel1(navigation)}
-        >
-          <Image
-            style={styles.previousLevelArrow}
-            source={leftArrow}
-          />
-        </TouchableOpacity>
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            style={styles.nextLevelArrowContainer}
+            onPress={() => navigateToLevel1(navigation)}
+          >
+            <Image
+              style={styles.previousLevelArrow}
+              source={leftArrow}
+            />
+          </TouchableOpacity>
+        </View>
       )
     }, [navigation]);
   })
@@ -142,6 +138,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
     loadItem("correctCharacters", [], setCorrectCharacters);
     loadItem("almostCharacters", [], setAlmostCharacters);
     loadItem("wrongCharacters", [], setWrongCharacters);
+    loadItem("level2Guesses", [], setLevel2Guesses);
     loadItem("hearts", 6, setHearts);
     loadItem("level2Victory", false, setVictory);
   }, []);
@@ -153,6 +150,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
     storeItem("wrongCharacters", wrongCharacters);
     storeItem("hearts", hearts);
     storeItem("level2Victory", victory);
+    storeItem("level2Guesses", level2Guesses);
   }, [victory, hearts]);
 
   // Verify if the corresponding character keyboard key is not already guessed
@@ -196,7 +194,7 @@ export default function GuessCapitalScreen({ navigation, route }) {
       if (char == capitalName.charAt(charIndex)) {
         charGuessedSetter(true);
         correctCharacters.push(char);
-      } else {
+      } else if (char != "") {
         if (capitalName.indexOf(char) > -1) {
           almostCharacters.push(char);
         } else {
@@ -211,11 +209,24 @@ export default function GuessCapitalScreen({ navigation, route }) {
   }
 
   function onPressGuess() {
+    const oldCorrect = [...correctCharacters];
+    const oldAlmost = [...almostCharacters];
+
     for (let i = 0; i < capitalName.length; i++) {
       processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
     }
     if (!areAllCharactersGuessed()) {
       setHearts(hearts - 1);
+    }
+
+    if (areAllCharactersGuessed()) {
+      level2Guesses.push("✅");
+    } else if (correctCharacters.length > oldCorrect.length) {
+      level2Guesses.push("🟩");
+    } else if (almostCharacters.length > oldAlmost.length) {
+      level2Guesses.push("🟧");
+    } else {
+      level2Guesses.push("⬜️");
     }
   }
 
@@ -513,6 +524,9 @@ const styles = StyleSheet.create({
     aspectRatio: 512 / 512,
     marginLeft: 20,
   },
+  rowContainer: {
+    flexDirection: 'row'
+  },
 
   container: {
     flex: 1,
@@ -619,5 +633,9 @@ const styles = StyleSheet.create({
   guessButton: {
     fontSize: 20,
     alignSelf: 'center'
+  },
+  gameOverContainer: {
+    flex: 2,
+    alignSelf: 'center',
   },
 });

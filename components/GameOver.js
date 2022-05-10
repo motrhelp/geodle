@@ -57,8 +57,13 @@ const onPressShare = async () => {
     for (const guess of guesses) {
         shareString += coordNamesToSmileys.filter((entry) => entry.coord == guess.direction)[0].smiley;
     }
-    shareString += "\n";
 
+    shareString += "\nLevel 2: ";
+    var level2Guesses;
+    await loadItem("level2Guesses", [], (guessesFromStorage) => level2Guesses = guessesFromStorage);
+    for (const guess of level2Guesses) {
+        shareString += guess
+    }
     Clipboard.setStringAsync(shareString);
     alert("Results copied to clipboard, share on!")
 }
@@ -72,7 +77,7 @@ const onPressNextLevel = (navigation, country, hearts) => {
     navigation.navigate("GuessCapital", { country, hearts })
 }
 
-export function GameOverLinks({ guesses, hearts, country }) {
+export function GameOverLinks({ country }) {
     return (
         <View style={styles.linksContainer}>
             <TouchableOpacity
@@ -95,6 +100,32 @@ export function GameOverLinks({ guesses, hearts, country }) {
     );
 }
 
+export function GlobeLink({ country }) {
+    return (
+        <TouchableOpacity
+            onPress={() => onPressGoogleMaps(country.name)}
+        >
+            <Image
+                style={styles.pictogram}
+                source={globeButton}
+            />
+        </TouchableOpacity>
+    );
+}
+
+export function ShareButton() {
+    return (
+        <TouchableOpacity
+            onPress={() => onPressShare()}
+        >
+            <Image
+                style={styles.pictogram}
+                source={shareButton}
+            />
+        </TouchableOpacity>
+    );
+}
+
 
 const styles = StyleSheet.create({
 
@@ -103,20 +134,21 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 25,
         fontWeight: "bold",
+        margin: 5
     },
 
     // Share etc links
     linksContainer: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        margin: 30
+        // margin: 10
     },
     pictogram: {
-        flex: 1,
+        // flex: 1,
         minHeight: 30,
         aspectRatio: 512 / 512,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
     },
 
 });

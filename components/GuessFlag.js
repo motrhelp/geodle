@@ -2,13 +2,11 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import countriesWithFlags, { countryList, searchCountry } from '../data/CountryList';
 
 import { HeaderTitle, NextLevelArrow } from '../components/Header';
 import Flag from './Flag';
-import { GameOverCountryName, GameOverLinks, GameOverMessage } from './GameOver';
+import { GameOverCountryName, GlobeLink, ShareButton, GameOverMessage } from './GameOver';
 import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
@@ -27,6 +25,7 @@ export default function GuessFlag({ navigation }) {
     const [guesses, setGuesses] = useState();
     const [hearts, setHearts] = useState();
     const [victory, setVictory] = useState();
+    const [level2Victory, setLevel2Victory] = useState();
 
     // Set up the level navigation header: title, next and previous level arrows
     useLayoutEffect(() => {
@@ -34,14 +33,20 @@ export default function GuessFlag({ navigation }) {
             title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
             headerRight: () => (
-                victory && hearts > 0 ?
+                victory ?
                     <NextLevelArrow
                         navigation={navigation}
                         navigateToNextLevel={navigateToLevel2}
                     />
                     : null
             ),
-            headerLeft: null
+            headerLeft: () =>
+                hearts == 0 || level2Victory ?
+                    <View style={styles.rowContainer}>
+                        <GlobeLink country={country} />
+                        <ShareButton />
+                    </View>
+                    : null
         }, [navigation]);
     })
 
@@ -50,14 +55,19 @@ export default function GuessFlag({ navigation }) {
         refreshVersion();
     })
 
-    // Load guesses, hearts and such from device storage
+    // Load guesses, hearts and such on startup and navigation
     useEffect(() => {
-        loadData();
-    }, []);
-
+        const unsubscribe = navigation.addListener('focus', () => {
+          loadData();
+        });
+    
+        return unsubscribe;
+      }, [navigation]);
+    
     const loadData = async () => {
         loadItem("guesses", [], setGuesses);
         loadItem("level1Victory", false, setVictory);
+        loadItem("level2Victory", false, setLevel2Victory);
         loadItem("hearts", 6, setHearts);
     }
 
@@ -114,7 +124,7 @@ export default function GuessFlag({ navigation }) {
                     // Redirect to the next level
                     setTimeout(() => {
                         navigateToLevel2(navigation);
-                    }, 2000)
+                    }, 1500)
                 }
 
                 // Store the session data
@@ -187,22 +197,15 @@ export default function GuessFlag({ navigation }) {
                 <GameOverMessage victory={victory} />
             }
 
-            {/* End game links */}
-            {hearts == 0 || victory ?
-                <GameOverLinks
-                    guesses={guesses}
-                    hearts={hearts}
-                    country={country}
-                />
-                :
-                null
-            }
-
         </KeyboardAvoidingView >
     );
 }
 
 const styles = StyleSheet.create({
+    rowContainer: {
+        flexDirection: 'row'
+    },
+
     gameContainer: {
         flex: 9,
         alignItems: 'center',
