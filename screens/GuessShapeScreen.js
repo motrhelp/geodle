@@ -45,7 +45,7 @@ export default function GuessShapeScreen({ navigation }) {
                 fontWeight: 'bold',
             },
             headerBackButtonMenuEnabled: false,
-            headerTitle: () => <Text style={styles.headerTitle}>GEODLE{'\n'} Level 3</Text>,
+            headerTitle: () => <Text style={styles.headerTitle}>GEODLE{'\n'} Level 3 mockup</Text>,
             headerRight: () => null,
             headerLeft: () => (
                 <View style={styles.rowContainer}>

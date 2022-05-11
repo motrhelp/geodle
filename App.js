@@ -14,32 +14,19 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [initialRoute, setInitialRoute] = useState(null);
   const [level1Victory, setLevel1Victory] = useState(null);
   const [level2Victory, setLevel2Victory] = useState(null);
 
   useEffect(() => {
     loadItem("level1Victory", false, setLevel1Victory);
-    loadItem("level2Victory", false, determineInitialRoute);
-    
-    function determineInitialRoute(level2Victory) {
-      if (level1Victory == true) {
-          setInitialRoute(level2Name);
-          if (level2Victory == true) {
-            setInitialRoute(level3Name);
-          } else {
-            setInitialRoute(level2Name);
-          }
-      } else {
-        setInitialRoute(level1Name);
-      }
-    }
+    loadItem("level2Victory", false, setLevel2Victory);
   }, []);
 
-  return initialRoute != null ? (
+  return level2Victory != null ? (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={level1Victory ? level2Victory ? level2Name : level3Name : level1Name}
+        // initialRouteName={level1Victory ? level2Victory ? level2Name : level3Name : level1Name}
+        initialRouteName={level2Victory ? level2Name : level1Name}
         screenOptions={{
           headerTitleAlign: 'center'
         }}
