@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.8a2a1206.chunk.js",
-    "app.js.map": "/geodle/static/js/app.8a2a1206.chunk.js.map",
+    "app.js": "/geodle/static/js/app.895475ad.chunk.js",
+    "app.js.map": "/geodle/static/js/app.895475ad.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.a96a1796.chunk.js": "/geodle/static/js/2.a96a1796.chunk.js",
-    "static/js/2.a96a1796.chunk.js.map": "/geodle/static/js/2.a96a1796.chunk.js.map",
+    "static/js/2.2b418b39.chunk.js": "/geodle/static/js/2.2b418b39.chunk.js",
+    "static/js/2.2b418b39.chunk.js.map": "/geodle/static/js/2.2b418b39.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.a96a1796.chunk.js.LICENSE.txt": "/geodle/static/js/2.a96a1796.chunk.js.LICENSE.txt",
+    "static/js/2.2b418b39.chunk.js.LICENSE.txt": "/geodle/static/js/2.2b418b39.chunk.js.LICENSE.txt",
     "static/media/320px-Flag_of_Guyana.svg.png": "/geodle/static/media/320px-Flag_of_Guyana.svg.d3b5bf73.png",
     "static/media/320px-Flag_of_Liechtenstein.png": "/geodle/static/media/320px-Flag_of_Liechtenstein.9e11e432.png",
     "static/media/512px-Flag_of_Albania.png": "/geodle/static/media/512px-Flag_of_Albania.b2da79b9.png",
@@ -107,6 +107,19 @@
     "static/media/Flag_of_the_Marshall_Islands.svg.png": "/geodle/static/media/Flag_of_the_Marshall_Islands.svg.19b60396.png",
     "static/media/Flag_of_the_People's_Republic_of_China.png": "/geodle/static/media/Flag_of_the_People's_Republic_of_China.b16dfbeb.png",
     "static/media/accra.png": "/geodle/static/media/accra.eb58112b.png",
+    "static/media/azerbaijan.png": "/geodle/static/media/azerbaijan.45ecf084.png",
+    "static/media/bahamas.png": "/geodle/static/media/bahamas.4109ccfb.png",
+    "static/media/bahrain.png": "/geodle/static/media/bahrain.65b8252d.png",
+    "static/media/bangladesh.png": "/geodle/static/media/bangladesh.9707da88.png",
+    "static/media/barbados.png": "/geodle/static/media/barbados.f55770c0.png",
+    "static/media/belarus.png": "/geodle/static/media/belarus.5d690290.png",
+    "static/media/belgium.png": "/geodle/static/media/belgium.e4e3d79c.png",
+    "static/media/belize.png": "/geodle/static/media/belize.6da1f969.png",
+    "static/media/benin.png": "/geodle/static/media/benin.de9657a4.png",
+    "static/media/bermuda.png": "/geodle/static/media/bermuda.45925fc0.png",
+    "static/media/bhutan.png": "/geodle/static/media/bhutan.49fa397b.png",
+    "static/media/bolivia.png": "/geodle/static/media/bolivia.37ef6484.png",
+    "static/media/bosnia-and-herzegovina.png": "/geodle/static/media/bosnia-and-herzegovina.d8940bd0.png",
     "static/media/government.png": "/geodle/static/media/government.57b5ca32.png",
     "static/media/heart.png": "/geodle/static/media/heart.f38014fe.png",
     "static/media/left-arrow.png": "/geodle/static/media/left-arrow.8f3ba363.png",
@@ -117,7 +130,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.a96a1796.chunk.js",
-    "static/js/app.8a2a1206.chunk.js"
+    "static/js/2.2b418b39.chunk.js",
+    "static/js/app.895475ad.chunk.js"
   ]
 }
