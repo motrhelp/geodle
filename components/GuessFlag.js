@@ -76,7 +76,6 @@ export default function GuessFlag({ navigation }) {
         flushStorage();
         window.location.reload(false);
     }
-
     // Store guesses, hearts and such on device
     const storeData = async (guesses, hearts, victory) => {
         storeItem("guesses", guesses);

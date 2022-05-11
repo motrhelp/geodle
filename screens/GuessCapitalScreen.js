@@ -5,14 +5,14 @@ import { useEffect, useState, useLayoutEffect } from 'react';
 import Hearts from '../components/Hearts';
 
 import defaultIcon from '../img/government.png';
-import { GameOverLinks, GameOverMessage, GlobeLink, ShareButton } from '../components/GameOver';
+import { GameOverMessage, GlobeLink, ShareButton } from '../components/GameOver';
 import { loadItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
 import countryList from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
-import rightArrow from '../img/right-arrow.png'
 import leftArrow from '../img/left-arrow.png'
-import { navigateToLevel1, navigateToLevel2 } from '../util/Navigation';
+import { navigateToLevel1, navigateToLevel3 } from '../util/Navigation';
+import { NextLevelArrow } from '../components/Header';
 
 export default function GuessCapitalScreen({ navigation }) {
 
@@ -106,11 +106,8 @@ export default function GuessCapitalScreen({ navigation }) {
       headerTitle: () => <Header />,
       headerRight: () => (
         <View style={styles.rowContainer}>
-          {hearts == 0 || victory ?
-            <GlobeLink country={country} />
-            : null
-          }
-          <ShareButton />
+          <NextLevelArrow navigation={navigation}
+            navigateToNextLevel={navigateToLevel3} />
         </View>
       ),
       headerLeft: () => (
@@ -123,6 +120,11 @@ export default function GuessCapitalScreen({ navigation }) {
               style={styles.previousLevelArrow}
               source={leftArrow}
             />
+            {hearts == 0 || victory ?
+              <GlobeLink country={country} />
+              : null
+            }
+            <ShareButton />
           </TouchableOpacity>
         </View>
       )
