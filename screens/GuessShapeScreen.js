@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import countriesWithFlags, { countryList } from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
 import Hearts from '../components/Hearts';
-import { flushStorage, loadItem } from '../util/DataStorage';
+import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
 import { TouchableOpacity } from 'react-native-web';
 import { GameOverMessage, ShareButton, GlobeLink } from '../components/GameOver';
 import leftArrow from '../img/left-arrow.png'
@@ -15,29 +15,35 @@ export default function GuessShapeScreen({ navigation }) {
 
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [hearts, setHearts] = useState();
-    const [selected, setSelected] = useState();
+    const [selected, setSelected] = useState(null);
     const [wrong, setWrong] = useState([]);
     const [correct, setCorrect] = useState();
-    const [victory, setVictory] = useState(false);
+    const [victory, setVictory] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [shapes, setShapes] = useState([
-        countryList[14], countryList[15], countryList[16], countryList[17], countryList[18],
+        countryList[10], countryList[15], countryList[16], countryList[106], countryList[18],
         countryList[19], countryList[20], countryList[21], countryList[22], countryList[23],
         countryList[24], countryList[25], countryList[26]]
     );
 
-    // Load hearts and such on startup and navigation
+    // Load hearts and such on startup
     useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-            loadData();
-        });
-
-        return unsubscribe;
-    }, [navigation]);
+        loadData();
+    }, []);
 
     const loadData = async () => {
+        loadItem("wrong", [], setWrong);
+        loadItem("correct", null, setCorrect);
         loadItem("hearts", 6, setHearts);
         loadItem("level3Victory", false, setVictory);
     }
+
+    useEffect(() => {
+        storeItem("wrong", wrong);
+        storeItem("correct", correct);
+        storeItem("hearts", hearts);
+        storeItem("level3Victory", victory);
+    }, [victory, hearts]);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -77,17 +83,17 @@ export default function GuessShapeScreen({ navigation }) {
                 onPress={() => {
                     if (countryOnScreen == selected) {
                         setSelected(null);
-                    } else if (!wrong.includes(countryOnScreen)){
+                    } else if (!wrong.includes(countryOnScreen.code)) {
                         setSelected(countryOnScreen);
                     }
                 }}
                 onLongPress={() => {
                     if (countryOnScreen == selected) {
                         if (countryOnScreen == country) {
-                            setCorrect(countryOnScreen);
+                            setCorrect(countryOnScreen.code);
                             setVictory(true);
                         } else {
-                            wrong.push(countryOnScreen);
+                            wrong.push(countryOnScreen.code);
                             setHearts(hearts - 1);
                             setSelected(null);
                         }
@@ -100,8 +106,8 @@ export default function GuessShapeScreen({ navigation }) {
                 <Image style={[
                     styles.shapeImage,
                     selected == countryOnScreen ? styles.selectedImage :
-                        wrong.includes(countryOnScreen) ? styles.confirmedImage : null,
-                    correct == countryOnScreen ? styles.correctImage : null
+                        wrong.includes(countryOnScreen.code) ? styles.confirmedImage : null,
+                    correct == countryOnScreen.code ? styles.correctImage : null
                 ]}
                     source={countryOnScreen.shape}
                     pointerEvents="none"
@@ -227,6 +233,8 @@ const styles = StyleSheet.create({
         filter: 'invert(12%) sepia(93%) saturate(3011%) hue-rotate(352deg) brightness(92%) contrast(122%)',
     },
     correctImage: {
+        width: 120,
+        height: 120,
         filter: 'invert(21%) sepia(92%) saturate(1173%) hue-rotate(91deg) brightness(103%) contrast(108%)',
     }
 });

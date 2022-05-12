@@ -123,7 +123,7 @@ export default function GuessFlag({ navigation }) {
                     // Redirect to the next level
                     setTimeout(() => {
                         navigateToLevel2(navigation);
-                    }, 1500)
+                    }, 1000)
                 }
 
                 // Store the session data

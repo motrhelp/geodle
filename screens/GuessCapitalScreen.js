@@ -207,6 +207,11 @@ export default function GuessCapitalScreen({ navigation }) {
     }
     if (areAllCharactersGuessed()) {
       setVictory(true);
+
+      // Redirect to the next level
+      setTimeout(() => {
+        navigateToLevel3(navigation);
+      }, 1000)
     }
   }
 
