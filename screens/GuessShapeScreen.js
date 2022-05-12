@@ -77,7 +77,7 @@ export default function GuessShapeScreen({ navigation }) {
                 onPress={() => {
                     if (countryOnScreen == selected) {
                         setSelected(null);
-                    } else {
+                    } else if (!wrong.includes(countryOnScreen)){
                         setSelected(countryOnScreen);
                     }
                 }}
@@ -221,12 +221,12 @@ const styles = StyleSheet.create({
     selectedImage: {
         width: 120,
         height: 120,
-        tintColor: "#b36b00"
+        filter: 'invert(38%) sepia(97%) saturate(628%) hue-rotate(4deg) brightness(95%) contrast(101%)',
     },
     confirmedImage: {
-        tintColor: '#990000',
+        filter: 'invert(12%) sepia(93%) saturate(3011%) hue-rotate(352deg) brightness(92%) contrast(122%)',
     },
     correctImage: {
-        tintColor: '#006600',
+        filter: 'invert(21%) sepia(92%) saturate(1173%) hue-rotate(91deg) brightness(103%) contrast(108%)',
     }
 });
