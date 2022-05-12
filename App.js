@@ -25,8 +25,7 @@ export default function App() {
   return level2Victory != null ? (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName={level1Victory ? level2Victory ? level2Name : level3Name : level1Name}
-        initialRouteName={level2Victory ? level2Name : level1Name}
+        initialRouteName={level1Victory ? level2Victory ? level3Name : level2Name : level1Name}
         screenOptions={{
           headerTitleAlign: 'center'
         }}

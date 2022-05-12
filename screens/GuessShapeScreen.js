@@ -16,7 +16,8 @@ export default function GuessShapeScreen({ navigation }) {
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [hearts, setHearts] = useState();
     const [selected, setSelected] = useState();
-    const [confirmed, setConfirmed] = useState([]);
+    const [wrong, setWrong] = useState([]);
+    const [correct, setCorrect] = useState();
     const [victory, setVictory] = useState(false);
     const [shapes, setShapes] = useState([
         countryList[14], countryList[15], countryList[16], countryList[17], countryList[18],
@@ -45,7 +46,7 @@ export default function GuessShapeScreen({ navigation }) {
                 fontWeight: 'bold',
             },
             headerBackButtonMenuEnabled: false,
-            headerTitle: () => <Text style={styles.headerTitle}>GEODLE{'\n'} Level 3 mockup</Text>,
+            headerTitle: () => <Text style={styles.headerTitle}>GEODLE{'\n'} Level 3</Text>,
             headerRight: () => null,
             headerLeft: () => (
                 <View style={styles.rowContainer}>
@@ -69,27 +70,40 @@ export default function GuessShapeScreen({ navigation }) {
         }, [navigation]);
     })
 
-    function Shape({ country }) {
+    function Shape({ countryOnScreen }) {
         return (
             <TouchableOpacity style={styles.shapeContainer}
+                disabled={victory || hearts == 0}
                 onPress={() => {
-                    setSelected(country);
-                }}
-                onLongPress={() => {
-                    if (country == selected) {
-                        setConfirmed(country);
+                    if (countryOnScreen == selected) {
                         setSelected(null);
                     } else {
-                        setSelected(country);
+                        setSelected(countryOnScreen);
                     }
-                    alert(" ❤️ Thanks for testing  ❤️ \nStan is still working on this one")
+                }}
+                onLongPress={() => {
+                    if (countryOnScreen == selected) {
+                        if (countryOnScreen == country) {
+                            setCorrect(countryOnScreen);
+                            setVictory(true);
+                        } else {
+                            wrong.push(countryOnScreen);
+                            setHearts(hearts - 1);
+                            setSelected(null);
+                        }
+                    } else {
+                        setSelected(countryOnScreen);
+                    }
+                    // alert(" ❤️ Thanks for testing  ❤️ \nStan is still working on this one")
                 }}
             >
-                <Image style={
-                    selected == country ? styles.selectedImage :
-                        confirmed == country ? styles.confirmedImage :
-                            styles.shapeImage}
-                    source={country.shape}
+                <Image style={[
+                    styles.shapeImage,
+                    selected == countryOnScreen ? styles.selectedImage :
+                        wrong.includes(countryOnScreen) ? styles.confirmedImage : null,
+                    correct == countryOnScreen ? styles.correctImage : null
+                ]}
+                    source={countryOnScreen.shape}
                     pointerEvents="none"
                 />
             </TouchableOpacity>
@@ -104,36 +118,45 @@ export default function GuessShapeScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Hearts hearts={hearts} onPressHearts={onPressGEODLE}/>
+            <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />
 
-            <View style={styles.hintContainer}>
-                <Text style={styles.hintText}>Can you guess the shape of {country.name}?</Text>
-            </View>
-
-            <View style={styles.shapeListContainer}>
-                <Shape country={shapes[0]} />
-                <Shape country={shapes[1]} />
-                <Shape country={shapes[2]} />
-            </View>
-            <View style={styles.shapeListContainer}>
-                <Shape country={shapes[3]} />
-                <Shape country={shapes[4]} />
-                <Shape country={shapes[5]} />
-            </View>
-            <View style={styles.shapeListContainer}>
-                <Shape country={shapes[6]} />
-                <Shape country={shapes[7]} />
-                <Shape country={shapes[8]} />
-            </View>
-
-            {hearts == 0 || victory ?
-                <GameOverMessage victory={victory} />
+            {!victory && hearts > 0 ?
+                < View style={styles.hintContainer}>
+                    {selected == null ?
+                        <Text style={styles.hintText}>Can you guess the shape of {country.name}?</Text>
+                        :
+                        <Text style={styles.hintText}>Long press to confirm</Text>
+                    }
+                </View>
                 :
                 null
             }
 
+            <View style={styles.shapeListContainer}>
+                <Shape countryOnScreen={shapes[0]} />
+                <Shape countryOnScreen={shapes[1]} />
+                <Shape countryOnScreen={shapes[2]} />
+            </View>
+            <View style={styles.shapeListContainer}>
+                <Shape countryOnScreen={shapes[3]} />
+                <Shape countryOnScreen={shapes[4]} />
+                <Shape countryOnScreen={shapes[5]} />
+            </View>
+            <View style={styles.shapeListContainer}>
+                <Shape countryOnScreen={shapes[6]} />
+                <Shape countryOnScreen={shapes[7]} />
+                <Shape countryOnScreen={shapes[8]} />
+            </View>
+
+            {
+                hearts == 0 || victory ?
+                    <GameOverMessage victory={victory} />
+                    :
+                    null
+            }
+
             <StatusBar style="auto" />
-        </View>
+        </View >
     );
 }
 
@@ -196,23 +219,14 @@ const styles = StyleSheet.create({
         margin: 20
     },
     selectedImage: {
-        width: 150,
-        height: 150,
-        aspectRatio: 512 / 512,
-        margin: 20,
+        width: 120,
+        height: 120,
+        tintColor: "#b36b00"
     },
     confirmedImage: {
-        width: 80,
-        height: 80,
-        aspectRatio: 512 / 512,
-        margin: 20,
         tintColor: '#990000',
     },
     correctImage: {
-        width: 150,
-        height: 150,
-        aspectRatio: 512 / 512,
-        margin: 20,
         tintColor: '#006600',
     }
 });
