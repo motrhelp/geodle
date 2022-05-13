@@ -21,9 +21,8 @@ export default function GuessShapeScreen({ navigation }) {
     const [victory, setVictory] = useState(null);
     const [loading, setLoading] = useState(true);
     const [shapes, setShapes] = useState([
-        countryList[10], countryList[15], countryList[16], countryList[106], countryList[18],
-        countryList[19], countryList[20], countryList[21], countryList[22], countryList[23],
-        countryList[24], countryList[25], countryList[26]]
+        countryList[15], countryList[24], countryList[16], countryList[106], countryList[18],
+        countryList[20], countryList[26], countryList[21], countryList[23]]
     );
 
     // Load hearts and such on startup
