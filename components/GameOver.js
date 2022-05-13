@@ -39,31 +39,55 @@ export function GameOverMessage({ victory }) {
 }
 
 const onPressShare = async () => {
-    let shareString = "http://motrhelp.github.io/geodle\n\n";
+    let shareString = "Can you beat me in Geodle?\n\n";
 
-    var hearts;
+    let hearts;
     await loadItem("hearts", maxHearts, (heartsFromStorage) => hearts = heartsFromStorage);
-    for (let i = 0; i < maxHearts; i++) {
-        if (i < hearts) {
-            shareString += "🖤";
-        } else {
-            shareString += "🤍";
-        }
+    shareString += "I used " + (maxHearts - hearts) + " hearts ";
+
+    let level2Guesses;
+    await loadItem("level2Guesses", [], (guessesFromStorage) => level2Guesses = guessesFromStorage);
+
+    let level3Guesses;
+    await loadItem("wrong", [], (guessesFromStorage) => level3Guesses = guessesFromStorage);
+
+    if (level3Guesses.length > 0) {
+        shareString += "for 3 levels:";
+    } else if (level2Guesses.length > 0) {
+        shareString += "for 2 levels:";
+    } else {
+        shareString += "on level 1:"
     }
 
     shareString += "\n\nLevel 1: ";
     var guesses;
     await loadItem("guesses", [], (guessesFromStorage) => guesses = guessesFromStorage)
     for (const guess of guesses) {
-        shareString += coordNamesToSmileys.filter((entry) => entry.coord == guess.direction)[0].smiley;
+        shareString += coordNamesToSmileys.filter(
+            (entry) => entry.coord == guess.direction
+        )[0].smiley;
+    }
+    if (level2Guesses.length > 0) {
+        shareString += "\nLevel 2: ";
+        for (const guess of level2Guesses) {
+            shareString += guess
+        }
     }
 
-    shareString += "\nLevel 2: ";
-    var level2Guesses;
-    await loadItem("level2Guesses", [], (guessesFromStorage) => level2Guesses = guessesFromStorage);
-    for (const guess of level2Guesses) {
-        shareString += guess
+    let level3Victory;
+    await loadItem("level3Victory", false, (victoryFromStorage) => level3Victory = victoryFromStorage);
+    if (level3Guesses.length > 0 || level3Victory == true) {
+        shareString += "\nLevel 3: ";
+        for (const guess of level3Guesses) {
+            shareString += "🟥"
+        }
+        if (level3Victory == true) {
+            shareString += "✅"
+        }
     }
+
+    shareString += "\n\nhttps://motrhelp.github.io/geodle/"
+
     Clipboard.setStringAsync(shareString);
     alert("Results copied to clipboard, share on!")
 }

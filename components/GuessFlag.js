@@ -217,7 +217,8 @@ const styles = StyleSheet.create({
         maxHeight: 50,
         minHeight: 40,
         justifyContent: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        maxWidth: 330
     },
     input: {
         flex: 8,

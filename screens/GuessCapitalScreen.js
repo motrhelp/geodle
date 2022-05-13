@@ -105,10 +105,12 @@ export default function GuessCapitalScreen({ navigation }) {
       headerBackButtonMenuEnabled: false,
       headerTitle: () => <Header />,
       headerRight: () => (
-        <View style={styles.rowContainer}>
-          <NextLevelArrow navigation={navigation}
-            navigateToNextLevel={navigateToLevel3} />
-        </View>
+        victory ?
+          <View style={styles.rowContainer}>
+            <NextLevelArrow navigation={navigation}
+              navigateToNextLevel={navigateToLevel3} />
+          </View>
+          : null
       ),
       headerLeft: () => (
         <View style={styles.rowContainer}>
