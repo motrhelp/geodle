@@ -65,7 +65,7 @@ export const countryList = [
     { code: "DO", name: "Dominican Republic", lat: 18.735693, lon: -70.162651, flag: require("../img/Flag_of_the_Dominican_Republic.svg.png"), capital: { name: "Santo Domingo" } },
     { code: "EC", name: "Ecuador", lat: -1.831239, lon: -78.183406, flag: require("../img/640px-Flag_of_Ecuador.svg.png"), capital: { name: "Quito" } },
     { code: "EG", name: "Egypt", lat: 26.820553, lon: 30.802498, flag: require("../img/Flag_of_Egypt.png"), capital: { name: "Cairo" } },
-    { code: "SV", name: "El Salvador", lat: 13.794185, lon: -88.89653, flag: require("../img/Flag_of_El_Salvador.svg.png"), capital: { name: "San Salvador" } },
+    { code: "SV", name: "El Salvador", lat: 13.794185, lon: -88.89653, flag: require("../img/Flag_of_El_Salvador.svg.png"), capital: { name: "San Salvador" }, shape: require("../img/el-salvador.png") },
     { code: "GQ", name: "Equatorial Guinea", lat: 1.650801, lon: 10.267895, flag: require("../img/Flag_of_Equatorial_Guinea.svg.png"), capital: { name: "Malabo" } },
     { code: "ER", name: "Eritrea", lat: 15.179384, lon: 39.782334, flag: require("../img/Flag_of_Eritrea.svg.png"), capital: { name: "Asmara" } },
     { code: "EE", name: "Estonia", lat: 58.595272, lon: 25.013607, flag: require("../img/640px-Flag_of_Estonia.png"), capital: { name: "Tallinn" } },
@@ -89,11 +89,11 @@ export const countryList = [
     { code: "GD", name: "Grenada", lat: 12.262776, lon: -61.604171, flag: require("../img/Flag_of_Grenada.svg.png"), capital: { name: "Saint George" } },
     { code: "GP", name: "Guadeloupe", lat: 16.995971, lon: -62.067641 },
     { code: "GU", name: "Guam", lat: 13.444304, lon: 144.793731, flag: require("../img/640px-Flag_of_Guam.svg.png"), capital: { name: "Hagatna" } },
-    { code: "GT", name: "Guatemala", lat: 15.783471, lon: -90.230759, flag: require("../img/Flag_of_Guatemala.svg.png"), capital: { name: "Guatemala" } },
+    { code: "GT", name: "Guatemala", lat: 15.783471, lon: -90.230759, flag: require("../img/Flag_of_Guatemala.svg.png"), capital: { name: "Guatemala" }, shape: require("../img/guatemala.png")  },
     { code: "GG", name: "Guernsey", lat: 49.465691, lon: -2.585278, flag: require("../img/Flag_of_Guernsey.svg.png"), capital: { name: "Saint Peter Port" } },
     { code: "GN", name: "Guinea", lat: 9.945587, lon: -9.696645, flag: require("../img/640px-Flag_of_Guinea.svg.png"), capital: { name: "Conakry" } },
     { code: "GW", name: "Guinea-Bissau", lat: 11.803749, lon: -15.180413 },
-    { code: "GY", name: "Guyana", lat: 4.860416, lon: -58.93018, flag: require("../img/320px-Flag_of_Guyana.svg.png"), capital: { name: "Georgetown" } },
+    { code: "GY", name: "Guyana", lat: 4.860416, lon: -58.93018, flag: require("../img/320px-Flag_of_Guyana.svg.png"), capital: { name: "Georgetown" }, shape: require("../img/guyana.png") },
     { code: "HT", name: "Haiti", lat: 18.971187, lon: - 72.285215, flag: require("../img/Flag_of_Haiti.svg.png"), capital: { name: "Port au Prince" } },
     { code: "HM", name: "Heard Island and McDonald Islands", lat: -53.08181, lon: 73.504158 },
     // { code: "VA", name: "Vatican (Holy See)", lat: 41.902916, lon: 12.453389, flag: require("../img/Flag_of_the_Vatican_City.svg.png"), capital: { name: "Vatican" }  },
@@ -112,7 +112,7 @@ export const countryList = [
     { code: "JM", name: "Jamaica", lat: 18.109581, lon: -77.297508, flag: require("../img/Flag_of_Jamaica.png"), capital: { name: "Kingston" }, shape: require("../img/jamaica.png") },
     { code: "JP", name: "Japan", lat: 36.204824, lon: 138.252924, flag: require("../img/Flag_of_Japan.png"), capital: { name: "Tokyo" } },
     { code: "JE", name: "Jersey", lat: 49.214439, lon: -2.13125, flag: require("../img/Flag_of_Jersey.svg.png"), capital: { name: "Saint Helier" } },
-    { code: "JO", name: "Jordan", lat: 30.585164, lon: 36.238414, flag: require("../img/640px-Flag_of_Jordan.svg.png"), capital: { name: "Amman" } },
+    { code: "JO", name: "Jordan", lat: 30.585164, lon: 36.238414, flag: require("../img/640px-Flag_of_Jordan.svg.png"), capital: { name: "Amman" }, shape: require("../img/jordan.png")  },
     { code: "KZ", name: "Kazakhstan", lat: 48.019573, lon: 66.923684, flag: require("../img/640px-Flag_of_Kazakhstan.png"), capital: { name: "Nur Sultan" } },
     { code: "KE", name: "Kenya", lat: -0.023559, lon: 37.906193, flag: require("../img/640px-Flag_of_Kenya.png"), capital: { name: "Nairobi" } },
     { code: "KI", name: "Kiribati", lat: -3.370417, lon: -168.734039 },
@@ -127,10 +127,10 @@ export const countryList = [
     { code: "LR", name: "Liberia", lat: 6.428055, lon: -9.429499, flag: require("../img/Flag_of_Liberia.svg.png"), capital: { name: "Monrovia" } },
     { code: "LY", name: "Libya", lat: 26.3351, lon: 17.228331, flag: require("../img/Flag_of_Libya.svg.png"), capital: { name: "Tripoli" } },
     { code: "LI", name: "Liechtenstein", lat: 47.166, lon: 9.555373, flag: require("../img/320px-Flag_of_Liechtenstein.png"), capital: { name: "Vaduz" } },
-    { code: "LT", name: "Lithuania", lat: 55.169438, lon: 23.881275, flag: require("../img/320px-Flag_of_Lithuania.png"), capital: { name: "Vilnus" } },
+    { code: "LT", name: "Lithuania", lat: 55.169438, lon: 23.881275, flag: require("../img/320px-Flag_of_Lithuania.png"), capital: { name: "Vilnus" }, shape: require("../img/lithuania.png")  },
     { code: "LU", name: "Luxembourg", lat: 49.815273, lon: 6.129583, flag: require("../img/320px-Flag_of_Luxembourg.png"), capital: { name: "Luxembourg" } },
     { code: "MK", name: "Macedonia (North)", lat: 41.608635, lon: 21.745275, flag: require("../img/Flag_of_North_Macedonia.png"), capital: { name: "Skopje" } },
-    { code: "MG", name: "Madagascar", lat: -18.766947, lon: 46.869107, flag: require("../img/640px-Flag_of_Madagascar.svg.png"), capital: { name: "Antananarivo" } },
+    { code: "MG", name: "Madagascar", lat: -18.766947, lon: 46.869107, flag: require("../img/640px-Flag_of_Madagascar.svg.png"), capital: { name: "Antananarivo" }, shape: require("../img/madagascar.png")  },
     { code: "MW", name: "Malawi", lat: -13.254308, lon: 34.301525 },
     { code: "MY", name: "Malaysia", lat: 4.210484, lon: 101.975766, flag: require("../img/Flag_of_Malaysia.png"), capital: { name: "Kuala Lumpur" } },
     { code: "MV", name: "Maldives", lat: 3.202778, lon: 73.22068, flag: require("../img/Flag_of_Maldives.svg.png"), capital: { name: "Male" } },
@@ -231,7 +231,7 @@ export const countryList = [
     { code: "TV", name: "Tuvalu", lat: -7.109535, lon: 177.64933 },
     { code: "UG", name: "Uganda", lat: 1.373333, lon: 32.290275 },
     { code: "UA", name: "Ukraine", lat: 48.379433, lon: 31.16558 },
-    // { code: "AE", name: "United Arab Emirates", lat: 23.424076, lon: 53.84781, flag: require("../img/512px-Flag_of_the_United_Arab_Emirates.svg.png"), emoji: "🇦🇪" },
+    { code: "AE", name: "United Arab Emirates", lat: 23.424076, lon: 53.84781, flag: require("../img/512px-Flag_of_the_United_Arab_Emirates.svg.png"), emoji: "🇦🇪" },
     { code: "GB", name: "United Kingdom", lat: 55.378051, lon: -3.435973 },
     { code: "US", name: "United States", lat: 37.09024, lon: -95.712891 },
     // { code: "UM", name: "United States Minor Outlying Islands" },
@@ -275,6 +275,5 @@ export function searchCountry(text) {
     return countryList.filter(filterByText).sort(compareByText);
 }
 
-const countriesWithFlags = countryList.filter(country => country.flag != null);
-
-export default countriesWithFlags;
+export const countriesWithShape = countryList.filter(country => country.shape != null);
+export const countriesWithFlags = countryList.filter(country => country.flag != null);

@@ -2,8 +2,8 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import countriesWithFlags, { countryList } from '../data/CountryList';
-import { gameNumber } from '../util/GameNumber';
+import { countriesWithFlags, countriesWithShape } from '../data/CountryList';
+import { gameNumber, generateConsistentRandomNumber } from '../util/GameNumber';
 import Hearts from '../components/Hearts';
 import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
 import { TouchableOpacity } from 'react-native-web';
@@ -19,15 +19,33 @@ export default function GuessShapeScreen({ navigation }) {
     const [wrong, setWrong] = useState([]);
     const [correct, setCorrect] = useState();
     const [victory, setVictory] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [shapes, setShapes] = useState([
-        countryList[15], countryList[24], countryList[16], countryList[106], countryList[18],
-        countryList[20], countryList[26], countryList[21], countryList[23]]
-    );
+    const [shapes, setShapes] = useState(selectShapes());
+
+    function selectShapes() {
+        let shapes = [];
+
+        for (let i = 0; shapes.length < 9; i++) {
+            let countryShapeCandidate = countriesWithShape[generateConsistentRandomNumber(i, countriesWithShape.length)];
+            if (!shapes.includes(countryShapeCandidate)) {
+                shapes.push(countryShapeCandidate);
+            }
+        }
+
+        console.log(shapes);
+        if (!shapes.includes(country)) {
+            shapes[generateConsistentRandomNumber(0, 9)] = country;
+        }
+
+        return shapes;
+    }
 
     // Load hearts and such on startup
     useEffect(() => {
         loadData();
+
+        if (country.shape == null) {
+            alert("Sorry, the game doesn't have " + country.name + " shape yet. Please let Stan know.")
+        }
     }, []);
 
     const loadData = async () => {
@@ -127,10 +145,16 @@ export default function GuessShapeScreen({ navigation }) {
 
             {!victory && hearts > 0 ?
                 < View style={styles.hintContainer}>
-                    {selected == null ?
-                        <Text style={styles.hintText}>Can you guess the shape of {country.name}?</Text>
+                    {country.shape != null ?
+                        selected == null ?
+                            <Text style={styles.hintText}>Can you guess the shape of {country.name}?</Text>
+                            :
+                            <Text style={styles.hintText}>Long press to confirm</Text>
                         :
-                        <Text style={styles.hintText}>Long press to confirm</Text>
+                        <View>
+                            <Text style={styles.hintText}>Sorry, the game doesn't have {country.name} shape yet.</Text>
+                            <Text style={styles.hintText}>Please let Stan know.</Text>
+                        </View>
                     }
                 </View>
                 :
@@ -153,11 +177,10 @@ export default function GuessShapeScreen({ navigation }) {
                 <Shape countryOnScreen={shapes[8]} />
             </View>
 
-            {
-                hearts == 0 || victory ?
-                    <GameOverMessage victory={victory} />
-                    :
-                    null
+            {hearts == 0 || victory ?
+                <GameOverMessage victory={victory} />
+                :
+                null
             }
 
             <StatusBar style="auto" />

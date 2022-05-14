@@ -8,7 +8,7 @@ import defaultIcon from '../img/government.png';
 import { GameOverMessage, GlobeLink, ShareButton } from '../components/GameOver';
 import { loadItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
-import countryList from '../data/CountryList';
+import { countryList } from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel1, navigateToLevel3 } from '../util/Navigation';

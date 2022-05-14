@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 'react-native';
 
-import countriesWithFlags, { countryList, searchCountry } from '../data/CountryList';
+import { countriesWithFlags, countryList, searchCountry } from '../data/CountryList';
 
 import { HeaderTitle, NextLevelArrow } from '../components/Header';
 import Flag from './Flag';
@@ -58,12 +58,12 @@ export default function GuessFlag({ navigation }) {
     // Load guesses, hearts and such on startup and navigation
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-          loadData();
+            loadData();
         });
-    
+
         return unsubscribe;
-      }, [navigation]);
-    
+    }, [navigation]);
+
     const loadData = async () => {
         loadItem("guesses", [], setGuesses);
         loadItem("level1Victory", false, setVictory);
