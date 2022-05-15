@@ -42,17 +42,13 @@ export default function GuessShapeScreen({ navigation }) {
     // Load hearts and such on startup
     useEffect(() => {
         loadData();
-
-        if (country.shape == null) {
-            alert("Sorry, the game doesn't have " + country.name + " shape yet. Please let Stan know.")
-        }
     }, []);
 
     const loadData = async () => {
         loadItem("wrong", [], setWrong);
         loadItem("correct", null, setCorrect);
         loadItem("hearts", 6, setHearts);
-        loadItem("level3Victory", false, setVictory);
+        loadItem("level3Victory", country.shape == null, setVictory); // the default value is a workaround to catch countries without shapes
     }
 
     useEffect(() => {
@@ -117,7 +113,6 @@ export default function GuessShapeScreen({ navigation }) {
                     } else {
                         setSelected(countryOnScreen);
                     }
-                    // alert(" ❤️ Thanks for testing  ❤️ \nStan is still working on this one")
                 }}
             >
                 <Image style={[
@@ -143,7 +138,7 @@ export default function GuessShapeScreen({ navigation }) {
         <View style={styles.container}>
             <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />
 
-            {!victory && hearts > 0 ?
+            {(!victory && hearts > 0) || country.shape == null ?
                 < View style={styles.hintContainer}>
                     {country.shape != null ?
                         selected == null ?
@@ -153,7 +148,6 @@ export default function GuessShapeScreen({ navigation }) {
                         :
                         <View>
                             <Text style={styles.hintText}>Sorry, the game doesn't have {country.name} shape yet.</Text>
-                            <Text style={styles.hintText}>Please let Stan know.</Text>
                         </View>
                     }
                 </View>

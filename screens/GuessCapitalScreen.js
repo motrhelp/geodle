@@ -105,7 +105,7 @@ export default function GuessCapitalScreen({ navigation }) {
       headerBackButtonMenuEnabled: false,
       headerTitle: () => <Header />,
       headerRight: () => (
-        victory ?
+        victory && country.shape != null ?
           <View style={styles.rowContainer}>
             <NextLevelArrow navigation={navigation}
               navigateToNextLevel={navigateToLevel3} />
@@ -211,31 +211,40 @@ export default function GuessCapitalScreen({ navigation }) {
       setVictory(true);
 
       // Redirect to the next level
-      setTimeout(() => {
-        navigateToLevel3(navigation);
-      }, 1000)
+      if (country.shape != null) {
+        setTimeout(() => {
+          navigateToLevel3(navigation);
+        }, 1000)
+      }
     }
   }
 
+  function charactersEntered() {
+    return charArray.filter((character) => { return character.char != '' }).length;
+  }
+
+
   function onPressGuess() {
-    const oldCorrect = [...correctCharacters];
-    const oldAlmost = [...almostCharacters];
+    if (charactersEntered() >= capitalName.length) {  // ignore Guess button until every character is filled in
+      const oldCorrect = [...correctCharacters];
+      const oldAlmost = [...almostCharacters];
 
-    for (let i = 0; i < capitalName.length; i++) {
-      processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
-    }
-    if (!areAllCharactersGuessed()) {
-      setHearts(hearts - 1);
-    }
+      for (let i = 0; i < capitalName.length; i++) {
+        processCharacterGuess(i, charArray[i].char, charArray[i].setChar, charArray[i].charGuessed, charArray[i].setCharGuessed);
+      }
+      if (!areAllCharactersGuessed()) {
+        setHearts(hearts - 1);
+      }
 
-    if (areAllCharactersGuessed()) {
-      level2Guesses.push("✅");
-    } else if (correctCharacters.length > oldCorrect.length) {
-      level2Guesses.push("🟩");
-    } else if (almostCharacters.length > oldAlmost.length) {
-      level2Guesses.push("🟧");
-    } else {
-      level2Guesses.push("⬜️");
+      if (areAllCharactersGuessed()) {
+        level2Guesses.push("✅");
+      } else if (correctCharacters.length > oldCorrect.length) {
+        level2Guesses.push("🟩");
+      } else if (almostCharacters.length > oldAlmost.length) {
+        level2Guesses.push("🟧");
+      } else {
+        level2Guesses.push("⬜️");
+      }
     }
   }
 
