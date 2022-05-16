@@ -10,6 +10,7 @@ import { TouchableOpacity } from 'react-native-web';
 import { GameOverMessage, ShareButton, GlobeLink } from '../components/GameOver';
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel2 } from '../util/Navigation';
+import refreshVersion from '../util/AppVersion';
 
 export default function GuessShapeScreen({ navigation }) {
 
@@ -39,6 +40,11 @@ export default function GuessShapeScreen({ navigation }) {
         return shapes;
     }
 
+    // Force app refresh every now and then to retire outdated code
+    useEffect(() => {
+        refreshVersion();
+    })
+    
     // Load hearts and such on startup
     useEffect(() => {
         loadData();

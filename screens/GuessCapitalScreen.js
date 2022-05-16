@@ -133,6 +133,7 @@ export default function GuessCapitalScreen({ navigation }) {
     }, [navigation]);
   })
 
+  // Force app refresh every now and then to retire outdated code
   useEffect(() => {
     refreshVersion();
   })
