@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.3fbf73fd.chunk.js",
-    "app.js.map": "/geodle/static/js/app.3fbf73fd.chunk.js.map",
+    "app.js": "/geodle/static/js/app.ee244acc.chunk.js",
+    "app.js.map": "/geodle/static/js/app.ee244acc.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.7410b3d6.chunk.js": "/geodle/static/js/2.7410b3d6.chunk.js",
-    "static/js/2.7410b3d6.chunk.js.map": "/geodle/static/js/2.7410b3d6.chunk.js.map",
+    "static/js/2.88af8d64.chunk.js": "/geodle/static/js/2.88af8d64.chunk.js",
+    "static/js/2.88af8d64.chunk.js.map": "/geodle/static/js/2.88af8d64.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.7410b3d6.chunk.js.LICENSE.txt": "/geodle/static/js/2.7410b3d6.chunk.js.LICENSE.txt",
+    "static/js/2.88af8d64.chunk.js.LICENSE.txt": "/geodle/static/js/2.88af8d64.chunk.js.LICENSE.txt",
     "static/media/256px-Flag_of_Nicaragua.svg.png": "/geodle/static/media/256px-Flag_of_Nicaragua.svg.104fb26e.png",
     "static/media/320px-Flag_of_Guinea-Bissau.png": "/geodle/static/media/320px-Flag_of_Guinea-Bissau.c9b997ee.png",
     "static/media/320px-Flag_of_Guyana.svg.png": "/geodle/static/media/320px-Flag_of_Guyana.svg.d3b5bf73.png",
@@ -130,6 +130,7 @@
     "static/media/Flag_of_the_Marshall_Islands.svg.png": "/geodle/static/media/Flag_of_the_Marshall_Islands.svg.19b60396.png",
     "static/media/Flag_of_the_People's_Republic_of_China.png": "/geodle/static/media/Flag_of_the_People's_Republic_of_China.b16dfbeb.png",
     "static/media/Flag_of_the_Philippines.png": "/geodle/static/media/Flag_of_the_Philippines.9eefa71c.png",
+    "static/media/Flag_of_the_Vatican_City.svg.png": "/geodle/static/media/Flag_of_the_Vatican_City.svg.a652909e.png",
     "static/media/accra.png": "/geodle/static/media/accra.eb58112b.png",
     "static/media/albania.png": "/geodle/static/media/albania.85819b85.png",
     "static/media/algeria.png": "/geodle/static/media/algeria.552c85ef.png",
@@ -292,7 +293,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.7410b3d6.chunk.js",
-    "static/js/app.3fbf73fd.chunk.js"
+    "static/js/2.88af8d64.chunk.js",
+    "static/js/app.ee244acc.chunk.js"
   ]
 }
