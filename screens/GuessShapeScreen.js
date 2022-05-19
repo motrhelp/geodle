@@ -44,7 +44,7 @@ export default function GuessShapeScreen({ navigation }) {
     useEffect(() => {
         refreshVersion();
     })
-    
+
     // Load hearts and such on startup
     useEffect(() => {
         loadData();

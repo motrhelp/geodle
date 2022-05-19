@@ -10,12 +10,12 @@ import { GameOverCountryName, GlobeLink, ShareButton, GameOverMessage } from './
 import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
-
 import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import { navigateToLevel2 } from '../util/Navigation';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
+import GameOverModal from './GameOverModal';
 
 export default function GuessFlag({ navigation }) {
 
@@ -195,6 +195,8 @@ export default function GuessFlag({ navigation }) {
                 :
                 <GameOverMessage victory={victory} />
             }
+
+            <GameOverModal country={country} victory={victory}/>
 
         </KeyboardAvoidingView >
     );

@@ -127,12 +127,14 @@ export function GameOverLinks({ country }) {
 export function GlobeLink({ country }) {
     return (
         <TouchableOpacity
+            style={styles.linkContainer}
             onPress={() => onPressGoogleMaps(country.name)}
         >
             <Image
                 style={styles.pictogram}
                 source={globeButton}
             />
+            <Text style={styles.linkText}>MAPS</Text>
         </TouchableOpacity>
     );
 }
@@ -140,8 +142,10 @@ export function GlobeLink({ country }) {
 export function ShareButton() {
     return (
         <TouchableOpacity
+            style={styles.linkContainer}
             onPress={() => onPressShare()}
         >
+            <Text style={styles.linkText}>SHARE</Text>
             <Image
                 style={styles.pictogram}
                 source={shareButton}
@@ -167,6 +171,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         // margin: 10
+    },
+    linkContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignContent: 'center',
+        // margin: 10
+    },
+    // Game over
+    linkText: {
+        alignSelf: 'center',
+        fontSize: 20,
+        fontWeight: "bold",
+        margin: 5,
+        marginTop: 10
     },
     pictogram: {
         // flex: 1,
