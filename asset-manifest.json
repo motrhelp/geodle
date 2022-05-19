@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.437ac1fb.chunk.js",
-    "app.js.map": "/geodle/static/js/app.437ac1fb.chunk.js.map",
+    "app.js": "/geodle/static/js/app.4620a099.chunk.js",
+    "app.js.map": "/geodle/static/js/app.4620a099.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.e7aa48b8.chunk.js": "/geodle/static/js/2.e7aa48b8.chunk.js",
-    "static/js/2.e7aa48b8.chunk.js.map": "/geodle/static/js/2.e7aa48b8.chunk.js.map",
+    "static/js/2.27c205fb.chunk.js": "/geodle/static/js/2.27c205fb.chunk.js",
+    "static/js/2.27c205fb.chunk.js.map": "/geodle/static/js/2.27c205fb.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.e7aa48b8.chunk.js.LICENSE.txt": "/geodle/static/js/2.e7aa48b8.chunk.js.LICENSE.txt",
+    "static/js/2.27c205fb.chunk.js.LICENSE.txt": "/geodle/static/js/2.27c205fb.chunk.js.LICENSE.txt",
     "static/media/256px-Flag_of_Nicaragua.svg.png": "/geodle/static/media/256px-Flag_of_Nicaragua.svg.104fb26e.png",
     "static/media/320px-Flag_of_East_Timor.svg.png": "/geodle/static/media/320px-Flag_of_East_Timor.svg.f628677c.png",
     "static/media/320px-Flag_of_Eswatini.svg.png": "/geodle/static/media/320px-Flag_of_Eswatini.svg.2bb4fcd0.png",
@@ -80,7 +80,6 @@
     "static/media/320px-Flag_of_the_United_Kingdom.svg.png": "/geodle/static/media/320px-Flag_of_the_United_Kingdom.svg.e2403d0f.png",
     "static/media/320px-Flag_of_the_United_States.svg.png": "/geodle/static/media/320px-Flag_of_the_United_States.svg.1d63f154.png",
     "static/media/320px-Flag_of_the_United_States_Virgin_Islands.svg.png": "/geodle/static/media/320px-Flag_of_the_United_States_Virgin_Islands.svg.e374a514.png",
-    "static/media/320px-Flags_of_New_Caledonia.png": "/geodle/static/media/320px-Flags_of_New_Caledonia.0798440e.png",
     "static/media/400px-Flag_of_South_Africa.svg.png": "/geodle/static/media/400px-Flag_of_South_Africa.svg.3ed7c7a4.png",
     "static/media/512px-Flag_of_Albania.png": "/geodle/static/media/512px-Flag_of_Albania.b2da79b9.png",
     "static/media/512px-Flag_of_Nauru.png": "/geodle/static/media/512px-Flag_of_Nauru.b5663434.png",
@@ -398,7 +397,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.e7aa48b8.chunk.js",
-    "static/js/app.437ac1fb.chunk.js"
+    "static/js/2.27c205fb.chunk.js",
+    "static/js/app.4620a099.chunk.js"
   ]
 }
