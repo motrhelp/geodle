@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.da650648.chunk.js",
-    "app.js.map": "/geodle/static/js/app.da650648.chunk.js.map",
+    "app.js": "/geodle/static/js/app.437ac1fb.chunk.js",
+    "app.js.map": "/geodle/static/js/app.437ac1fb.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.5aa060ec.chunk.js": "/geodle/static/js/2.5aa060ec.chunk.js",
-    "static/js/2.5aa060ec.chunk.js.map": "/geodle/static/js/2.5aa060ec.chunk.js.map",
+    "static/js/2.e7aa48b8.chunk.js": "/geodle/static/js/2.e7aa48b8.chunk.js",
+    "static/js/2.e7aa48b8.chunk.js.map": "/geodle/static/js/2.e7aa48b8.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.5aa060ec.chunk.js.LICENSE.txt": "/geodle/static/js/2.5aa060ec.chunk.js.LICENSE.txt",
+    "static/js/2.e7aa48b8.chunk.js.LICENSE.txt": "/geodle/static/js/2.e7aa48b8.chunk.js.LICENSE.txt",
     "static/media/256px-Flag_of_Nicaragua.svg.png": "/geodle/static/media/256px-Flag_of_Nicaragua.svg.104fb26e.png",
     "static/media/320px-Flag_of_East_Timor.svg.png": "/geodle/static/media/320px-Flag_of_East_Timor.svg.f628677c.png",
     "static/media/320px-Flag_of_Eswatini.svg.png": "/geodle/static/media/320px-Flag_of_Eswatini.svg.2bb4fcd0.png",
@@ -254,6 +254,7 @@
     "static/media/estonia.png": "/geodle/static/media/estonia.b32d6c06.png",
     "static/media/ethiopia.png": "/geodle/static/media/ethiopia.4e77feb9.png",
     "static/media/finland.png": "/geodle/static/media/finland.d320a88f.png",
+    "static/media/france.png": "/geodle/static/media/france.e28079e0.png",
     "static/media/gabon.png": "/geodle/static/media/gabon.bdcacb0b.png",
     "static/media/gambia.png": "/geodle/static/media/gambia.e0d055c2.png",
     "static/media/georgia.png": "/geodle/static/media/georgia.6060ab25.png",
@@ -397,7 +398,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.5aa060ec.chunk.js",
-    "static/js/app.da650648.chunk.js"
+    "static/js/2.e7aa48b8.chunk.js",
+    "static/js/app.437ac1fb.chunk.js"
   ]
 }
