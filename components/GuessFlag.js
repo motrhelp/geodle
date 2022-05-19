@@ -145,7 +145,12 @@ export default function GuessFlag({ navigation }) {
 
             {/* Flag */}
             {country.flag ?
-                <Flag flag={country.flag} /> : null
+                <Flag
+                    flag={country.flag}
+                    flagAspectRatio={country.flagAspectRatio}
+                />
+                :
+                null
             }
 
             {/* Hearts */}

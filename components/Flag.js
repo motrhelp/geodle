@@ -2,11 +2,15 @@
 import { StyleSheet, Image } from 'react-native';
 
 
-export default function Flag({ flag } ) {
+export default function Flag({ flag, flagAspectRatio }) {
+
+    function getAspectRatio() {
+        return flagAspectRatio == null ? { aspectRatio: 1.5 } : { aspectRatio: flagAspectRatio }
+    }
 
     return (
         <Image
-            style={styles.flag}
+            style={[styles.flag, getAspectRatio()]}
             resizeMode='stretch'
             source={flag}
         />
@@ -19,7 +23,6 @@ const styles = StyleSheet.create({
         flex: 9,
         alignSelf: 'center',
         borderWidth: 1,
-        aspectRatio: 512 / 341,
         marginTop: 20
     }
 
