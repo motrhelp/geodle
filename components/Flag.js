@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     flag: {
         flex: 9,
         alignSelf: 'center',
-        borderWidth: 1,
         marginTop: 20
     }
 
