@@ -11,11 +11,13 @@ import { GameOverMessage, ShareButton, GlobeLink } from '../components/GameOver'
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel2 } from '../util/Navigation';
 import refreshVersion from '../util/AppVersion';
+import { ExtraHearts, grantExtraHeart } from '../components/ExtraHearts';
 
 export default function GuessShapeScreen({ navigation }) {
 
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [hearts, setHearts] = useState();
+    const [extraHearts, setExtraHearts] = useState();
     const [selected, setSelected] = useState(null);
     const [wrong, setWrong] = useState([]);
     const [correct, setCorrect] = useState();
@@ -44,7 +46,7 @@ export default function GuessShapeScreen({ navigation }) {
     useEffect(() => {
         refreshVersion();
     })
-    
+
     // Load hearts and such on startup
     useEffect(() => {
         loadData();
@@ -53,6 +55,7 @@ export default function GuessShapeScreen({ navigation }) {
     const loadData = async () => {
         loadItem("wrong", [], setWrong);
         loadItem("correct", null, setCorrect);
+        loadItem("extraHearts", 3, setExtraHearts);
         loadItem("hearts", 6, setHearts);
         loadItem("level3Victory", country.shape == null, setVictory); // the default value is a workaround to catch countries without shapes
     }
@@ -60,9 +63,10 @@ export default function GuessShapeScreen({ navigation }) {
     useEffect(() => {
         storeItem("wrong", wrong);
         storeItem("correct", correct);
+        storeItem("extraHearts", extraHearts);
         storeItem("hearts", hearts);
         storeItem("level3Victory", victory);
-    }, [victory, hearts]);
+    }, [victory, hearts, extraHearts]);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -72,7 +76,13 @@ export default function GuessShapeScreen({ navigation }) {
             },
             headerBackButtonMenuEnabled: false,
             headerTitle: () => <Text style={styles.headerTitle}>GEODLE{'\n'} Level 3</Text>,
-            headerRight: () => null,
+            headerRight: () =>
+                <ExtraHearts
+                    hearts={hearts}
+                    setHearts={setHearts}
+                    extraHearts={extraHearts}
+                    setExtraHearts={setExtraHearts}
+                />,
             headerLeft: () => (
                 <View style={styles.rowContainer}>
                     <TouchableOpacity
@@ -111,6 +121,7 @@ export default function GuessShapeScreen({ navigation }) {
                         if (countryOnScreen == country) {
                             setCorrect(countryOnScreen.code);
                             setVictory(true);
+                            grantExtraHeart(extraHearts, setExtraHearts);
                         } else {
                             wrong.push(countryOnScreen.code);
                             setHearts(hearts - 1);

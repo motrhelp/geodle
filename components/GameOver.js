@@ -5,6 +5,7 @@ import * as Linking from 'expo-linking'
 
 import shareButton from '../img/send.png'
 import globeButton from '../img/world.png'
+import extraHeart from '../img/heart-2.png'
 import { loadItem } from '../util/DataStorage';
 import { maxHearts } from './Hearts';
 
@@ -41,16 +42,36 @@ export function GameOverMessage({ victory }) {
 const onPressShare = async () => {
     let shareString = "Can you beat me in Geodle?\n\n";
 
-    let hearts;
-    await loadItem("hearts", maxHearts, (heartsFromStorage) => hearts = heartsFromStorage);
-    shareString += "I used " + (maxHearts - hearts) + " hearts ";
+    // Load level 1
+    let level1Guesses;
+    await loadItem("guesses", 0, (guessesFromStorage) => level1Guesses = guessesFromStorage);
+    let level1Victory;
+    await loadItem("level1Victory", false, (victoryFromStorage) => level1Victory = victoryFromStorage);
 
+    // Load level 2
     let level2Guesses;
     await loadItem("level2Guesses", [], (guessesFromStorage) => level2Guesses = guessesFromStorage);
+    let level2Victory;
+    await loadItem("level2Victory", false, (victoryFromStorage) => level2Victory = victoryFromStorage);
 
+    // Load level 3
     let level3Guesses;
     await loadItem("wrong", [], (guessesFromStorage) => level3Guesses = guessesFromStorage);
+    let level3Victory;
+    await loadItem("level3Victory", false, (victoryFromStorage) => level3Victory = victoryFromStorage);
 
+    // Count hearts used
+    let heartsUsed = level1Guesses.length + level2Guesses.length + level3Guesses.length;
+    if (level1Victory) {
+        heartsUsed--;
+    }
+    if (level2Victory) {
+        heartsUsed--;
+    }
+    if (level3Victory) {
+        heartsUsed--;
+    }
+    shareString += "I used " + heartsUsed + " hearts ";
     if (level3Guesses.length > 0) {
         shareString += "for 3 levels:";
     } else if (level2Guesses.length > 0) {
@@ -59,14 +80,15 @@ const onPressShare = async () => {
         shareString += "on level 1:"
     }
 
+    // Summarize level 1
     shareString += "\n\nLevel 1: ";
-    var guesses;
-    await loadItem("guesses", [], (guessesFromStorage) => guesses = guessesFromStorage)
-    for (const guess of guesses) {
+    for (const guess of level1Guesses) {
         shareString += coordNamesToSmileys.filter(
             (entry) => entry.coord == guess.direction
         )[0].smiley;
     }
+
+    // Summarize level 2
     if (level2Guesses.length > 0) {
         shareString += "\nLevel 2: ";
         for (const guess of level2Guesses) {
@@ -74,8 +96,7 @@ const onPressShare = async () => {
         }
     }
 
-    let level3Victory;
-    await loadItem("level3Victory", false, (victoryFromStorage) => level3Victory = victoryFromStorage);
+    // Summarize level 3
     if (level3Guesses.length > 0 || level3Victory == true) {
         shareString += "\nLevel 3: ";
         for (const guess of level3Guesses) {
@@ -86,8 +107,10 @@ const onPressShare = async () => {
         }
     }
 
+    // Add link
     shareString += "\n\nhttps://motrhelp.github.io/geodle/"
 
+    // Copy to share
     Clipboard.setStringAsync(shareString);
     alert("Results copied to clipboard, share on!")
 }
@@ -151,6 +174,27 @@ export function ShareButton() {
 }
 
 
+export function ExtraHearts({ hearts, setHearts }) {
+
+    function onPressExtraHearts() {
+        setHearts(hearts + 1);
+    }
+
+    return (
+        <TouchableOpacity
+            style={styles.linksContainer}
+            onPress={() => onPressExtraHearts()}
+        >
+            <Image
+                style={styles.pictogram}
+                source={extraHeart}
+            />
+            <Text style={styles.extraHeartsText}>x 6</Text>
+        </TouchableOpacity>
+    );
+}
+
+
 const styles = StyleSheet.create({
 
     // Game over
@@ -163,16 +207,25 @@ const styles = StyleSheet.create({
 
     // Share etc links
     linksContainer: {
-        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        // margin: 10
     },
     pictogram: {
         // flex: 1,
         minHeight: 30,
         aspectRatio: 512 / 512,
         marginHorizontal: 10,
+    },
+
+    // Extra hearts
+    linksContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginRight: 10
+    },
+    extraHeartsText: {
+        fontSize: 22,
+        fontWeight: "bold"
     },
 
 });

@@ -13,6 +13,7 @@ import { gameNumber } from '../util/GameNumber';
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel1, navigateToLevel3 } from '../util/Navigation';
 import { NextLevelArrow } from '../components/Header';
+import { ExtraHearts, grantExtraHeart } from '../components/ExtraHearts';
 
 export default function GuessCapitalScreen({ navigation }) {
 
@@ -26,6 +27,7 @@ export default function GuessCapitalScreen({ navigation }) {
 
   const [country, setCountry] = useState(countryList.filter(country => country.flag != null)[gameNumber]);
   const [hearts, setHearts] = useState();
+  const [extraHearts, setExtraHearts] = useState();
   const [icon, setIcon] = useState(defaultIcon);
   const [correctCharacters, setCorrectCharacters] = useState([]);
   const [almostCharacters, setAlmostCharacters] = useState([]);
@@ -110,7 +112,13 @@ export default function GuessCapitalScreen({ navigation }) {
             <NextLevelArrow navigation={navigation}
               navigateToNextLevel={navigateToLevel3} />
           </View>
-          : null
+          :
+          <ExtraHearts
+            hearts={hearts}
+            setHearts={setHearts}
+            extraHearts={extraHearts}
+            setExtraHearts={setExtraHearts}
+          />
       ),
       headerLeft: () => (
         <View style={styles.rowContainer}>
@@ -139,6 +147,7 @@ export default function GuessCapitalScreen({ navigation }) {
   })
 
   useEffect(() => {
+    loadItem("extraHearts", 3, setExtraHearts);
     loadItem("charArray", charArray, setCharArray);
     loadItem("correctCharacters", [], setCorrectCharacters);
     loadItem("almostCharacters", [], setAlmostCharacters);
@@ -153,6 +162,7 @@ export default function GuessCapitalScreen({ navigation }) {
     storeItem("correctCharacters", correctCharacters);
     storeItem("almostCharacters", almostCharacters);
     storeItem("wrongCharacters", wrongCharacters);
+    storeItem("extraHearts", extraHearts);
     storeItem("hearts", hearts);
     storeItem("level2Victory", victory);
     storeItem("level2Guesses", level2Guesses);
@@ -210,6 +220,7 @@ export default function GuessCapitalScreen({ navigation }) {
     }
     if (areAllCharactersGuessed()) {
       setVictory(true);
+      grantExtraHeart(extraHearts, setExtraHearts);
 
       // Redirect to the next level
       if (country.shape != null) {

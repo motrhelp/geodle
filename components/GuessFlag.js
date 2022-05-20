@@ -10,6 +10,7 @@ import { GameOverCountryName, GlobeLink, ShareButton, GameOverMessage } from './
 import Guesses from './Guesses';
 import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
+import { ExtraHearts, grantExtraHeart } from './ExtraHearts';
 
 import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
@@ -24,6 +25,7 @@ export default function GuessFlag({ navigation }) {
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [guesses, setGuesses] = useState();
     const [hearts, setHearts] = useState();
+    const [extraHearts, setExtraHearts] = useState();
     const [victory, setVictory] = useState();
     const [level2Victory, setLevel2Victory] = useState();
 
@@ -33,12 +35,21 @@ export default function GuessFlag({ navigation }) {
             title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
             headerRight: () => (
-                victory ?
-                    <NextLevelArrow
-                        navigation={navigation}
-                        navigateToNextLevel={navigateToLevel2}
-                    />
-                    : null
+                <View style={styles.rowContainer}>
+                    {victory ?
+                        <NextLevelArrow
+                            navigation={navigation}
+                            navigateToNextLevel={navigateToLevel2}
+                        />
+                        :
+                        <ExtraHearts
+                            hearts={hearts}
+                            setHearts={setHearts}
+                            extraHearts={extraHearts}
+                            setExtraHearts={setExtraHearts}
+                        />
+                    }
+                </View>
             ),
             headerLeft: () =>
                 hearts == 0 || level2Victory ?
@@ -69,6 +80,7 @@ export default function GuessFlag({ navigation }) {
         loadItem("level1Victory", false, setVictory);
         loadItem("level2Victory", false, setLevel2Victory);
         loadItem("hearts", 6, setHearts);
+        loadItem("extraHearts", 3, setExtraHearts);
     }
 
     // Tester's "refresh" cheat
@@ -77,9 +89,10 @@ export default function GuessFlag({ navigation }) {
         window.location.reload(false);
     }
     // Store guesses, hearts and such on device
-    const storeData = async (guesses, hearts, victory) => {
+    const storeData = async (guesses, hearts, victory, extraHearts) => {
         storeItem("guesses", guesses);
         storeItem("hearts", hearts);
+        storeItem("extraHearts", extraHearts);
         storeItem("level1Victory", victory);
     }
 
@@ -116,9 +129,12 @@ export default function GuessFlag({ navigation }) {
                     setHearts(newHearts);
                 }
 
+
                 // Process victory
+                let newExtraHearts = extraHearts;
                 if (newVictory) {
                     setVictory(newVictory);
+                    newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
 
                     // Redirect to the next level
                     setTimeout(() => {
@@ -127,7 +143,7 @@ export default function GuessFlag({ navigation }) {
                 }
 
                 // Store the session data
-                storeData(guesses, newHearts, newVictory);
+                storeData(guesses, newHearts, newVictory, newExtraHearts);
             } else {
                 alert(currentGuess.name + " does not have coordinates yet.")
             }
@@ -207,7 +223,7 @@ export default function GuessFlag({ navigation }) {
 
 const styles = StyleSheet.create({
     rowContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
 
     gameContainer: {
