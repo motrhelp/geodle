@@ -6,7 +6,7 @@ import Hearts from '../components/Hearts';
 
 import defaultIcon from '../img/government.png';
 import { GameOverMessage, GlobeLink, ShareButton } from '../components/GameOver';
-import { loadItem, storeItem } from '../util/DataStorage';
+import { loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
 import refreshVersion from '../util/AppVersion';
 import { countryList } from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
@@ -147,7 +147,7 @@ export default function GuessCapitalScreen({ navigation }) {
   })
 
   useEffect(() => {
-    loadItem("extraHearts", 3, setExtraHearts);
+    loadGlobalItem("extraHearts", 3, setExtraHearts);
     loadItem("charArray", charArray, setCharArray);
     loadItem("correctCharacters", [], setCorrectCharacters);
     loadItem("almostCharacters", [], setAlmostCharacters);
@@ -162,7 +162,7 @@ export default function GuessCapitalScreen({ navigation }) {
     storeItem("correctCharacters", correctCharacters);
     storeItem("almostCharacters", almostCharacters);
     storeItem("wrongCharacters", wrongCharacters);
-    storeItem("extraHearts", extraHearts);
+    storeGlobalItem("extraHearts", extraHearts);
     storeItem("hearts", hearts);
     storeItem("level2Victory", victory);
     storeItem("level2Guesses", level2Guesses);

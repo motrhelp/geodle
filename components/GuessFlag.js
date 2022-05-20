@@ -12,7 +12,7 @@ import Hearts from './Hearts';
 import Autocomplete from './Autocomplete';
 import { ExtraHearts, grantExtraHeart } from './ExtraHearts';
 
-import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
+import { flushStorage, loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import { navigateToLevel2 } from '../util/Navigation';
@@ -80,7 +80,7 @@ export default function GuessFlag({ navigation }) {
         loadItem("level1Victory", false, setVictory);
         loadItem("level2Victory", false, setLevel2Victory);
         loadItem("hearts", 6, setHearts);
-        loadItem("extraHearts", 3, setExtraHearts);
+        loadGlobalItem("extraHearts", 3, setExtraHearts);
     }
 
     // Tester's "refresh" cheat
@@ -92,7 +92,7 @@ export default function GuessFlag({ navigation }) {
     const storeData = async (guesses, hearts, victory, extraHearts) => {
         storeItem("guesses", guesses);
         storeItem("hearts", hearts);
-        storeItem("extraHearts", extraHearts);
+        storeGlobalItem("extraHearts", extraHearts);
         storeItem("level1Victory", victory);
     }
 

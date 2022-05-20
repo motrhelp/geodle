@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { countriesWithFlags, countriesWithShape } from '../data/CountryList';
 import { gameNumber, generateConsistentRandomNumber } from '../util/GameNumber';
 import Hearts from '../components/Hearts';
-import { flushStorage, loadItem, storeItem } from '../util/DataStorage';
+import { flushStorage, loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
 import { TouchableOpacity } from 'react-native-web';
 import { GameOverMessage, ShareButton, GlobeLink } from '../components/GameOver';
 import leftArrow from '../img/left-arrow.png'
@@ -55,7 +55,7 @@ export default function GuessShapeScreen({ navigation }) {
     const loadData = async () => {
         loadItem("wrong", [], setWrong);
         loadItem("correct", null, setCorrect);
-        loadItem("extraHearts", 3, setExtraHearts);
+        loadGlobalItem("extraHearts", 3, setExtraHearts);
         loadItem("hearts", 6, setHearts);
         loadItem("level3Victory", country.shape == null, setVictory); // the default value is a workaround to catch countries without shapes
     }
@@ -63,7 +63,7 @@ export default function GuessShapeScreen({ navigation }) {
     useEffect(() => {
         storeItem("wrong", wrong);
         storeItem("correct", correct);
-        storeItem("extraHearts", extraHearts);
+        storeGlobalItem("extraHearts", extraHearts);
         storeItem("hearts", hearts);
         storeItem("level3Victory", victory);
     }, [victory, hearts, extraHearts]);

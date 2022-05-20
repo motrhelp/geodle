@@ -4,11 +4,10 @@ import extraHeart from '../img/heart-2.png'
 import { maxHearts } from './Hearts';
 
 export function grantExtraHeart(extraHearts, setExtraHearts) {
-    if (extraHearts < maxHearts) {
-        let newExtraHearts = extraHearts + 1;
-        setExtraHearts(extraHearts + 1);
-        return newExtraHearts;
-    }
+    let newExtraHearts = extraHearts < maxHearts ? extraHearts + 1 : extraHearts;
+    setExtraHearts(extraHearts + 1);
+    return newExtraHearts;
+
 }
 
 export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts }) {
