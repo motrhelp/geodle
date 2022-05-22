@@ -56,7 +56,7 @@ const onPressShare = async () => {
 
     // Load level 3
     let level3Guesses;
-    await loadItem("wrong", [], (guessesFromStorage) => level3Guesses = guessesFromStorage);
+    await loadItem("level3Guesses", [], (guessesFromStorage) => level3Guesses = guessesFromStorage);
     let level3Victory;
     await loadItem("level3Victory", false, (victoryFromStorage) => level3Victory = victoryFromStorage);
 
@@ -100,10 +100,7 @@ const onPressShare = async () => {
     if (level3Guesses.length > 0 || level3Victory == true) {
         shareString += "\nLevel 3: ";
         for (const guess of level3Guesses) {
-            shareString += "🟥"
-        }
-        if (level3Victory == true) {
-            shareString += "✅"
+            shareString += guess.result;
         }
     }
 

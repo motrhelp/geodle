@@ -19,7 +19,7 @@ export default function GuessShapeScreen({ navigation }) {
     const [hearts, setHearts] = useState();
     const [extraHearts, setExtraHearts] = useState();
     const [selected, setSelected] = useState(null);
-    const [wrong, setWrong] = useState([]);
+    const [guesses, setGuesses] = useState([]);
     const [correct, setCorrect] = useState();
     const [victory, setVictory] = useState(null);
     const [shapes, setShapes] = useState(selectShapes());
@@ -34,7 +34,6 @@ export default function GuessShapeScreen({ navigation }) {
             }
         }
 
-        console.log(shapes);
         if (!shapes.includes(country)) {
             shapes[generateConsistentRandomNumber(0, 9)] = country;
         }
@@ -53,7 +52,7 @@ export default function GuessShapeScreen({ navigation }) {
     }, []);
 
     const loadData = async () => {
-        loadItem("wrong", [], setWrong);
+        loadItem("level3Guesses", [], setGuesses);
         loadItem("correct", null, setCorrect);
         loadGlobalItem("extraHearts", 3, setExtraHearts);
         loadItem("hearts", 6, setHearts);
@@ -61,7 +60,7 @@ export default function GuessShapeScreen({ navigation }) {
     }
 
     useEffect(() => {
-        storeItem("wrong", wrong);
+        storeItem("level3Guesses", guesses);
         storeItem("correct", correct);
         storeGlobalItem("extraHearts", extraHearts);
         storeItem("hearts", hearts);
@@ -105,6 +104,26 @@ export default function GuessShapeScreen({ navigation }) {
         }, [navigation]);
     })
 
+    function getShapeConditionalStyle(countryOnScreen) {
+        // Default inactive image
+        let style = [styles.shapeImage];
+
+        if (selected == countryOnScreen) {
+            // Highlighted upon selection
+            style.push(styles.selectedImage);
+        }
+
+        // Shape style after confirmation
+        if (correct == countryOnScreen.code) {
+            // Correct shape 
+            style.push(styles.correctImage);
+        } else if (guesses.map(guess => guess.code).includes(countryOnScreen.code)) {
+            // Wrong shape 
+            style.push(styles.wrongImage);
+        }
+        return style;
+    }
+
     function Shape({ countryOnScreen }) {
         return (
             <TouchableOpacity style={styles.shapeContainer}
@@ -112,36 +131,31 @@ export default function GuessShapeScreen({ navigation }) {
                 onPress={() => {
                     if (countryOnScreen == selected) {
                         setSelected(null);
-                    } else if (!wrong.includes(countryOnScreen.code)) {
+                    } else if (!guesses.map(guess => guess.code).includes(countryOnScreen.code)) {
                         setSelected(countryOnScreen);
                     }
                 }}
                 onLongPress={() => {
-                    if (countryOnScreen == selected) {
+                    if (!guesses.map(guess => guess.code).includes(countryOnScreen.code)) {
+                        setSelected(countryOnScreen);
                         if (countryOnScreen == country) {
+                            guesses.push({ code: countryOnScreen.code, result: "✅" });
                             setCorrect(countryOnScreen.code);
                             setVictory(true);
                             grantExtraHeart(extraHearts, setExtraHearts);
                         } else {
-                            wrong.push(countryOnScreen.code);
+                            guesses.push({ code: countryOnScreen.code, result: "🟥" });
                             setHearts(hearts - 1);
                             setSelected(null);
                         }
-                    } else {
-                        setSelected(countryOnScreen);
                     }
                 }}
             >
-                <Image style={[
-                    styles.shapeImage,
-                    selected == countryOnScreen ? styles.selectedImage :
-                        wrong.includes(countryOnScreen.code) ? styles.confirmedImage : null,
-                    correct == countryOnScreen.code ? styles.correctImage : null
-                ]}
+                <Image style={getShapeConditionalStyle(countryOnScreen)}
                     source={countryOnScreen.shape}
                     pointerEvents="none"
                 />
-            </TouchableOpacity>
+            </TouchableOpacity >
         );
     }
 
@@ -262,7 +276,7 @@ const styles = StyleSheet.create({
         height: 120,
         filter: 'invert(38%) sepia(97%) saturate(628%) hue-rotate(4deg) brightness(95%) contrast(101%)',
     },
-    confirmedImage: {
+    wrongImage: {
         filter: 'invert(12%) sepia(93%) saturate(3011%) hue-rotate(352deg) brightness(92%) contrast(122%)',
     },
     correctImage: {
