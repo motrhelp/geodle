@@ -171,7 +171,7 @@ export default function GuessFlag({ navigation }) {
 
             {/* Hearts */}
             <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />
-            {hearts == 0 ?
+            {hearts == 0 && extraHearts == 0 ?
                 <GameOverCountryName countryName={country.name} />
                 :
                 null

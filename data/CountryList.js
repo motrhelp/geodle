@@ -161,7 +161,7 @@ export const countryList = [
     { code: "NE", name: "Niger", lat: 17.607789, lon: 8.081666, flag: require("../img/512px-Flag_of_Niger.svg.png"), flagAspectRatio: 1.167, capital: { name: "Niamey" }, shape: require("../img/niger.png") },
     { code: "NG", name: "Nigeria", flag: require("../img/Flag_of_Nigeria.png"), flagAspectRatio: 2, lat: 9.081999, lon: 8.675277, capital: { name: "Abuja" }, shape: require("../img/nigeria.png") },
     { code: "NU", name: "Niue", flag: require("../img/320px-Flag_of_Niue.png"), flagAspectRatio: 2, lat: -19.054445, lon: -169.867233, capital: { name: "Alofi" } },
-    { code: "NF", name: "Norfolk Island", flag: require("../img/320px-Flag_of_Norfolk_Island.svg.png"), flagAspectRatio: 2, lat: -29.040835, lon: 167.954712, capital: { name: "Nowrich" } },
+    // { code: "NF", name: "Norfolk Island", flag: require("../img/320px-Flag_of_Norfolk_Island.svg.png"), flagAspectRatio: 2, lat: -29.040835, lon: 167.954712, capital: { name: "Kingston" } },
     { code: "MP", name: "Northern Mariana Islands", flag: require("../img/320px-Flag_of_Northern_Mariana_Islands.jpg"), flagAspectRatio: 2, lat: 17.33083, lon: 145.38469, capital: { name: "Saipan" } },
     { code: "NO", name: "Norway", flag: require("../img/Flag_of_Norway.png"), lat: 60.472024, lon: 8.468946, flagAspectRatio: 1.375, capital: { name: "Oslo" }, shape: require("../img/norway.png") },
     { code: "OM", name: "Oman", flag: require("../img/Flag_of_Oman.png"), flagAspectRatio: 2, lat: 21.512583, lon: 55.923255, capital: { name: "Oman" }, shape: require("../img/oman.png") },
