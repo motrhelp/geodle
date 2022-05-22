@@ -12,7 +12,7 @@ import { countryList } from '../data/CountryList';
 import { gameNumber } from '../util/GameNumber';
 import leftArrow from '../img/left-arrow.png'
 import { navigateToLevel1, navigateToLevel3 } from '../util/Navigation';
-import { NextLevelArrow } from '../components/Header';
+import { HeaderLeft, NextLevelArrow } from '../components/Header';
 import { ExtraHearts, grantExtraHeart } from '../components/ExtraHearts';
 
 export default function GuessCapitalScreen({ navigation }) {
@@ -120,24 +120,13 @@ export default function GuessCapitalScreen({ navigation }) {
             setExtraHearts={setExtraHearts}
           />
       ),
-      headerLeft: () => (
-        <View style={styles.rowContainer}>
-          <TouchableOpacity
-            style={styles.nextLevelArrowContainer}
-            onPress={() => navigateToLevel1(navigation)}
-          >
-            <Image
-              style={styles.previousLevelArrow}
-              source={leftArrow}
-            />
-            {hearts == 0 || victory ?
-              <GlobeLink country={country} />
-              : null
-            }
-            <ShareButton />
-          </TouchableOpacity>
-        </View>
-      )
+      headerLeft: () =>
+        <HeaderLeft
+          country={country}
+          showGlobe={victory}
+          navigation={navigation}
+          navigateBack={navigateToLevel1}
+        />
     }, [navigation]);
   })
 

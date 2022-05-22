@@ -9,11 +9,14 @@ export default function Flag({ flag, flagAspectRatio }) {
     }
 
     return (
-        <Image
-            style={[styles.flag, getAspectRatio()]}
-            resizeMode='stretch'
-            source={flag}
-        />
+        flag != null ?
+            <Image
+                style={[styles.flag, getAspectRatio()]}
+                resizeMode='stretch'
+                source={flag}
+            />
+            :
+            null
     );
 }
 

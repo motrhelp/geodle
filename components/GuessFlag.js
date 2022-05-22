@@ -15,7 +15,7 @@ import { ExtraHearts, grantExtraHeart } from './ExtraHearts';
 import { flushStorage, loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
 import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
-import { navigateToLevel2 } from '../util/Navigation';
+import { navigateToBonusLevel1, navigateToLevel2 } from '../util/Navigation';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 
 export default function GuessFlag({ navigation }) {
@@ -28,6 +28,12 @@ export default function GuessFlag({ navigation }) {
     const [extraHearts, setExtraHearts] = useState();
     const [victory, setVictory] = useState();
     const [level2Victory, setLevel2Victory] = useState();
+
+
+    // Redirect to the bonus level
+    // setTimeout(() => {
+    //     navigateToBonusLevel1(navigation);
+    // }, 3000)
 
     // Set up the level navigation header: title, next and previous level arrows
     useLayoutEffect(() => {
@@ -160,14 +166,10 @@ export default function GuessFlag({ navigation }) {
         >
 
             {/* Flag */}
-            {country.flag ?
-                <Flag
-                    flag={country.flag}
-                    flagAspectRatio={country.flagAspectRatio}
-                />
-                :
-                null
-            }
+            <Flag
+                flag={country.flag}
+                flagAspectRatio={country.flagAspectRatio}
+            />
 
             {/* Hearts */}
             <Hearts hearts={hearts} onPressHearts={onPressGEODLE} />

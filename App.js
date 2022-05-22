@@ -5,11 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import GuessCapitalScreen from './screens/GuessCapitalScreen';
 import GuessFlagScreen from './screens/GuessFlagScreen';
+import GuessShapeScreen from './screens/GuessShapeScreen';
+import BonusLevelScreen from './screens/BonusLevelScreen';
 
 import { loadItem } from './util/DataStorage';
-import { level1Name, level2Name, level3Name } from './util/Navigation';
-import GuessShapeScreen from './screens/GuessShapeScreen';
-
+import { bonusLevel1Name, level1Name, level2Name, level3Name } from './util/Navigation';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -33,6 +33,10 @@ export default function App() {
         <Stack.Screen
           name={level1Name}
           component={GuessFlagScreen}
+        />
+        <Stack.Screen
+          name={bonusLevel1Name}
+          component={BonusLevelScreen}
         />
         <Stack.Screen
           name={level2Name}

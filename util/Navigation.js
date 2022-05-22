@@ -1,9 +1,14 @@
 export const level1Name = "GuessFlagScreen";
+export const bonusLevel1Name = "BonusLevelScreen";
 export const level2Name = "GuessCapitalScreen";
 export const level3Name = "GuessShapeScreen";
 
 export function navigateToLevel1(navigation) {
     navigation.navigate(level1Name)
+}
+
+export function navigateToBonusLevel1(navigation) {
+    navigation.navigate(bonusLevel1Name)
 }
 
 export function navigateToLevel2(navigation) {

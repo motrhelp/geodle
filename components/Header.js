@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
+import { GlobeLink, ShareButton } from './GameOver';
+
+import leftArrow from '../img/left-arrow.png'
 import rightArrow from '../img/right-arrow.png'
 
 export function HeaderTitle({ levelName }) {
@@ -8,11 +11,37 @@ export function HeaderTitle({ levelName }) {
     )
 }
 
+export function HeaderLeft({ navigation, navigateBack, country, showGlobe }) {
+    return (
+        <View style={styles.rowContainer}>
+            {navigateBack != null ?
+                <TouchableOpacity
+                    style={styles.navigationArrowContainer}
+                    onPress={() => navigateBack(navigation)}
+                >
+                    <Image
+                        style={styles.previousLevelArrow}
+                        source={leftArrow}
+                    />
+                </TouchableOpacity>
+                :
+                null
+            }
+            {showGlobe == true ?
+                <GlobeLink country={country} />
+                :
+                null
+            }
+            < ShareButton />
+        </View>
+    )
+}
+
 export function NextLevelArrow({ navigation, navigateToNextLevel }) {
     return (
         <View>
             <TouchableOpacity
-                style={styles.nextLevelArrowContainer}
+                style={styles.navigationArrowContainer}
                 onPress={() => navigateToNextLevel(navigation)}
             >
                 <Text style={styles.nextLevelText}>
@@ -28,13 +57,22 @@ export function NextLevelArrow({ navigation, navigateToNextLevel }) {
 }
 
 const styles = StyleSheet.create({
-    // Navigation header
+    rowContainer: {
+        flexDirection: 'row',
+    },
+    previousLevelArrow: {
+        flex: 1,
+        minHeight: 25,
+        aspectRatio: 512 / 512,
+        marginLeft: 20,
+    },
     headerTitle: {
         fontWeight: 'bold',
         fontSize: 18,
-        marginHorizontal: 50
+        marginHorizontal: 50,
+        textAlign: 'center'
     },
-    nextLevelArrowContainer: {
+    navigationArrowContainer: {
         flexDirection: 'row',
         alignItems: 'center'
     },
