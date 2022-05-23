@@ -18,6 +18,7 @@ import refreshVersion from '../util/AppVersion';
 import { navigateToBonusLevel1, navigateToLevel2 } from '../util/Navigation';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { getHint } from '../data/Hints';
 
 export default function GuessFlag({ navigation }) {
 
@@ -32,12 +33,6 @@ export default function GuessFlag({ navigation }) {
     const [bonusLevelVictory, setBonusLevelVictory] = useState();
     const [level2Victory, setLevel2Victory] = useState();
     const [showBonusLevelAlert, setShowBonusLevelAlert] = useState(false);
-
-
-    // Redirect to the bonus level
-    // setTimeout(() => {
-    //     navigateToBonusLevel1(navigation);
-    // }, 3000)
 
     // Set up the level navigation header: title, next and previous level arrows
     useLayoutEffect(() => {
@@ -72,7 +67,8 @@ export default function GuessFlag({ navigation }) {
         refreshVersion();
 
         // Bonus level 
-        if (guesses?.length >= 3 && !bonusLevelAvailable && !bonusLevelVictory) {
+        if (guesses?.length >= 3 && !bonusLevelAvailable 
+            && !bonusLevelVictory && getHint(country) != null) {
             setBonusLevelAvailable(true);
         }
         if (bonusLevelVictory == true) {
@@ -148,7 +144,7 @@ export default function GuessFlag({ navigation }) {
                 }
 
                 // Check for bonus level
-                if (guesses.length == 3) {
+                if (guesses.length == 3 && getHint(country) != null) {
                     setShowBonusLevelAlert(true);
                 }
 
@@ -162,7 +158,7 @@ export default function GuessFlag({ navigation }) {
                         setTimeout(() => {
                             navigateToLevel2(navigation);
                         }, 1000)
-                    } else {
+                    } else if (getHint(country) != null) {
                         // Redirect to bonus level
                         setBonusLevelAvailable(true);
                         setShowBonusLevelAlert(true);
