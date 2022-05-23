@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 import { GlobeLink, ShareButton } from './GameOver';
+import { ExtraHearts } from './ExtraHearts';
 
 import leftArrow from '../img/left-arrow.png'
 import rightArrow from '../img/right-arrow.png'
+import BonusLevelScreen from '../screens/BonusLevelScreen';
 
 export function HeaderTitle({ levelName }) {
     return (
@@ -36,6 +38,32 @@ export function HeaderLeft({ navigation, navigateBack, country, showGlobe }) {
         </View>
     )
 }
+export function HeaderRight({ victory, isBonusLevelAvailable, navigation, navigateToBonusLevel, navigateToNextLevel, hearts, setHearts, extraHearts, setExtraHearts }) {
+    return (
+        <View style={styles.rowContainer}>
+            {isBonusLevelAvailable ?
+                <BonusLevelArrow
+                    navigation={navigation}
+                    navigateToBonusLevel={navigateToBonusLevel}
+                    navigateBack={navigation.goBack}
+                />
+                :
+                victory ?
+                    <NextLevelArrow
+                        navigation={navigation}
+                        navigateToNextLevel={navigateToNextLevel}
+                    />
+                    :
+                    <ExtraHearts
+                        hearts={hearts}
+                        setHearts={setHearts}
+                        extraHearts={extraHearts}
+                        setExtraHearts={setExtraHearts}
+                    />
+            }
+        </View>
+    )
+}
 
 export function NextLevelArrow({ navigation, navigateToNextLevel }) {
     return (
@@ -46,6 +74,25 @@ export function NextLevelArrow({ navigation, navigateToNextLevel }) {
             >
                 <Text style={styles.nextLevelText}>
                     NEXT{'\n'}LEVEL
+                </Text>
+                <Image
+                    style={styles.nextLevelArrow}
+                    source={rightArrow}
+                />
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+export function BonusLevelArrow({ navigation, navigateToBonusLevel }) {
+    return (
+        <View>
+            <TouchableOpacity
+                style={styles.navigationArrowContainer}
+                onPress={() => navigateToBonusLevel(navigation)}
+            >
+                <Text style={styles.nextLevelText}>
+                    BONUS{'\n'} LEVEL
                 </Text>
                 <Image
                     style={styles.nextLevelArrow}

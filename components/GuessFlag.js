@@ -4,7 +4,7 @@ import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 
 
 import { countriesWithFlags, countryList, searchCountry } from '../data/CountryList';
 
-import { HeaderTitle, NextLevelArrow } from '../components/Header';
+import { HeaderRight, HeaderTitle, NextLevelArrow } from '../components/Header';
 import Flag from './Flag';
 import { GameOverCountryName, GlobeLink, ShareButton, GameOverMessage } from './GameOver';
 import Guesses from './Guesses';
@@ -17,17 +17,21 @@ import { gameNumber } from '../util/GameNumber';
 import refreshVersion from '../util/AppVersion';
 import { navigateToBonusLevel1, navigateToLevel2 } from '../util/Navigation';
 import { getBearingFromLatLon, getDistanceFromLatLonInKm } from '../util/DistanceCalculator';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default function GuessFlag({ navigation }) {
 
     const [guess, setGuess] = useState("");
     const [autocompleteData, setAutocompleteData] = useState();
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
-    const [guesses, setGuesses] = useState();
+    const [guesses, setGuesses] = useState([]);
     const [hearts, setHearts] = useState();
     const [extraHearts, setExtraHearts] = useState();
+    const [bonusLevelAvailable, setBonusLevelAvailable] = useState();
     const [victory, setVictory] = useState();
+    const [bonusLevelVictory, setBonusLevelVictory] = useState();
     const [level2Victory, setLevel2Victory] = useState();
+    const [showBonusLevelAlert, setShowBonusLevelAlert] = useState(false);
 
 
     // Redirect to the bonus level
@@ -41,21 +45,17 @@ export default function GuessFlag({ navigation }) {
             title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Level 1"} />,
             headerRight: () => (
-                <View style={styles.rowContainer}>
-                    {victory ?
-                        <NextLevelArrow
-                            navigation={navigation}
-                            navigateToNextLevel={navigateToLevel2}
-                        />
-                        :
-                        <ExtraHearts
-                            hearts={hearts}
-                            setHearts={setHearts}
-                            extraHearts={extraHearts}
-                            setExtraHearts={setExtraHearts}
-                        />
-                    }
-                </View>
+                <HeaderRight
+                    victory={victory}
+                    isBonusLevelAvailable={bonusLevelAvailable}
+                    navigation={navigation}
+                    navigateToBonusLevel={navigateToBonusLevel1}
+                    navigateToNextLevel={navigateToLevel2}
+                    hearts={hearts}
+                    setHearts={setHearts}
+                    extraHearts={extraHearts}
+                    setExtraHearts={setExtraHearts}
+                />
             ),
             headerLeft: () =>
                 hearts == 0 || level2Victory ?
@@ -67,9 +67,17 @@ export default function GuessFlag({ navigation }) {
         }, [navigation]);
     })
 
-    // Force app refresh every now and then to retire outdated code
     useEffect(() => {
+        // Force app refresh every now and then to retire outdated code
         refreshVersion();
+
+        // Bonus level 
+        if (guesses?.length >= 3 && !bonusLevelAvailable && !bonusLevelVictory) {
+            setBonusLevelAvailable(true);
+        }
+        if (bonusLevelVictory == true) {
+            setBonusLevelAvailable(false);
+        }
     })
 
     // Load guesses, hearts and such on startup and navigation
@@ -84,6 +92,7 @@ export default function GuessFlag({ navigation }) {
     const loadData = async () => {
         loadItem("guesses", [], setGuesses);
         loadItem("level1Victory", false, setVictory);
+        loadItem("bonusLevel1Victory", false, setBonusLevelVictory);
         loadItem("level2Victory", false, setLevel2Victory);
         loadItem("hearts", 6, setHearts);
         loadGlobalItem("extraHearts", 3, setExtraHearts);
@@ -94,6 +103,7 @@ export default function GuessFlag({ navigation }) {
         flushStorage();
         window.location.reload(false);
     }
+
     // Store guesses, hearts and such on device
     const storeData = async (guesses, hearts, victory, extraHearts) => {
         storeItem("guesses", guesses);
@@ -114,7 +124,9 @@ export default function GuessFlag({ navigation }) {
 
     // Process "Guess" button press
     const onPressGuess = () => {
-        if (guess) {
+        if (guess == "bonus") {
+            navigateToBonusLevel1(navigation);
+        } else if (guess) {
             // Calculate distance and direction to the sought country
             const currentGuess = countryList.filter(country => country.name == guess)[0];
             if (currentGuess.lat) {
@@ -135,17 +147,26 @@ export default function GuessFlag({ navigation }) {
                     setHearts(newHearts);
                 }
 
+                // Check for bonus level
+                if (guesses.length == 3) {
+                    setShowBonusLevelAlert(true);
+                }
 
                 // Process victory
-                let newExtraHearts = extraHearts;
                 if (newVictory) {
                     setVictory(newVictory);
-                    newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
+                    var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
 
-                    // Redirect to the next level
-                    setTimeout(() => {
-                        navigateToLevel2(navigation);
-                    }, 1000)
+                    if (bonusLevelVictory == true) {
+                        // Redirect to the next level
+                        setTimeout(() => {
+                            navigateToLevel2(navigation);
+                        }, 1000)
+                    } else {
+                        // Redirect to bonus level
+                        setBonusLevelAvailable(true);
+                        setShowBonusLevelAlert(true);
+                    }
                 }
 
                 // Store the session data
@@ -218,6 +239,28 @@ export default function GuessFlag({ navigation }) {
                 :
                 <GameOverMessage victory={victory} />
             }
+
+
+            <AwesomeAlert
+                show={showBonusLevelAlert}
+                showProgress={false}
+                title="Bonus level"
+                message="You unlocked a bonus level!"
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No, thanks"
+                confirmText="Go there!"
+                confirmButtonColor="green"
+                onCancelPressed={() => {
+                    setShowBonusLevelAlert(false);
+                }}
+                onConfirmPressed={() => {
+                    navigateToBonusLevel1(navigation);
+                    setShowBonusLevelAlert(false);
+                }}
+            />
 
         </KeyboardAvoidingView >
     );

@@ -1,33 +1,81 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState, useLayoutEffect } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 import { countriesWithFlags } from '../data/CountryList';
-import { getHint } from '../data/Hints';
+import { getHint, hints } from '../data/Hints';
 import { gameNumber } from '../util/GameNumber';
 import Flag from '../components/Flag';
 import { HeaderLeft, HeaderTitle } from '../components/Header';
 import { navigateToLevel1 } from '../util/Navigation';
+import refreshVersion from '../util/AppVersion';
+import { loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
+import { grantExtraHeart } from '../components/ExtraHearts';
 
 
 export default function BonusLevelScreen({ navigation }) {
 
     const [selected, setSelected] = useState();
-    const [showAlert, setShowAlert] = useState(true);
+    const [showWelcomeAlert, setShowWelcomeAlert] = useState(true);
+    const [showExtraHeartAlert, setShowExtraHeartAlert] = useState(false);
     const [country, setCountry] = useState(countriesWithFlags[gameNumber]);
     const [guesses, setGuesses] = useState([]);
     const [correct, setCorrect] = useState();
+    const [victory, setVictory] = useState(false);
+    const [level1Victory, setLevel1Victory] = useState();
+    const [extraHearts, setExtraHearts] = useState();
 
-    const hint = getHint(countriesWithFlags[gameNumber]);
+    let hint = getHint(countriesWithFlags[gameNumber]);
+    if (hint == null) {
+        hint = hints[0];
+    }
 
+    // Force app refresh every now and then to retire outdated code
+    useEffect(() => {
+        refreshVersion();
+    })
+
+    // Load guesses, hearts and such on startup and navigation
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            loadData();
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+
+    useEffect(() => {
+        if (victory == true) {
+            setCorrect(hint.options.filter((option) => option.isCorrect)[0].text);
+        }
+        if (victory == false && guesses == []) {
+            setShowWelcomeAlert(true);
+        }
+    }, [victory])
+
+    // Store guesses, hearts and such on device
+    const storeData = (newVictory, extraHearts, newGuesses) => {
+        storeItem("bonusLevel1Victory", newVictory);
+        storeItem("bonusLevel1Guesses", newGuesses);
+        storeGlobalItem("extraHearts", extraHearts)
+    };
+
+    const loadData = async () => {
+        loadItem("level1Victory", false, setLevel1Victory);
+        loadItem("bonusLevel1Victory", false, setVictory);
+        loadItem("bonusLevel1Guesses", [], setGuesses);
+        loadItem("bonusLevel1Guesses", [], setGuesses);
+        loadGlobalItem("extraHearts", 0, setExtraHearts);
+    }
+    // Header
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Bonus Level"} />,
             headerRight: () => { },
-            headerLeft: () => <HeaderLeft country={country} navigateBack={navigateToLevel1} />
+            headerLeft: () => <HeaderLeft country={country} navigation={navigation} navigateBack={navigateToLevel1} />
         }, [navigation]);
     })
 
@@ -35,9 +83,9 @@ export default function BonusLevelScreen({ navigation }) {
         let style = [styles.optionContainer];
         if (option == selected) {
             style.push(styles.selectedOptionContainer);
-        } else if (option == correct) {
+        } else if (option.text == correct) {
             style.push(styles.correctOptionContainer);
-        } else if (guesses.includes(option)) {
+        } else if (guesses?.includes(option.text)) {
             style.push(styles.wrongOptionContainer);
         }
         return style;
@@ -46,15 +94,25 @@ export default function BonusLevelScreen({ navigation }) {
     function Option({ option }) {
         return (
             <TouchableOpacity style={getConditionalOptionStyle(option)}
+                disabled={victory || guesses.includes(option.text)}
                 onPress={() => {
-                    setSelected(option);
+                    if (!guesses.includes(option.text)) {
+                        setSelected(option);
+                    }
                 }}
                 onLongPress={() => {
                     if (option.isCorrect) {
-                        setCorrect(option);
+                        var newVictory = true;
+                        setCorrect(option.text);
+                        setVictory(true);
+                        if (guesses.length == 0) {
+                            setShowExtraHeartAlert(true);
+                            var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
+                        }
                     } else {
-                        guesses.push(option);
+                        guesses.push(option.text);
                     }
+                    storeData(newVictory, newExtraHearts, guesses);
                     setSelected(null);
                 }}
             >
@@ -95,15 +153,22 @@ export default function BonusLevelScreen({ navigation }) {
             </View>
 
             <AwesomeAlert
-                show={showAlert}
-                // showProgress={true}
+                show={showWelcomeAlert}
                 title="Bonus Level"
-                message="You lose no hearts here, but gain an extra one if win!"
+                message="You lose no hearts here, but have a chance to win one!"
                 closeOnTouchOutside={true}
                 closeOnHardwareBackPress={true}
-                onDismiss = {() => {
-                    setShowAlert(false);
+                onDismiss={() => {
+                    setShowWelcomeAlert(false);
                 }}
+            />
+
+            <AwesomeAlert
+                show={showExtraHeartAlert}
+                title="Bonus Level"
+                message="You won an extra heart!"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={true}
             />
 
             <StatusBar style="auto" />

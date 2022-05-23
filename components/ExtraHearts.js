@@ -7,7 +7,6 @@ export function grantExtraHeart(extraHearts, setExtraHearts) {
     let newExtraHearts = extraHearts < maxHearts ? extraHearts + 1 : extraHearts;
     setExtraHearts(extraHearts + 1);
     return newExtraHearts;
-
 }
 
 export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts }) {
