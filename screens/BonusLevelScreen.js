@@ -109,6 +109,11 @@ export default function BonusLevelScreen({ navigation }) {
                             setShowExtraHeartAlert(true);
                             var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
                         }
+
+                        // Redirect to the game
+                        setTimeout(() => {
+                            window.location.reload(false);
+                        }, 1000)
                     } else {
                         guesses.push(option.text);
                     }

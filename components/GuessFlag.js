@@ -4,7 +4,7 @@ import { Button, KeyboardAvoidingView, StyleSheet, TextInput, View, Text } from 
 
 import { countriesWithFlags, countryList, searchCountry } from '../data/CountryList';
 
-import { HeaderRight, HeaderTitle, NextLevelArrow } from '../components/Header';
+import { HeaderLeft, HeaderRight, HeaderTitle } from '../components/Header';
 import Flag from './Flag';
 import { GameOverCountryName, GlobeLink, ShareButton, GameOverMessage } from './GameOver';
 import Guesses from './Guesses';
@@ -31,7 +31,7 @@ export default function GuessFlag({ navigation }) {
     const [bonusLevelAvailable, setBonusLevelAvailable] = useState();
     const [victory, setVictory] = useState();
     const [bonusLevelVictory, setBonusLevelVictory] = useState();
-    const [level2Victory, setLevel2Victory] = useState();
+    const [level3Victory, setLevel3Victory] = useState();
     const [showBonusLevelAlert, setShowBonusLevelAlert] = useState(false);
 
     // Set up the level navigation header: title, next and previous level arrows
@@ -42,9 +42,7 @@ export default function GuessFlag({ navigation }) {
             headerRight: () => (
                 <HeaderRight
                     victory={victory}
-                    isBonusLevelAvailable={bonusLevelAvailable}
                     navigation={navigation}
-                    navigateToBonusLevel={navigateToBonusLevel1}
                     navigateToNextLevel={navigateToLevel2}
                     hearts={hearts}
                     setHearts={setHearts}
@@ -53,12 +51,16 @@ export default function GuessFlag({ navigation }) {
                 />
             ),
             headerLeft: () =>
-                hearts == 0 || level2Victory ?
-                    <View style={styles.rowContainer}>
-                        <GlobeLink country={country} />
-                        <ShareButton />
-                    </View>
-                    : null
+                <HeaderLeft
+                    navigation={navigation}
+                    bonusLevelAvailable={bonusLevelAvailable}
+                    navigateToBonusLevel={navigateToBonusLevel1}
+                    country={country}
+                    showGlobe={
+                        (hearts == 0 && extraHearts == 0)
+                        || level3Victory
+                    }
+                />
         }, [navigation]);
     })
 
@@ -67,12 +69,9 @@ export default function GuessFlag({ navigation }) {
         refreshVersion();
 
         // Bonus level 
-        if (guesses?.length >= 3 && !bonusLevelAvailable 
-            && !bonusLevelVictory && getHint(country) != null) {
+        if (victory || guesses?.length >= 3 && !bonusLevelAvailable 
+            && getHint(country) != null) {
             setBonusLevelAvailable(true);
-        }
-        if (bonusLevelVictory == true) {
-            setBonusLevelAvailable(false);
         }
     })
 
@@ -89,7 +88,7 @@ export default function GuessFlag({ navigation }) {
         loadItem("guesses", [], setGuesses);
         loadItem("level1Victory", false, setVictory);
         loadItem("bonusLevel1Victory", false, setBonusLevelVictory);
-        loadItem("level2Victory", false, setLevel2Victory);
+        loadItem("level3Victory", false, setLevel3Victory);
         loadItem("hearts", 6, setHearts);
         loadGlobalItem("extraHearts", 3, setExtraHearts);
     }

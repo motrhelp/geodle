@@ -5,7 +5,7 @@ import { maxHearts } from './Hearts';
 
 export function grantExtraHeart(extraHearts, setExtraHearts) {
     let newExtraHearts = extraHearts < maxHearts ? extraHearts + 1 : extraHearts;
-    setExtraHearts(extraHearts + 1);
+    setExtraHearts(newExtraHearts);
     return newExtraHearts;
 }
 

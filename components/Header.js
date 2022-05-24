@@ -5,7 +5,7 @@ import { ExtraHearts } from './ExtraHearts';
 
 import leftArrow from '../img/left-arrow.png'
 import rightArrow from '../img/right-arrow.png'
-import BonusLevelScreen from '../screens/BonusLevelScreen';
+import bonus from '../img/bonus.png'
 
 export function HeaderTitle({ levelName }) {
     return (
@@ -13,21 +13,28 @@ export function HeaderTitle({ levelName }) {
     )
 }
 
-export function HeaderLeft({ navigation, navigateBack, country, showGlobe }) {
+export function HeaderLeft({ navigation, navigateBack, bonusLevelAvailable, navigateToBonusLevel, country, showGlobe }) {
     return (
         <View style={styles.rowContainer}>
-            {navigateBack != null ?
-                <TouchableOpacity
-                    style={styles.navigationArrowContainer}
-                    onPress={() => navigateBack(navigation)}
-                >
-                    <Image
-                        style={styles.previousLevelArrow}
-                        source={leftArrow}
-                    />
-                </TouchableOpacity>
+            {bonusLevelAvailable ?
+                <BonusLevelArrow
+                    navigation={navigation}
+                    navigateToBonusLevel={navigateToBonusLevel}
+                    navigateBack={navigation.goBack}
+                />
                 :
-                null
+                navigateBack != null ?
+                    <TouchableOpacity
+                        style={styles.navigationArrowContainer}
+                        onPress={() => navigateBack(navigation)}
+                    >
+                        <Image
+                            style={styles.previousLevelArrow}
+                            source={leftArrow}
+                        />
+                    </TouchableOpacity>
+                    :
+                    null
             }
             {showGlobe == true ?
                 <GlobeLink country={country} />
@@ -38,28 +45,21 @@ export function HeaderLeft({ navigation, navigateBack, country, showGlobe }) {
         </View>
     )
 }
-export function HeaderRight({ victory, isBonusLevelAvailable, navigation, navigateToBonusLevel, navigateToNextLevel, hearts, setHearts, extraHearts, setExtraHearts }) {
+export function HeaderRight({ victory, navigation, navigateToNextLevel, hearts, setHearts, extraHearts, setExtraHearts }) {
     return (
         <View style={styles.rowContainer}>
-            {isBonusLevelAvailable ?
-                <BonusLevelArrow
+            {victory ?
+                <NextLevelArrow
                     navigation={navigation}
-                    navigateToBonusLevel={navigateToBonusLevel}
-                    navigateBack={navigation.goBack}
+                    navigateToNextLevel={navigateToNextLevel}
                 />
                 :
-                victory ?
-                    <NextLevelArrow
-                        navigation={navigation}
-                        navigateToNextLevel={navigateToNextLevel}
-                    />
-                    :
-                    <ExtraHearts
-                        hearts={hearts}
-                        setHearts={setHearts}
-                        extraHearts={extraHearts}
-                        setExtraHearts={setExtraHearts}
-                    />
+                <ExtraHearts
+                    hearts={hearts}
+                    setHearts={setHearts}
+                    extraHearts={extraHearts}
+                    setExtraHearts={setExtraHearts}
+                />
             }
         </View>
     )
@@ -91,12 +91,9 @@ export function BonusLevelArrow({ navigation, navigateToBonusLevel }) {
                 style={styles.navigationArrowContainer}
                 onPress={() => navigateToBonusLevel(navigation)}
             >
-                <Text style={styles.nextLevelText}>
-                    BONUS{'\n'} LEVEL
-                </Text>
                 <Image
-                    style={styles.nextLevelArrow}
-                    source={rightArrow}
+                    style={styles.pictogram}
+                    source={bonus}
                 />
             </TouchableOpacity>
         </View>
@@ -112,6 +109,11 @@ const styles = StyleSheet.create({
         minHeight: 25,
         aspectRatio: 512 / 512,
         marginLeft: 20,
+    },
+    pictogram: {
+        minHeight: 30,
+        aspectRatio: 512 / 512,
+        marginHorizontal: 10,
     },
     headerTitle: {
         fontWeight: 'bold',
