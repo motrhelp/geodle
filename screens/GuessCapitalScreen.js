@@ -47,6 +47,11 @@ export default function GuessCapitalScreen({ navigation }) {
   const [char10, setChar10] = useState('');
   const [char11, setChar11] = useState('');
   const [char12, setChar12] = useState('');
+  const [char13, setChar13] = useState('');
+  const [char14, setChar14] = useState('');
+  const [char15, setChar15] = useState('');
+  const [char16, setChar16] = useState('');
+  const [char17, setChar17] = useState('');
   const [char1Guessed, setChar1Guessed] = useState(false);
   const [char2Guessed, setChar2Guessed] = useState(false);
   const [char3Guessed, setChar3Guessed] = useState(false);
@@ -59,6 +64,11 @@ export default function GuessCapitalScreen({ navigation }) {
   const [char10Guessed, setChar10Guessed] = useState(false);
   const [char11Guessed, setChar11Guessed] = useState(false);
   const [char12Guessed, setChar12Guessed] = useState(false);
+  const [char13Guessed, setChar13Guessed] = useState(false);
+  const [char14Guessed, setChar14Guessed] = useState(false);
+  const [char15Guessed, setChar15Guessed] = useState(false);
+  const [char16Guessed, setChar16Guessed] = useState(false);
+  const [char17Guessed, setChar17Guessed] = useState(false);
 
   const charArray = [
     { char: char1, setChar: setChar1, charGuessed: char1Guessed, setCharGuessed: setChar1Guessed },
@@ -73,6 +83,11 @@ export default function GuessCapitalScreen({ navigation }) {
     { char: char10, setChar: setChar10, charGuessed: char10Guessed, setCharGuessed: setChar10Guessed },
     { char: char11, setChar: setChar11, charGuessed: char11Guessed, setCharGuessed: setChar11Guessed },
     { char: char12, setChar: setChar12, charGuessed: char12Guessed, setCharGuessed: setChar12Guessed },
+    { char: char13, setChar: setChar13, charGuessed: char13Guessed, setCharGuessed: setChar13Guessed },
+    { char: char14, setChar: setChar14, charGuessed: char14Guessed, setCharGuessed: setChar14Guessed },
+    { char: char15, setChar: setChar15, charGuessed: char15Guessed, setCharGuessed: setChar15Guessed },
+    { char: char16, setChar: setChar16, charGuessed: char16Guessed, setCharGuessed: setChar16Guessed },
+    { char: char17, setChar: setChar17, charGuessed: char17Guessed, setCharGuessed: setChar17Guessed },
   ]
 
   function setCharArray(newCharArray) {
@@ -375,6 +390,36 @@ export default function GuessCapitalScreen({ navigation }) {
           <TouchableOpacity style={getConditionalWordStyles(11)}
             onPress={() => onPressWordChar(11)}>
             <Text style={styles.wordCharacter}>{char12}</Text>
+          </TouchableOpacity>
+          : null}
+        {capitalName.length > 12 ?
+          <TouchableOpacity style={getConditionalWordStyles(12)}
+            onPress={() => onPressWordChar(12)}>
+            <Text style={styles.wordCharacter}>{char13}</Text>
+          </TouchableOpacity>
+          : null}
+        {capitalName.length > 13 ?
+          <TouchableOpacity style={getConditionalWordStyles(13)}
+            onPress={() => onPressWordChar(13)}>
+            <Text style={styles.wordCharacter}>{char14}</Text>
+          </TouchableOpacity>
+          : null}
+        {capitalName.length > 14 ?
+          <TouchableOpacity style={getConditionalWordStyles(14)}
+            onPress={() => onPressWordChar(14)}>
+            <Text style={styles.wordCharacter}>{char15}</Text>
+          </TouchableOpacity>
+          : null}
+        {capitalName.length > 15 ?
+          <TouchableOpacity style={getConditionalWordStyles(15)}
+            onPress={() => onPressWordChar(15)}>
+            <Text style={styles.wordCharacter}>{char16}</Text>
+          </TouchableOpacity>
+          : null}
+        {capitalName.length > 16 ?
+          <TouchableOpacity style={getConditionalWordStyles(16)}
+            onPress={() => onPressWordChar(16)}>
+            <Text style={styles.wordCharacter}>{char17}</Text>
           </TouchableOpacity>
           : null}
       </View>

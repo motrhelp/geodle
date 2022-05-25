@@ -204,7 +204,7 @@ export const countryList = [
     { code: "SB", name: "Solomon Islands", flag: require("../img/320px-Flag_of_Solomon_Islands.jpg"), flagAspectRatio: 2, lat: -9.64571, lon: 160.156194, capital: { name: "Honiara" } },
     { code: "SO", name: "Somalia", flag: require("../img/320px-Flag_of_Somalia.svg.png"), lat: 5.152149, lon: 46.199616, capital: { name: "Mogadishu" }, shape: require("../img/somalia.png") },
     { code: "ZA", name: "South Africa", flag: require("../img/400px-Flag_of_South_Africa.svg.png"), lat: -30.559482, lon: 22.937506, capital: { name: "Cape Town" }, shape: require("../img/south-africa.png") },
-    { code: "GS", name: "South Georgia and the South Sandwich Islands", flag: require("../img/320px-Flag_of_South_Georgia_and_the_South_Sandwich_Islands.svg.png"), flagAspectRatio: 2, lat: -54.429579, lon: -36.587909, capital: { name: "Kind Edward Point" } },
+    { code: "GS", name: "South Georgia and the South Sandwich Islands", flag: require("../img/320px-Flag_of_South_Georgia_and_the_South_Sandwich_Islands.svg.png"), flagAspectRatio: 2, lat: -54.429579, lon: -36.587909, capital: { name: "King Edward Point" } },
     { code: "SS", name: "South Sudan", flag: require("../img/320px-Flag_of_South_Sudan.svg.png"), flagAspectRatio: 2, lat: 6.8770, lon: 31.3070, capital: { name: "Juba" }, shape: require("../img/south-sudan.png") },
     { code: "ES", name: "Spain", flag: require("../img/320px-Flag_of_Spain.svg.png"), lat: 40.463667, lon: -3.74922, capital: { name: "Madrid" }, shape: require("../img/spain.png") },
     { code: "LK", name: "Sri Lanka", flag: require("../img/320px-Flag_of_Sri_Lanka.svg.png"), flagAspectRatio: 2, lat: 7.873054, lon: 80.771797, capital: { name: "Colombo" }, shape: require("../img/sri-lanka.png") },
