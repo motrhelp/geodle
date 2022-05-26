@@ -59,6 +59,7 @@ export function HeaderRight({ victory, navigation, navigateToNextLevel, hearts, 
                     setHearts={setHearts}
                     extraHearts={extraHearts}
                     setExtraHearts={setExtraHearts}
+                    victory={victory}
                 />
             }
         </View>

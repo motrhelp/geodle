@@ -9,10 +9,10 @@ export function grantExtraHeart(extraHearts, setExtraHearts) {
     return newExtraHearts;
 }
 
-export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts }) {
+export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts, victory }) {
 
     function onPressExtraHearts() {
-        if (extraHearts > 0 && hearts < maxHearts) {
+        if (extraHearts > 0 && hearts < maxHearts && victory != true) {
             setHearts(hearts + 1);
             setExtraHearts(extraHearts - 1);
         }
@@ -22,6 +22,7 @@ export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts }) 
         <TouchableOpacity
             style={styles.linksContainer}
             onPress={() => onPressExtraHearts()}
+            disabled={victory == true}
         >
             <Image
                 style={styles.pictogram}

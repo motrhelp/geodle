@@ -133,6 +133,7 @@ export default function GuessCapitalScreen({ navigation }) {
             setHearts={setHearts}
             extraHearts={extraHearts}
             setExtraHearts={setExtraHearts}
+            victory={victory}
           />
       ),
       headerLeft: () =>

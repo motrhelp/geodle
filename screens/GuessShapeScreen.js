@@ -81,6 +81,7 @@ export default function GuessShapeScreen({ navigation }) {
                     setHearts={setHearts}
                     extraHearts={extraHearts}
                     setExtraHearts={setExtraHearts}
+                    victory={victory}
                 />,
             headerLeft: () => (
                 <View style={styles.rowContainer}>
