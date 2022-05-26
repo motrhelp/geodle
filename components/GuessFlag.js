@@ -144,7 +144,9 @@ export default function GuessFlag({ navigation }) {
 
                 // Check for bonus level
                 if (guesses.length == 3 && getHint(country) != null) {
-                    setShowBonusLevelAlert(true);
+                    setTimeout(() => {
+                        setShowBonusLevelAlert(true);
+                    }, 1000)
                 }
 
                 // Process victory
