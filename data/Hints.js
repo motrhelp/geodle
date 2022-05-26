@@ -68,6 +68,26 @@ export const hints = [
             { text: "🇬🇧 Sir John Hawkins" },
             { text: "🇵🇹 Vasco da Gama", isCorrect: true }
         ]
+    },
+    {
+        code: "AL",
+        text: "An acclaimed hero, Nobel prize winner and a saint of this country is:",
+        options: [
+            { text: "14th Dalai Lama"},
+            { text: "Mother Teresa", isCorrect: true  },
+            { text: "Pope John Paul II" },
+            { text: "Дмитрий Муратов" }
+        ]
+    },
+    {
+        code: "YE",
+        text: "A world-known type of coffee is named after a city in this country:",
+        options: [
+            { text: "Mocha", isCorrect: true  },
+            { text: "Cappuccino"},
+            { text: "Americano" },
+            { text: "Espresso" }
+        ]
     }
 ]
 
