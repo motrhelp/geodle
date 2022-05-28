@@ -54,7 +54,7 @@ export default function GuessShapeScreen({ navigation }) {
     const loadData = async () => {
         loadItem("level3Guesses", [], setGuesses);
         loadItem("correct", null, setCorrect);
-        loadGlobalItem("extraHearts", 3, setExtraHearts);
+        loadGlobalItem("extraHearts", 0, setExtraHearts);
         loadItem("hearts", 6, setHearts);
         loadItem("level3Victory", country.shape == null, setVictory); // the default value is a workaround to catch countries without shapes
     }

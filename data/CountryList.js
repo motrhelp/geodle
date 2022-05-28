@@ -149,7 +149,7 @@ export const countryList = [
     { code: "ME", name: "Montenegro", lat: 42.708678, lon: 19.37439, flag: require("../img/Flag_of_Montenegro.png"), flagAspectRatio: 2, capital: { name: "Podgorica" }, shape: require("../img/montenegro.png") },
     { code: "MS", name: "Montserrat", flag: require("../img/320px-Flag_of_Montserrat.png"), flagAspectRatio: 2, lat: 16.742498, lon: -62.187366, capital: { name: "Plymouth" }, shape: require("../img/montserrat.png") },
     { code: "MA", name: "Morocco", lat: 31.791702, lon: -7.09262, flag: require("../img/Flag_of_Morocco.png"), capital: { name: "Rabat" }, shape: require("../img/morocco.png") },
-    { code: "MZ", name: "Mozambique", flag: require("../img/Flag_of_Mozambique.png"), lat: -18.665695, lon: 35.529562, capital: { name: "Maputa" }, shape: require("../img/mozambique.png") },
+    { code: "MZ", name: "Mozambique", flag: require("../img/Flag_of_Mozambique.png"), lat: -18.665695, lon: 35.529562, capital: { name: "Maputo" }, shape: require("../img/mozambique.png") },
     { code: "MM", name: "Myanmar", flag: require("../img/Flag_of_Myanmar.png"), lat: 21.913965, lon: 95.956223, capital: { name: "Naypyidaw" }, shape: require("../img/myanmar.png") },
     { code: "NA", name: "Namibia", flag: require("../img/Flag_of_Namibia.png"), lat: -22.95764, lon: 18.49041, capital: { name: "Windhoek" }, shape: require("../img/namibia.png") },
     { code: "NR", name: "Nauru", flag: require("../img/512px-Flag_of_Nauru.png"), flagAspectRatio: 2, lat: -0.522778, lon: 166.931503, capital: { name: "Yaren" }, shape: require("../img/nauru.png") },

@@ -91,7 +91,7 @@ export const hints = [
     },
     {
         code: "KZ",
-        text: "This country is the largest ... in the world:",
+        text: "This country is the largest:",
         options: [
             { text: "landlocked country", isCorrect: true },
             { text: "producent of cocoa" },
@@ -163,8 +163,8 @@ export const hints = [
         code: "IR",
         text: "This country's lake Urmia is:",
         options: [
-            { text: "the largest lake in the Middle East", isCorrect: true  },
-            { text: "the longest lake in Europe"},
+            { text: "the largest lake in the Middle East", isCorrect: true },
+            { text: "the longest lake in Europe" },
             { text: "the largest freshwater lake on Earth" },
             { text: "the deepest lake of Asia" }
         ]
@@ -173,8 +173,8 @@ export const hints = [
         code: "GT",
         text: "This country once co-formed a federation of:",
         options: [
-            { text: "United Provinces of Central America", isCorrect: true  },
-            { text: "Greater Republics of Central America"},
+            { text: "United Provinces of Central America", isCorrect: true },
+            { text: "Greater Republics of Central America" },
             { text: "United States of South America" },
             { text: "USSR" }
         ]
@@ -183,9 +183,9 @@ export const hints = [
         code: "SV",
         text: "This country is the:",
         options: [
-            { text: "smallest country in North America"},
+            { text: "smallest country in North America" },
             { text: "biggest country in Africa" },
-            { text: "smallest country in Central America", isCorrect: true  },
+            { text: "smallest country in Central America", isCorrect: true },
             { text: "biggest country in Central America" }
         ]
     },
@@ -193,20 +193,20 @@ export const hints = [
         code: "KW",
         text: "This country granted women the right to vote in:",
         options: [
-            { text: "1950"},
+            { text: "1950" },
             { text: "1905" },
             { text: "1985" },
-            { text: "2005", isCorrect: true  },
+            { text: "2005", isCorrect: true },
         ]
     },
     {
         code: "DZ",
         text: "This country is the:",
         options: [
-            { text: "southernmost country in Africa"},
+            { text: "southernmost country in Africa" },
             { text: "coldest country in Africa" },
             { text: "flattest country in Europe" },
-            { text: "largest country in Africa", isCorrect: true  },
+            { text: "largest country in Africa", isCorrect: true },
         ]
     }
 ]

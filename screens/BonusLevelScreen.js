@@ -101,30 +101,27 @@ export default function BonusLevelScreen({ navigation }) {
                     }
                 }}
                 onLongPress={() => {
-                    if (option.isCorrect) {
-                        var newVictory = true;
-                        setCorrect(option.text);
-                        setVictory(true);
-                        if (guesses.length == 0) {
-                            setShowExtraHeartAlert(true);
-                            var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
-                        }
-
-                        // Redirect to the game
-                        setTimeout(() => {
-                            window.location.reload(false);
-                        }, 1000)
-                    } else {
-                        guesses.push(option.text);
+                    var newVictory = option.isCorrect;
+                    setVictory(newVictory);
+                    if (newVictory == true) {
+                        setShowExtraHeartAlert(true);
+                        var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
                     }
+                    guesses.push(option.text)
+                    setCorrect(hint.options.filter(option => option.isCorrect)[0].text);
                     storeData(newVictory, newExtraHearts, guesses);
                     setSelected(null);
+
+                    // Redirect to the game
+                    setTimeout(() => {
+                        window.location.reload(false);
+                    }, 3000)
                 }}
             >
                 <Text style={styles.optionText}>
                     {option.text}
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity >
         );
     }
 

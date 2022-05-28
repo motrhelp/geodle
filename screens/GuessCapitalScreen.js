@@ -152,7 +152,7 @@ export default function GuessCapitalScreen({ navigation }) {
   })
 
   useEffect(() => {
-    loadGlobalItem("extraHearts", 3, setExtraHearts);
+    loadGlobalItem("extraHearts", 0, setExtraHearts);
     loadItem("charArray", charArray, setCharArray);
     loadItem("correctCharacters", [], setCorrectCharacters);
     loadItem("almostCharacters", [], setAlmostCharacters);

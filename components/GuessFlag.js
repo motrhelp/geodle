@@ -90,7 +90,7 @@ export default function GuessFlag({ navigation }) {
         loadItem("bonusLevel1Victory", false, setBonusLevelVictory);
         loadItem("level3Victory", false, setLevel3Victory);
         loadItem("hearts", 6, setHearts);
-        loadGlobalItem("extraHearts", 3, setExtraHearts);
+        loadGlobalItem("extraHearts", 0, setExtraHearts);
     }
 
     // Tester's "refresh" cheat
