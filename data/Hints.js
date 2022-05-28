@@ -208,6 +208,76 @@ export const hints = [
             { text: "flattest country in Europe" },
             { text: "largest country in Africa", isCorrect: true },
         ]
+    },
+    {
+        code: "CA",
+        text: "This country has:",
+        options: [
+            { text: "the longest coastline in the world", isCorrect: true },
+            { text: "the shortest coastline in the world" },
+            { text: "the highest mountain in the world" },
+            { text: "no access to sea" },
+        ]
+    },
+    // {
+    //     code: "Scotland",
+    //     text: "This country's national animal is:",
+    //     options: [
+    //         { text: "Mermaid" },
+    //         { text: "Dragon" },
+    //         { text: "Unicorn", isCorrect: true },
+    //         { text: "Hippogriff" },
+    //     ]
+    // },
+    {
+        code: "LK",
+        text: "This country originated:",
+        options: [
+            { text: "Arabica Coffee" },
+            { text: "Robusta Coffee" },
+            { text: "Ceylon Tea", isCorrect: true },
+            { text: "Rooibos van Zuid Afrika" },
+        ]
+    },
+    {
+        code: "RU",
+        text: "This country is officialy:",
+        options: [
+            { text: "the coldest in the world", isCorrect: true },
+            { text: "the smallest in the world" },
+            { text: "a Kingdom" },
+            { text: "two autonomies" },
+        ]
+    },
+    {
+        code: "NG",
+        text: "This country has the ...",
+        options: [
+            { text: "largest population in Africa", isCorrect: true },
+            { text: "smallest population in Africa" },
+            { text: "highest literacy rate in Africa" },
+            { text: "lowest GDP in Africa" },
+        ]
+    },
+    {
+        code: "GL",
+        text: "This country is also the ...",
+        options: [
+            { text: "smallest island in the world" },
+            { text: "7th miracle of the world" },
+            { text: "largest island in the world", isCorrect: true },
+            { text: "snowiest in the world" },
+        ]
+    },
+    {
+        code: "US",
+        text: "This country shares the ...",
+        options: [
+            { text: "name with two other countries" },
+            { text: "longest border in the world", isCorrect: true },
+            { text: "shortest border in the world"},
+            { text: "name with one other country" },
+        ]
     }
 ]
 
