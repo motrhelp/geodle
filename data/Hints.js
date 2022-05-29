@@ -278,6 +278,26 @@ export const hints = [
             { text: "shortest border in the world"},
             { text: "name with one other country" },
         ]
+    },
+    {
+        code: "NP",
+        text: "This country features the ... in the world",
+        options: [
+            { text: "largest sea" },
+            { text: "highest mountain", isCorrect: true },
+            { text: "biggest forest"},
+            { text: "longest river" },
+        ]
+    },
+    {
+        code: "FM",
+        text: "This country is located in ...",
+        options: [
+            { text: "the largest ocean", isCorrect: true  },
+            { text: "between two oceans" },
+            { text: "the biggest forest"},
+            { text: "one of the China Seas" },
+        ]
     }
 ]
 
