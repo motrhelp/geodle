@@ -71,13 +71,16 @@ const onPressShare = async () => {
     if (level3Victory) {
         heartsUsed--;
     }
-    shareString += "I used " + heartsUsed + " hearts ";
+    shareString += "I used " + heartsUsed + " heart";
+    if (heartsUsed > 1) {
+        shareString += "s";
+    }
     if (level3Guesses.length > 0) {
-        shareString += "for 3 levels:";
+        shareString += " for 3 levels:";
     } else if (level2Guesses.length > 0) {
-        shareString += "for 2 levels:";
+        shareString += " for 2 levels:";
     } else {
-        shareString += "on level 1:"
+        shareString += " on level 1:"
     }
 
     // Summarize level 1
