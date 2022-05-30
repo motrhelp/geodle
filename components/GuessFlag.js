@@ -69,7 +69,7 @@ export default function GuessFlag({ navigation }) {
         refreshVersion();
 
         // Bonus level 
-        if (victory || guesses?.length >= 3 && !bonusLevelAvailable 
+        if ((victory || guesses?.length >= 3 && !bonusLevelAvailable) 
             && getHint(country) != null) {
             setBonusLevelAvailable(true);
         }

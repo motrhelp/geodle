@@ -8,7 +8,7 @@ import { countriesWithFlags } from '../data/CountryList';
 import { getHint, hints } from '../data/Hints';
 import { gameNumber } from '../util/GameNumber';
 import Flag from '../components/Flag';
-import { HeaderLeft, HeaderTitle } from '../components/Header';
+import { HeaderLeft, HeaderRight, HeaderTitle } from '../components/Header';
 import { navigateToLevel1 } from '../util/Navigation';
 import refreshVersion from '../util/AppVersion';
 import { loadGlobalItem, loadItem, storeGlobalItem, storeItem } from '../util/DataStorage';
@@ -74,7 +74,11 @@ export default function BonusLevelScreen({ navigation }) {
         navigation.setOptions({
             title: "GEODLE",
             headerTitle: () => <HeaderTitle levelName={"Bonus Level"} />,
-            headerRight: () => { },
+            headerRight: () => <HeaderRight
+                victory={victory}
+                extraHearts={extraHearts}
+                setExtraHearts={setExtraHearts}
+            />,
             headerLeft: () => <HeaderLeft country={country} navigation={navigation} navigateBack={navigateToLevel1} />
         }, [navigation]);
     })

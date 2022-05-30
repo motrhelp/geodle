@@ -48,7 +48,7 @@ export function HeaderLeft({ navigation, navigateBack, bonusLevelAvailable, navi
 export function HeaderRight({ victory, navigation, navigateToNextLevel, hearts, setHearts, extraHearts, setExtraHearts }) {
     return (
         <View style={styles.rowContainer}>
-            {victory ?
+            {victory && navigateToNextLevel != null ?
                 <NextLevelArrow
                     navigation={navigation}
                     navigateToNextLevel={navigateToNextLevel}

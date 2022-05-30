@@ -22,7 +22,7 @@ export function ExtraHearts({ hearts, setHearts, extraHearts, setExtraHearts, vi
         <TouchableOpacity
             style={styles.linksContainer}
             onPress={() => onPressExtraHearts()}
-            disabled={victory == true}
+            disabled={victory == true || hearts == null}
         >
             <Image
                 style={styles.pictogram}
