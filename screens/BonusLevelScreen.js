@@ -56,9 +56,10 @@ export default function BonusLevelScreen({ navigation }) {
     }, [victory])
 
     // Store guesses, hearts and such on device
-    const storeData = (newVictory, extraHearts, newGuesses) => {
+    const storeData = (newVictory, extraHearts, newGuesses, newCorrect) => {
         storeItem("bonusLevel1Victory", newVictory);
         storeItem("bonusLevel1Guesses", newGuesses);
+        storeItem("bonusLevel1Correct", newCorrect);
         storeGlobalItem("extraHearts", extraHearts)
     };
 
@@ -66,7 +67,7 @@ export default function BonusLevelScreen({ navigation }) {
         loadItem("level1Victory", false, setLevel1Victory);
         loadItem("bonusLevel1Victory", false, setVictory);
         loadItem("bonusLevel1Guesses", [], setGuesses);
-        loadItem("bonusLevel1Guesses", [], setGuesses);
+        loadItem("bonusLevel1Correct", null, setCorrect);
         loadGlobalItem("extraHearts", 0, setExtraHearts);
     }
     // Header
@@ -98,7 +99,7 @@ export default function BonusLevelScreen({ navigation }) {
     function Option({ option }) {
         return (
             <TouchableOpacity style={getConditionalOptionStyle(option)}
-                disabled={victory || guesses.includes(option.text)}
+                disabled={victory || correct != null || guesses.includes(option.text)}
                 onPress={() => {
                     if (!guesses.includes(option.text)) {
                         setSelected(option);
@@ -107,13 +108,15 @@ export default function BonusLevelScreen({ navigation }) {
                 onLongPress={() => {
                     var newVictory = option.isCorrect;
                     setVictory(newVictory);
+                    let newExtraHearts = extraHearts;
                     if (newVictory == true) {
                         setShowExtraHeartAlert(true);
-                        var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
+                        newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
                     }
                     guesses.push(option.text)
-                    setCorrect(hint.options.filter(option => option.isCorrect)[0].text);
-                    storeData(newVictory, newExtraHearts, guesses);
+                    let newCorrect = hint.options.filter(option => option.isCorrect)[0].text;
+                    setCorrect(newCorrect);
+                    storeData(newVictory, newExtraHearts, guesses, newCorrect);
                     setSelected(null);
 
                     // Redirect to the game

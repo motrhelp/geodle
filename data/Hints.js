@@ -298,6 +298,26 @@ export const hints = [
             { text: "the biggest forest"},
             { text: "one of the China Seas" },
         ]
+    },
+    {
+        code: "NZ",
+        text: "This country was the ...",
+        options: [
+            { text: "birthplace of humankind" },
+            { text: "only country not fighting in World Wars" },
+            { text: "last country to be inhabited by humans", isCorrect: true  },
+            { text: "East India Company main destination" },
+        ]
+    },
+    {
+        code: "MG",
+        text: "This country is the ... in the world",
+        options: [
+            { text: "most developed island nation" },
+            { text: "smallest island" },
+            { text: "largest micro-continent", isCorrect: true  },
+            { text: "most isolated island" },
+        ]
     }
 ]
 
