@@ -318,6 +318,36 @@ export const hints = [
             { text: "largest micro-continent", isCorrect: true  },
             { text: "most isolated island" },
         ]
+    },
+    {
+        code: "SC",
+        text: "The country comprises of ...",
+        options: [
+            { text: "tundra and forests" },
+            { text: "two disctricts" },
+            { text: "over 1000 islands" },
+            { text: "about 115 islands", isCorrect: true  },
+        ]
+    },
+    {
+        code: "CN",
+        text: "How many timezones does this country have?",
+        options: [
+            { text: "7" },
+            { text: "none" },
+            { text: "6" },
+            { text: "1", isCorrect: true  },
+        ]
+    },
+    {
+        code: "FI",
+        text: "What is the local name of this country?",
+        options: [
+            { text: "Svenska" },
+            { text: "Suomi", isCorrect: true  },
+            { text: "საქართველო" },
+            { text: "Magyarország" },
+        ]
     }
 ]
 
