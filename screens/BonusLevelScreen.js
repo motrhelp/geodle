@@ -74,7 +74,7 @@ export default function BonusLevelScreen({ navigation }) {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "GEODLE",
-            headerTitle: () => <HeaderTitle levelName={"Bonus Level"} />,
+            headerTitle: () => <HeaderTitle levelName={"Bonus"} />,
             headerRight: () => <HeaderRight
                 victory={victory}
                 extraHearts={extraHearts}
@@ -144,6 +144,7 @@ export default function BonusLevelScreen({ navigation }) {
             <View style={styles.questionContainer}>
                 <Text style={styles.questionText}>{hint.text}</Text>
             </View>
+
             <View style={styles.optionsContainer}>
                 <View style={styles.optionsRowContainer}>
                     <Option option={hint.options[0]} />
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
     },
     optionsRowContainer: {
         flexDirection: 'row',
-        marginVertical: 30,
+        marginVertical: 20,
         alignItems: 'center',
         justifyContent: 'center'
     },
