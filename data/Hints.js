@@ -348,6 +348,26 @@ export const hints = [
             { text: "საქართველო" },
             { text: "Magyarország" },
         ]
+    },
+    {
+        code: "MX",
+        text: "This country is home to ...",
+        options: [
+            { text: "world's largest pyramid", isCorrect: true  },
+            { text: "most penguins of the world" },
+            { text: "less than 50 million people" },
+            { text: "the longest river in the world" },
+        ]
+    },
+    {
+        code: "LU",
+        text: "Nearly half of this country's workforce ...",
+        options: [
+            { text: "lives below poverty line" },
+            { text: "is employed in tourism" },
+            { text: "is under 18 years old" },
+            { text: "commutes from abroad", isCorrect: true  },
+        ]
     }
 ]
 

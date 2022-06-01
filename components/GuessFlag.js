@@ -154,7 +154,7 @@ export default function GuessFlag({ navigation }) {
                     setVictory(newVictory);
                     var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
 
-                    if (bonusLevelVictory == true) {
+                    if (!bonusLevelAvailable || bonusLevelVictory == true) {
                         // Redirect to the next level
                         setTimeout(() => {
                             navigateToLevel2(navigation);
