@@ -122,7 +122,7 @@ export default function BonusLevelScreen({ navigation }) {
                     // Redirect to the game
                     setTimeout(() => {
                         window.location.reload(false);
-                    }, 3000)
+                    }, 4000)
                 }}
             >
                 <Text style={styles.optionText}>

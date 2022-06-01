@@ -69,7 +69,7 @@ export default function GuessFlag({ navigation }) {
         refreshVersion();
 
         // Bonus level 
-        if ((victory || guesses?.length >= 3 && !bonusLevelAvailable) 
+        if ((victory || guesses?.length >= 3 && !bonusLevelAvailable)
             && getHint(country) != null) {
             setBonusLevelAvailable(true);
         }
@@ -154,15 +154,15 @@ export default function GuessFlag({ navigation }) {
                     setVictory(newVictory);
                     var newExtraHearts = grantExtraHeart(extraHearts, setExtraHearts);
 
-                    if (!bonusLevelAvailable || bonusLevelVictory == true) {
+                    if (getHint(country) != null) {
+                        // Redirect to bonus level
+                        setBonusLevelAvailable(true);
+                        setShowBonusLevelAlert(true);
+                    } else {
                         // Redirect to the next level
                         setTimeout(() => {
                             navigateToLevel2(navigation);
                         }, 1000)
-                    } else if (getHint(country) != null) {
-                        // Redirect to bonus level
-                        setBonusLevelAvailable(true);
-                        setShowBonusLevelAlert(true);
                     }
                 }
 
