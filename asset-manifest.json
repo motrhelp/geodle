@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.9514ce84.chunk.js",
-    "app.js.map": "/geodle/static/js/app.9514ce84.chunk.js.map",
+    "app.js": "/geodle/static/js/app.baa30043.chunk.js",
+    "app.js.map": "/geodle/static/js/app.baa30043.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
-    "static/js/2.e4329125.chunk.js": "/geodle/static/js/2.e4329125.chunk.js",
-    "static/js/2.e4329125.chunk.js.map": "/geodle/static/js/2.e4329125.chunk.js.map",
+    "static/js/2.3ed937a2.chunk.js": "/geodle/static/js/2.3ed937a2.chunk.js",
+    "static/js/2.3ed937a2.chunk.js.map": "/geodle/static/js/2.3ed937a2.chunk.js.map",
     "favicon-16.png": "/geodle/favicon-16.png",
     "favicon-32.png": "/geodle/favicon-32.png",
     "favicon.ico": "/geodle/favicon.ico",
     "index.html": "/geodle/index.html",
     "manifest.json": "/geodle/manifest.json",
     "serve.json": "/geodle/serve.json",
-    "static/js/2.e4329125.chunk.js.LICENSE.txt": "/geodle/static/js/2.e4329125.chunk.js.LICENSE.txt",
+    "static/js/2.3ed937a2.chunk.js.LICENSE.txt": "/geodle/static/js/2.3ed937a2.chunk.js.LICENSE.txt",
     "static/media/256px-Flag_of_Nicaragua.svg.png": "/geodle/static/media/256px-Flag_of_Nicaragua.svg.104fb26e.png",
     "static/media/320px-Flag_of_East_Timor.svg.png": "/geodle/static/media/320px-Flag_of_East_Timor.svg.f628677c.png",
     "static/media/320px-Flag_of_Eswatini.svg.png": "/geodle/static/media/320px-Flag_of_Eswatini.svg.2bb4fcd0.png",
@@ -68,7 +68,6 @@
     "static/media/320px-Flag_of_Vanuatu.svg.png": "/geodle/static/media/320px-Flag_of_Vanuatu.svg.86046e63.png",
     "static/media/320px-Flag_of_Venezuela.svg.png": "/geodle/static/media/320px-Flag_of_Venezuela.svg.692e1b99.png",
     "static/media/320px-Flag_of_Vietnam.svg.png": "/geodle/static/media/320px-Flag_of_Vietnam.svg.5a65fb3f.png",
-    "static/media/320px-Flag_of_Wallis_and_Futuna.svg.png": "/geodle/static/media/320px-Flag_of_Wallis_and_Futuna.svg.7bc98a73.png",
     "static/media/320px-Flag_of_Zambia.svg.png": "/geodle/static/media/320px-Flag_of_Zambia.svg.dcc05645.png",
     "static/media/320px-Flag_of_Zimbabwe.svg.png": "/geodle/static/media/320px-Flag_of_Zimbabwe.svg.8a9cf80d.png",
     "static/media/320px-Flag_of_the_British_Virgin_Islands.svg.png": "/geodle/static/media/320px-Flag_of_the_British_Virgin_Islands.svg.893ec929.png",
@@ -398,7 +397,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
-    "static/js/2.e4329125.chunk.js",
-    "static/js/app.9514ce84.chunk.js"
+    "static/js/2.3ed937a2.chunk.js",
+    "static/js/app.baa30043.chunk.js"
   ]
 }
