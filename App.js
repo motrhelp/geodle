@@ -7,9 +7,10 @@ import GuessCapitalScreen from './screens/GuessCapitalScreen';
 import GuessFlagScreen from './screens/GuessFlagScreen';
 import GuessShapeScreen from './screens/GuessShapeScreen';
 import BonusLevelScreen from './screens/BonusLevelScreen';
+import GuessCountryLocationScreen from './screens/GuessCountryLocationScreen';
 
 import { loadItem } from './util/DataStorage';
-import { bonusLevel1Name, level1Name, level2Name, level3Name } from './util/Navigation';
+import { bonusLevel1Name, level1Name, level2Name, level3Name, level4Name } from './util/Navigation';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -25,7 +26,8 @@ export default function App() {
   return level2Victory != null ? (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={level1Victory ? level2Victory ? level3Name : level2Name : level1Name}
+        initialRouteName={level4Name}
+        // initialRouteName={level1Victory ? level2Victory ? level3Name : level2Name : level1Name}
         screenOptions={{
           headerTitleAlign: 'center'
         }}
@@ -45,6 +47,10 @@ export default function App() {
         <Stack.Screen
           name={level3Name}
           component={GuessShapeScreen}
+        />
+        <Stack.Screen
+          name={level4Name}
+          component={GuessCountryLocationScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,7 +4,7 @@ import {countriesWithFlags, countryList} from "../data/CountryList";
 export const gameNumber = generateConsistentRandomGameNumber();
 
 function generateConsistentRandomGameNumber() {
-    return generateConsistentRandomNumber(0, countriesWithFlags.length);
+    return generateConsistentRandomNumber(0, countryList.length);
 }
 
 export function generateConsistentRandomNumber(hash, limit) {
