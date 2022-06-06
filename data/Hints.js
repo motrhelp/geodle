@@ -275,7 +275,7 @@ export const hints = [
         options: [
             { text: "name with two other countries" },
             { text: "longest border in the world", isCorrect: true },
-            { text: "shortest border in the world"},
+            { text: "shortest border in the world" },
             { text: "name with one other country" },
         ]
     },
@@ -285,7 +285,7 @@ export const hints = [
         options: [
             { text: "largest sea" },
             { text: "highest mountain", isCorrect: true },
-            { text: "biggest forest"},
+            { text: "biggest forest" },
             { text: "longest river" },
         ]
     },
@@ -293,9 +293,9 @@ export const hints = [
         code: "FM",
         text: "This country is located in ...",
         options: [
-            { text: "the largest ocean", isCorrect: true  },
+            { text: "the largest ocean", isCorrect: true },
             { text: "between two oceans" },
-            { text: "the biggest forest"},
+            { text: "the biggest forest" },
             { text: "one of the China Seas" },
         ]
     },
@@ -305,7 +305,7 @@ export const hints = [
         options: [
             { text: "birthplace of humankind" },
             { text: "only country not fighting in World Wars" },
-            { text: "last country to be inhabited by humans", isCorrect: true  },
+            { text: "last country to be inhabited by humans", isCorrect: true },
             { text: "East India Company main destination" },
         ]
     },
@@ -315,7 +315,7 @@ export const hints = [
         options: [
             { text: "most developed island nation" },
             { text: "smallest island" },
-            { text: "largest micro-continent", isCorrect: true  },
+            { text: "largest micro-continent", isCorrect: true },
             { text: "most isolated island" },
         ]
     },
@@ -326,7 +326,7 @@ export const hints = [
             { text: "tundra and forests" },
             { text: "two disctricts" },
             { text: "over 1000 islands" },
-            { text: "about 115 islands", isCorrect: true  },
+            { text: "about 115 islands", isCorrect: true },
         ]
     },
     {
@@ -336,7 +336,7 @@ export const hints = [
             { text: "7" },
             { text: "none" },
             { text: "6" },
-            { text: "1", isCorrect: true  },
+            { text: "1", isCorrect: true },
         ]
     },
     {
@@ -344,7 +344,7 @@ export const hints = [
         text: "What is the local name of this country?",
         options: [
             { text: "Svenska" },
-            { text: "Suomi", isCorrect: true  },
+            { text: "Suomi", isCorrect: true },
             { text: "საქართველო" },
             { text: "Magyarország" },
         ]
@@ -353,7 +353,7 @@ export const hints = [
         code: "MX",
         text: "This country is home to ...",
         options: [
-            { text: "world's largest pyramid", isCorrect: true  },
+            { text: "world's largest pyramid", isCorrect: true },
             { text: "most penguins of the world" },
             { text: "less than 50 million people" },
             { text: "the longest river in the world" },
@@ -366,7 +366,67 @@ export const hints = [
             { text: "lives below poverty line" },
             { text: "is employed in tourism" },
             { text: "is under 18 years old" },
-            { text: "commutes from abroad", isCorrect: true  },
+            { text: "commutes from abroad", isCorrect: true },
+        ]
+    },
+    {
+        code: "ZW",
+        text: "World's largest waterfall, Victoria Falls, is on the borders of this country and ...",
+        options: [
+            { text: "Venezuela" },
+            { text: "Canada" },
+            { text: "Zambia", isCorrect: true },
+            { text: "Nigeria" },
+        ]
+    },
+    {
+        code: "ZM",
+        text: "This country was the first on its continent to introduce ...",
+        options: [
+            { text: "ship access to Gulf of Guinea" },
+            { text: "safe passage through Sahara" },
+            { text: "plastic banknotes", isCorrect: true },
+            { text: "taxes on coral reefs" },
+        ]
+    },
+    {
+        code: "VN",
+        text: "This country is the second biggest consumer of ...",
+        options: [
+            { text: "rice", isCorrect: true },
+            { text: "potato" },
+            { text: "coffee" },
+            { text: "tea" },
+        ]
+    },
+    {
+        code: "VE",
+        text: "Amerigo Vespucci named this country after ...",
+        options: [
+            { text: "Venice", isCorrect: true },
+            { text: "Verona" },
+            { text: "Valencia" },
+            { text: "Bergamo" },
+        ]
+    },
+    {
+        code: "VU",
+        text: "This country has the world's only ...",
+        options: [
+            { text: "Underwater cafe" },
+            { text: "Underwater phone booth" },
+            { text: "Underwater post office", isCorrect: true },
+            { text: "Underwater museum" },
+        ]
+    },
+    {
+        code: "SA",
+        text: "This country has the holiest site of ...",
+        options: [
+            { text: "Hinduism" },
+            { text: "Christianity" },
+            { text: "Islam", isCorrect: true },
+            { text: "Buddhism" },
         ]
     }
 ]

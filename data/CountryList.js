@@ -242,7 +242,7 @@ export const countryList = [
     { code: "VN", name: "Vietnam", flag: require("../img/320px-Flag_of_Vietnam.svg.png"), lat: 14.058324, lon: 108.277199, capital: { name: "Hanoi" }, shape: require("../img/vietnam.png") },
     { code: "VG", name: "Virgin Islands, British", flag: require("../img/320px-Flag_of_the_British_Virgin_Islands.svg.png"), lat: 18.420695, lon: -64.639968, capital: { name: "Road Town" } },
     { code: "VI", name: "Virgin Islands, U.S.", flag: require("../img/320px-Flag_of_the_United_States_Virgin_Islands.svg.png"), lat: 18.335765, lon: -64.896335, capital: { name: "Charlotte Amalie" } },
-    { code: "WF", name: "Wallis and Futuna", flag: require("../img/320px-Flag_of_Wallis_and_Futuna.svg.png"), lat: -13.768752, lon: -177.156097, capital: { name: "Mata'utu" } },
+    // { code: "WF", name: "Wallis and Futuna", flag: require("../img/320px-Flag_of_Wallis_and_Futuna.svg.png"), lat: -13.768752, lon: -177.156097, capital: { name: "Mata'utu" } },
     // { code: "EH", name: "Western Sahara", flag: require("../img/placeholder"), flagAspectRatio: 2, lat: 24.215527, lon: -12.885834, capital: { name: "Laayoune" }, shape: require("../img/western-sahara.png") },
     { code: "YE", name: "Yemen", flag: require("../img/320px-Flag_of_Yemen.svg.png"), lat: 15.552727, lon: 48.516388, capital: { name: "Sana'a" }, shape: require("../img/yemen.png") },
     { code: "ZM", name: "Zambia", flag: require("../img/320px-Flag_of_Zambia.svg.png"), lat: -13.133897, lon: 27.849332, capital: { name: "Lusaka" }, shape: require("../img/zambia.png") },
