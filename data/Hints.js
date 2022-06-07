@@ -428,6 +428,86 @@ export const hints = [
             { text: "Islam", isCorrect: true },
             { text: "Buddhism" },
         ]
+    },
+    {
+        code: "TH",
+        text: "This country ...",
+        options: [
+            { text: "has the biggest amount of islands" },
+            { text: "was never colonized by Europe", isCorrect: true },
+            { text: "consumes most fast food in the Pacific" },
+            { text: "has the lowest point of the world" },
+        ]
+    },
+    {
+        code: "AS",
+        text: "This country ...",
+        options: [
+            { text: "has practically no wildlife", isCorrect: true },
+            { text: "was never in war" },
+            { text: "is the biggest producent of cocoa powder" },
+            { text: "is the biggest consumer of olive oil" },
+        ]
+    },
+    {
+        code: "AO",
+        text: "This has ...",
+        options: [
+            { text: "life expectancy of 84 years" },
+            { text: "built the largest and fastest plane" },
+            { text: "the largest market of sunflower seeds" },
+            { text: "had civil war for 27 years", isCorrect: true },
+        ]
+    },
+    {
+        code: "AD",
+        text: "This country has ...",
+        options: [
+            { text: "the highest capital in Europe", isCorrect: true },
+            { text: "the biggest population in Europe" },
+            { text: "the lowest point of Africa" },
+            { text: "the largest number of cashew trees" },
+        ]
+    },
+    {
+        code: "AR",
+        text: "This country is homeland of ...",
+        options: [
+            { text: "Lionel Messi", isCorrect: true },
+            { text: "Cristiano Ronaldo" },
+            { text: "David Beckham" },
+            { text: "Harry Kane" },
+        ]
+    },
+    {
+        code: "AZ",
+        text: "This country's famous national dish is ...",
+        options: [
+            { text: "Borscht" },
+            { text: "Ratatouille" },
+            { text: "Plov", isCorrect: true },
+            { text: "Moussaka" },
+        ]
+    },
+    {
+        code: "BB",
+        text: "... was born in this country.",
+        options: [
+            { text: "Adele" },
+            { text: "Lionel Messi" },
+            { text: "Rihanna", isCorrect: true },
+            { text: "Taylor Swift" },
+        ]
+    },
+    {
+        code: "BY",
+        text: "This country ...",
+        options: [
+            { text: "is rich in oil and diamonds" },
+            { text: "is the biggest country in Europe" },
+            { text: "applies death penalty", isCorrect: true },
+            { text: "has the highest death rate in Europe" },
+        ]
     }
 ]
 
