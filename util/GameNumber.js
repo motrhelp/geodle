@@ -10,7 +10,7 @@ function generateConsistentRandomGameNumber() {
 export function generateConsistentRandomNumber(hash, limit) {
     // First hash, based on the date
     const today = new Date();
-    const demoModifier = 14;
+    const demoModifier = 1;
     const firstHash = (today.getDate() + hash + today.getMonth() * 5 * demoModifier) % limit;
 
     // Second hash, based on a country's name
