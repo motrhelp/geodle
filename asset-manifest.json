@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/geodle/static/js/app.a8989fbc.chunk.js",
-    "app.js.map": "/geodle/static/js/app.a8989fbc.chunk.js.map",
+    "app.js": "/geodle/static/js/app.d5c8aafa.chunk.js",
+    "app.js.map": "/geodle/static/js/app.d5c8aafa.chunk.js.map",
     "runtime~app.js": "/geodle/static/js/runtime~app.8e95cba6.js",
     "runtime~app.js.map": "/geodle/static/js/runtime~app.8e95cba6.js.map",
     "static/js/2.3ed937a2.chunk.js": "/geodle/static/js/2.3ed937a2.chunk.js",
@@ -398,6 +398,6 @@
   "entrypoints": [
     "static/js/runtime~app.8e95cba6.js",
     "static/js/2.3ed937a2.chunk.js",
-    "static/js/app.a8989fbc.chunk.js"
+    "static/js/app.d5c8aafa.chunk.js"
   ]
 }
