@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     pictogram: {
         // flex: 1,
         minHeight: 30,
+        maxWidth: 30,
         aspectRatio: 512 / 512,
         marginHorizontal: 10,
     },
